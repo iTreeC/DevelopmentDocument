@@ -3,6 +3,7 @@ package com.position.dao;
 import java.util.List;
 
 import com.position.pojo.Business_Position;
+import com.position.pojo.Company;
 /**
  * 公司表增删改查
  * @author Fei

@@ -24,10 +24,11 @@ import com.position.utils.SessionUtils;
 public class CompanyDaoImpl implements CompanyDao {
 
 	private static Logger logger = Logger.getLogger(CompanyDaoImpl.class);
-	Session session;
-	Transaction transaction;
-	Company comp;
-	List<Company> list;
+	private Session session;
+	@SuppressWarnings("unused")
+	private Transaction transaction;
+	private Company comp;
+	private List<Company> list;
 
 	/*
 	 * 根据id
@@ -37,19 +38,18 @@ public class CompanyDaoImpl implements CompanyDao {
 	public Company getById(int id) {
 		// TODO Auto-generated method stub
 		try {
+			//System.out.println(id);
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			comp = (Company) session.get(Company.class, id);
-			session.getTransaction().commit();
+			transaction.commit();
+			return comp;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.log(Level.ALL, "招聘公司信息获取失败", e);
-			session.getTransaction().rollback();
-		} finally {
-			session.close();
+			return null;
 		}
-		return comp;
 	}
 
 	/*
@@ -60,20 +60,21 @@ public class CompanyDaoImpl implements CompanyDao {
 	public Company getByName(String name) {
 		// TODO Auto-generated method stub
 		try {
+			System.out.println(name);
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
-			String hql = "from company where company =? ";
-			comp = (Company) session.createQuery(hql).setParameter(0, name);
-			session.getTransaction().commit();
+			String hql = "from Company c where c.companyName =? ";
+			list = (List<Company>) session.createQuery(hql).setString(0, name).list();
+			//list = (List<Company>) session.createSQLQuery("select * from Company c where c.companyName ='测试数据1'").list();
+				comp=(Company)list.get(0);
+				transaction.commit();
+			return comp;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.log(Level.ALL, "招聘公司信息获取失败", e);
-			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
-		return comp;
+			return null;
+		} 
 	}
 
 	/*
@@ -81,23 +82,20 @@ public class CompanyDaoImpl implements CompanyDao {
 	 * 
 	 * @see com.position.dao.CompanyDao#getAll()
 	 */
-	@SuppressWarnings("unchecked")
 	public List<Company> getAll() {
 		// TODO Auto-generated method stub
 		try {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
-			list = session.createQuery("from company").list();
-			session.getTransaction().commit();
+			list =session.createQuery("from Company").list();
+			transaction.commit();
+			return list;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.log(Level.ALL, "招聘公司信息获取失败", e);
-			session.getTransaction().rollback();
-		} finally {
-			session.close();
+			return null;
 		}
-		return list;
 	}
 
 	/*
@@ -132,7 +130,7 @@ public class CompanyDaoImpl implements CompanyDao {
 		try {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
-			String hql = "update company c set c.usable = 0 where id = ?";
+			String hql = "update Company c set c.usable = 0 where id = ?";
 			Query query = session.createQuery(hql).setParameter(0, ID);
 			query.executeUpdate();
 			session.getTransaction().commit();
@@ -200,7 +198,7 @@ public class CompanyDaoImpl implements CompanyDao {
 		try {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
-			String hql = "update company c set c.usable = 1 where id = ?";
+			String hql = "update Company c set c.usable = 1 where id = ?";
 			Query query = session.createQuery(hql).setParameter(0, id);
 			query.executeUpdate();
 			session.getTransaction().commit();

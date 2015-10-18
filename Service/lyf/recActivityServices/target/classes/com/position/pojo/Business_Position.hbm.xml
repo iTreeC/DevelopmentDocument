@@ -11,19 +11,22 @@
             <generator class="native" />
         </id>
         <!-- 属性映射 -->
-        <property name="Address" type="java.lang.String">
+        <property name="companyID" type="int">
+            <column name="COMPANYID" />
+        </property>
+        <property name="address" type="java.lang.String">
             <column name="ADDRESS" />
         </property>
-        <property name="County" type="int">
+        <property name="county" type="int" not-null="false">
             <column name="COUNTY" />
         </property>
-        <property name="Usable" type="int">
+        <property name="usable" type="int">
             <column name="USABLE" />
         </property>
         
         <!-- 表之间关系映射 -->
-        <many-to-one name="Province" column="ProID"></many-to-one>
-        <many-to-one name="City" column="CityID"></many-to-one>
+        <many-to-one name="province" column="ProID"></many-to-one>
+        <many-to-one name="city" column="CityID"></many-to-one>
 
          <many-to-one name="company" class="com.position.pojo.Company" column="id" unique="true"></many-to-one>
     </class>

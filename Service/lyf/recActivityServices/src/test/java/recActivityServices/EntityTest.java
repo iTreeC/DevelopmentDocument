@@ -1,6 +1,5 @@
 package recActivityServices;
 
-import static org.junit.Assert.*;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,7 +9,11 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 import org.junit.After;
 import org.junit.Before;
-
+/**
+ * 测试hibernate的连通性，以及同步数据库结构
+ * @author Fei
+ *
+ */
 public class EntityTest {
 
 

@@ -11,13 +11,13 @@
             <generator class="native" />
         </id>
         <!-- 属性映射 -->
-        <property name="Company" type="java.lang.String">
-            <column name="COMPANY" />
+        <property name="companyName" type="java.lang.String">
+            <column name="COMPANYNAME" />
         </property>
-        <property name="Usable" type="int">
+        <property name="usable" type="int">
             <column name="USABLE" />
         </property>
         <!-- 表之间关系映射 -->
-        <one-to-one name="pos" class="com.position.pojo.Business_Position" cascade="save-update,delete" property-ref="company"></one-to-one>
+        <one-to-one name="pos" class="com.position.pojo.Business_Position" property-ref="company"></one-to-one>
     </class>
 </hibernate-mapping>

@@ -6,54 +6,60 @@ package com.position.pojo;
  */
 public class Business_Position {
 	private int id;//编号
-	private Company company;//一对一公司
-	private String Address;//详尽地址
-	private Provincial_Number Province;//省
-	private City_Number City;//市
-	private int County;//县
-	private int Usable;//可用标识
+	private int companyID;//一对一公司
+	private String address;//详尽地址
+	private Provincial_Number province;//省
+	private City_Number city;//市
+	private int county;//县
+	private int usable;//可用标识
+	private Company company;
 	
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public Company getCompany() {
 		return company;
 	}
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getCompanyID() {
+		return companyID;
+	}
+	public void setCompanyID(int companyID) {
+		this.companyID = companyID;
+	}
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 	public Provincial_Number getProvince() {
-		return Province;
+		return province;
 	}
 	public void setProvince(Provincial_Number province) {
-		Province = province;
+		this.province = province;
 	}
 	public City_Number getCity() {
-		return City;
+		return city;
 	}
 	public void setCity(City_Number city) {
-		City = city;
+		this.city = city;
 	}
 	public int getCounty() {
-		return County;
+		return county;
 	}
 	public void setCounty(int county) {
-		County = county;
+		this.county = county;
 	}
 	public int getUsable() {
-		return Usable;
+		return usable;
 	}
 	public void setUsable(int usable) {
-		Usable = usable;
+		this.usable = usable;
 	}
 }

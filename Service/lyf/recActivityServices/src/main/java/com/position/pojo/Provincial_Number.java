@@ -9,40 +9,39 @@ import java.util.Set;
  *
  */
 public class Provincial_Number {
-	private int ProID;//编号
-	private String Provincial;//名称
-	private int Usable;//可用标识
-	private Set<City_Number> Cities = new HashSet<City_Number>();//一对多个市
-	private Set<Company> Comps = new HashSet<Company>();//一对多个公司
-
-	public Set<Company> getComps() {
-		return Comps;
-	}
-	public void setComps(Set<Company> comps) {
-		Comps = comps;
-	}
-	public Set<City_Number> getCities() {
-		return Cities;
-	}
-	public void setCities(Set<City_Number> cities) {
-		Cities = cities;
-	}
+	private int proID;//编号
+	private String provincial;//名称
+	private int usable;//可用标识
+	private Set<City_Number> cities = new HashSet<City_Number>();//一对多个市
+	private Set<Company> comps = new HashSet<Company>();//一对多个公司
 	public int getProID() {
-		return ProID;
+		return proID;
 	}
 	public void setProID(int proID) {
-		ProID = proID;
+		this.proID = proID;
 	}
 	public String getProvincial() {
-		return Provincial;
+		return provincial;
 	}
 	public void setProvincial(String provincial) {
-		Provincial = provincial;
+		this.provincial = provincial;
 	}
 	public int getUsable() {
-		return Usable;
+		return usable;
 	}
 	public void setUsable(int usable) {
-		Usable = usable;
+		this.usable = usable;
+	}
+	public Set<City_Number> getCities() {
+		return cities;
+	}
+	public void setCities(Set<City_Number> cities) {
+		this.cities = cities;
+	}
+	public Set<Company> getComps() {
+		return comps;
+	}
+	public void setComps(Set<Company> comps) {
+		this.comps = comps;
 	}
 }

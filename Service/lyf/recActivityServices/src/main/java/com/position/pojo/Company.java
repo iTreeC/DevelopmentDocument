@@ -6,8 +6,8 @@ package com.position.pojo;
  */
 public class Company {
 	private int id;//id
-	private String Company;//名称
-	private int Usable;//可用标识
+	private String companyName;//名称
+	private int usable;//可用标识
 	private Business_Position pos;//一对一地址
 	
 	public Business_Position getPos() {
@@ -22,16 +22,16 @@ public class Company {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getCompany() {
-		return Company;
+	public String getCompanyName() {
+		return companyName;
 	}
-	public void setCompany(String company) {
-		Company = company;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 	public int getUsable() {
-		return Usable;
+		return usable;
 	}
 	public void setUsable(int usable) {
-		Usable = usable;
+		this.usable = usable;
 	}
 }

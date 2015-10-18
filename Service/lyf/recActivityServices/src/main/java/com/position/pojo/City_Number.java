@@ -9,41 +9,40 @@ import java.util.Set;
  *
  */
 public class City_Number {
-	private int CityID;//城市编号
-	private String City;//名称
-	private int Usable;//可用标识
+	private int cityID;//城市编号
+	private String city;//名称
+	private int usable;//可用标识
 	private Provincial_Number pro;//多对一个省
-	private Set<Company> Comps = new HashSet<Company>();//一对多个公司
+	private Set<Business_Position> pos = new HashSet<Business_Position>();//一对多个公司地点
 	
-	
-	public Set<Company> getComps() {
-		return Comps;
+	public Set<Business_Position> getPos() {
+		return pos;
 	}
-	public void setComps(Set<Company> comps) {
-		Comps = comps;
+	public void setPos(Set<Business_Position> pos) {
+		this.pos = pos;
+	}
+	public int getCityID() {
+		return cityID;
+	}
+	public void setCityID(int cityID) {
+		this.cityID = cityID;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public int getUsable() {
+		return usable;
+	}
+	public void setUsable(int usable) {
+		this.usable = usable;
 	}
 	public Provincial_Number getPro() {
 		return pro;
 	}
 	public void setPro(Provincial_Number pro) {
 		this.pro = pro;
-	}
-	public int getCityID() {
-		return CityID;
-	}
-	public void setCityID(int cityID) {
-		CityID = cityID;
-	}
-	public String getCity() {
-		return City;
-	}
-	public void setCity(String city) {
-		City = city;
-	}
-	public int getUsable() {
-		return Usable;
-	}
-	public void setUsable(int usable) {
-		Usable = usable;
 	}
 }

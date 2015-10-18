@@ -6,24 +6,24 @@
     <!-- 表和类之间的映射 -->
     <class name="com.position.pojo.Provincial_Number" table="PROVINCIAL_NUMBER">
          <!-- 主键映射 -->
-        <id name="ProID" type="int">
+        <id name="proID" type="int">
             <column name="PROID" />
             <generator class="native" />
         </id>
         <!-- 属性映射 -->
-        <property name="Provincial" type="java.lang.String">
+        <property name="provincial" type="java.lang.String">
             <column name="PROVINCIAL" />
         </property>
-        <property name="Usable" type="int">
+        <property name="usable" type="int">
             <column name="USABLE" />
         </property>
         <!-- 表之间关系映射 -->
-        <set name="Cities" cascade="save-update,delete">
-        	<key  column="ProID"></key>
+        <set name="cities" cascade="save-update,delete">
+        	<key  column="proID"></key>
         	<one-to-many class="com.position.pojo.City_Number"/>
         </set>
-        <set name="Comps" cascade="save-update,delete">
-        	<key  column="ProID"></key>
+        <set name="comps" cascade="save-update,delete">
+        	<key  column="proID"></key>
         	<one-to-many class="com.position.pojo.Business_Position"/>
         </set>
     </class>

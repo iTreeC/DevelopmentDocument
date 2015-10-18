@@ -35,11 +35,9 @@ public class SessionUtils {
 		}
 
 		return sessionFactory;
-
 	}
 
 	public Session getSession() {
 		return getSessionFactory().getCurrentSession();
-
 	}
 }

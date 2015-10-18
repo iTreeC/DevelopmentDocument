@@ -6,21 +6,21 @@
     <!-- 表和类之间的映射 -->
     <class name="com.position.pojo.City_Number" table="CITY_NUMBER">
          <!-- 主键映射 -->
-        <id name="CityID" type="int">
+        <id name="cityID" type="int">
             <column name="CITYID" />
             <generator class="native" />
         </id>
          <!-- 属性映射 -->
-        <property name="City" type="java.lang.String">
+        <property name="city" type="java.lang.String">
             <column name="CITY" />
         </property>
-        <property name="Usable" type="int">
+        <property name="usable" type="int">
             <column name="USABLE" />
         </property>
         <!-- 表之间关系映射 -->
-        <many-to-one name="pro" column="ProID"></many-to-one>
-        <set name="Comps" cascade="save-update,delete">
-        	<key  column="CityID"></key>
+        <many-to-one name="pro" column="proID"></many-to-one>
+        <set name="pos" cascade="save-update,delete">
+        	<key  column="cityID"></key>
         	<one-to-many class="com.position.pojo.Business_Position"/>
         </set>
     </class>
