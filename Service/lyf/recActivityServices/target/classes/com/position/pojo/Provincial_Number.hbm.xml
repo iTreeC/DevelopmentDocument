@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-17 9:56:58 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <!-- 表和类之间的映射 -->
+    <class name="com.position.pojo.Provincial_Number" table="PROVINCIAL_NUMBER">
+         <!-- 主键映射 -->
+        <id name="ProID" type="int">
+            <column name="PROID" />
+            <generator class="native" />
+        </id>
+        <!-- 属性映射 -->
+        <property name="Provincial" type="java.lang.String">
+            <column name="PROVINCIAL" />
+        </property>
+        <property name="Usable" type="int">
+            <column name="USABLE" />
+        </property>
+        <!-- 表之间关系映射 -->
+        <set name="Cities" cascade="save-update,delete">
+        	<key  column="ProID"></key>
+        	<one-to-many class="com.position.pojo.City_Number"/>
+        </set>
+        <set name="Comps" cascade="save-update,delete">
+        	<key  column="ProID"></key>
+        	<one-to-many class="com.position.pojo.Business_Position"/>
+        </set>
+    </class>
+</hibernate-mapping>

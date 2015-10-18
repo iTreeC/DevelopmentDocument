@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-17 9:51:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <!-- 表和类之间的映射 -->
+    <class name="com.position.pojo.City_Number" table="CITY_NUMBER">
+         <!-- 主键映射 -->
+        <id name="CityID" type="int">
+            <column name="CITYID" />
+            <generator class="native" />
+        </id>
+         <!-- 属性映射 -->
+        <property name="City" type="java.lang.String">
+            <column name="CITY" />
+        </property>
+        <property name="Usable" type="int">
+            <column name="USABLE" />
+        </property>
+        <!-- 表之间关系映射 -->
+        <many-to-one name="pro" column="ProID"></many-to-one>
+        <set name="Comps" cascade="save-update,delete">
+        	<key  column="CityID"></key>
+        	<one-to-many class="com.position.pojo.Business_Position"/>
+        </set>
+    </class>
+</hibernate-mapping>
