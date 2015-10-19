@@ -2,11 +2,22 @@ package com.position.dao.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import com.position.dao.CityNumberDao;
 import com.position.pojo.City_Number;
 
 public class CityNumberDaoImpl implements CityNumberDao {
 
+	private static Logger logger = Logger.getLogger(CityNumberDaoImpl.class);
+	private Session session;
+	private Transaction transaction;
+	private City_Number city;
+	private List<City_Number> list;
+	
+	
 	public City_Number getById(int cityid) {
 		// TODO Auto-generated method stub
 		return null;

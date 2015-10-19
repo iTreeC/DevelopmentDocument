@@ -25,7 +25,6 @@ public class CompanyDaoImpl implements CompanyDao {
 
 	private static Logger logger = Logger.getLogger(CompanyDaoImpl.class);
 	private Session session;
-	@SuppressWarnings("unused")
 	private Transaction transaction;
 	private Company comp;
 	private List<Company> list;
@@ -64,10 +63,10 @@ public class CompanyDaoImpl implements CompanyDao {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			String hql = "from Company c where c.companyName =? ";
-			list = (List<Company>) session.createQuery(hql).setString(0, name).list();
+			list =  session.createQuery(hql).setString(0, name).list();
 			//list = (List<Company>) session.createSQLQuery("select * from Company c where c.companyName ='测试数据1'").list();
-				comp=(Company)list.get(0);
-				transaction.commit();
+			comp=list.get(0);
+			transaction.commit();
 			return comp;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
