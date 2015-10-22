@@ -2,7 +2,10 @@ package com.turing.activity.service.impl;
 
 import java.util.List;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import com.turing.activity.service.api.Match;
 import com.turing.activity.service.api.Service;
@@ -20,6 +23,7 @@ import com.turing.activity.service.dao.impl.YearMonDayEngine;
  * @date 2015-10-15
  * 
  */
+@Path("/Service")
 public class ServiceImpl implements Service {
 	Status status = new StatusImpl();
 	// 调用相应引擎
@@ -29,13 +33,26 @@ public class ServiceImpl implements Service {
 	Engine weekEngine = WeekEngine.getSingleton();// “周”引擎
 
 	@Override
-	public List<Integer> match() {
+	public List<Integer> matchYW(){
+		List<Integer> shopList;
+
+		Match match = new MatchImpl(baseEngine, yearMonDayEngine,
+				hourMinEngine, weekEngine);
+		shopList = match.matchYW(status);
+
+		return shopList;
+	}
+	@GET
+	@Path("/match")
+	@Produces(MediaType.APPLICATION_XML)
+	@Override
+	public List<Integer> matchYH() {
 		// TODO Auto-generated method stub
 		List<Integer> shopList;
 
 		Match match = new MatchImpl(baseEngine, yearMonDayEngine,
 				hourMinEngine, weekEngine);
-		shopList = match.match(status);
+		shopList = match.matchYH(status);
 
 		return shopList;
 	}

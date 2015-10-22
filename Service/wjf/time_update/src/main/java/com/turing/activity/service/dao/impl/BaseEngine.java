@@ -22,6 +22,7 @@ import com.turing.activity.service.entity.Rule;
 import com.turing.activity.service.entity.Shop;
 import com.turing.activity.service.entity.Week;
 import com.turing.activity.service.entity.YearMonDay;
+import com.turing.activity.service.utils.SessionUtils;
 
 /**
  * 基础引擎，具有对所有规则的增、删、改、查的能力。
@@ -41,11 +42,7 @@ public class BaseEngine implements Engine {
 	private static final BaseEngine baseEngine = new BaseEngine();
 
 	protected BaseEngine() {
-		Configuration configuration = new Configuration().configure();
-		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
-				.applySettings(configuration.getProperties())
-				.buildServiceRegistry();
-		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+		sessionFactory = SessionUtils.getInstance().getSessionFactory();
 	}
 
 	// 通过该方法获得实例对象

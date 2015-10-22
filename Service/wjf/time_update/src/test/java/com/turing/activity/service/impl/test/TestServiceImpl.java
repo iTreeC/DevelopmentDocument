@@ -16,8 +16,16 @@ public class TestServiceImpl {
 	Service service = new ServiceImpl();
 	
 	@Test
-	public void testMatch() {
-		List<Integer> shopList = service.match();
+	public void testMatchYW() {
+		List<Integer> shopList = service.matchYW();
+		for(int i=0; i<shopList.size(); i++){
+			System.out.println(shopList.get(i));
+		}
+	}
+	
+	@Test
+	public void testMatchYH() {
+		List<Integer> shopList = service.matchYH();
 		for(int i=0; i<shopList.size(); i++){
 			System.out.println(shopList.get(i));
 		}

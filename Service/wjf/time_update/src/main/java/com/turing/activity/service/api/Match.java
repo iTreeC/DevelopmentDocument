@@ -16,13 +16,21 @@ import com.turing.activity.service.entity.Shop;
 public interface Match{
 
 	/**
+	 * 根据年月日周匹配，判断是否符合规则。
+	 * 比如：当前时间是否在2015-01-01到2015-02-02之间的每个星期一
+	 * 
+	 * @param status 传入的当前时间。包括年月日、时分、周
+	 * @return 返回值若为空，表示没有匹配成功；否则，返回匹配成功的商家id
+	 */
+	public List<Integer> matchYW(Status status);
+	/**
 	 * 根据年月日时分匹配，判断是否符合规则。
 	 * 比如：当前时间是否在2015-01-01到2015-02-02之间的每天8：00到12:00之间
 	 * 
 	 * @param status 传入的当前时间。包括年月日、时分、周
 	 * @return 返回值若为空，表示没有匹配成功；否则，返回匹配成功的商家id
 	 */
-	public List<Integer> match(Status status);
+	public List<Integer> matchYH(Status status);
 	/**
 	 * 根据年月日匹配，判断是否符合规则。
 	 * 比如：当前时间是否在2015-01-01到2015-02-02之间

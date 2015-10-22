@@ -44,8 +44,24 @@ public class MatchImpl implements Match {
 		this.weekEngine = weekEngine;
 	}
 	
+	/*
+	 *“年月日”和“周”的组合匹配 
+	 */
 	@Override
-	public List<Integer> match(Status status) {
+	public List<Integer> matchYW(Status status){
+		List<Integer> yearMonDayShopList = this.matchYearMonDay(status);
+		List<Integer> weekList = this.matchWeekEquip(status);
+		List<Integer> shopList = getIntersection(yearMonDayShopList, weekList);
+		
+		return shopList;
+		
+	}
+	
+	/*
+	 *“年月日”和“时分”的组合匹配 
+	 */
+	@Override
+	public List<Integer> matchYH(Status status) {
 		// TODO Auto-generated method stub
 
 		// 1.若年月日匹配成功，记录shop，并进行第2步；否则，匹配失败。

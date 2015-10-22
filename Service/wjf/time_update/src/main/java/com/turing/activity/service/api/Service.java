@@ -19,7 +19,7 @@ import com.turing.activity.service.dao.api.Engine;
  * @version 2.0
  * 
  */
-@Path("/Service")
+//@Path("/Service")
 public interface Service {
 	
 	/**
@@ -28,10 +28,12 @@ public interface Service {
 	 * 
 	 * @return 返回值若为空，表示没有匹配成功；否则，返回匹配成功的商家id
 	 */
-	@GET
+	/*@GET
 	@Path("/match")
-	@Produces(MediaType.APPLICATION_XML)
-	public List<Integer> match();
+	*/@Produces(MediaType.APPLICATION_XML)
+	public List<Integer> matchYH();
+	
+	public List<Integer> matchYW();
 	
 	/**
 	 * 对规则的增删改，有待完善

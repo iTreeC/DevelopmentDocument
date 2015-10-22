@@ -26,6 +26,23 @@ public class TestMatchImpl {
 	
 	Match match = new MatchImpl(baseEngine, yearMonDayEngine, hourMinEngine, weekEngine);
 	
+
+	@Test
+	public void testMatchYW() {
+		List<Integer> shopList = match.matchYW(status);
+		for(int i=0; i<shopList.size(); i++){
+			System.out.println(shopList.get(i));
+		}
+	}
+
+	@Test
+	public void testMatchYH() {
+		List<Integer> shopList = match.matchYH(status);
+		for(int i=0; i<shopList.size(); i++){
+			System.out.println(shopList.get(i));
+		}
+	}
+
 	@Test
 	public void testMatchYearMonDay() {
 		List<Integer> shopList = match.matchYearMonDay(status);
@@ -42,14 +59,6 @@ public class TestMatchImpl {
 		}
 	}
 	
-	@Test
-	public void testMatch() {
-		List<Integer> shopList = match.match(status);
-		for(int i=0; i<shopList.size(); i++){
-			System.out.println(shopList.get(i));
-		}
-	}
-
 	@Test
 	public void testMatchWeekBetween(){
 		List<Integer> shopList = match.matchWeekBetween(status);

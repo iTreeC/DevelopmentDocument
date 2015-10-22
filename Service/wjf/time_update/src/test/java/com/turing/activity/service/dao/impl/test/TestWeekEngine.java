@@ -29,6 +29,7 @@ public class TestWeekEngine {
 		// 查询所有“周”规则
 		List rules = weekEngine.find();
 		for (int i = 0; i < rules.size(); i++) {
+			System.out.println(((Rule) rules.get(i)).getWeek().getsWeek());
 			System.out.println(((Rule) rules.get(i)).getWeek().geteWeek());
 		}
 	}

@@ -1,0 +1,59 @@
+数据库：
+	1.规则表、商家表、中间表
+	2.使用hibernate，运用组合及多对多等
+	
+代码：
+	规则模块：	1.将规则分为“年月日”、“时分”、“周”进行判断
+			2.可以对整条时间进行判断（包括年月日时分周），也可以对时间的部分判断（只含有年月日或时分或周）
+	引擎模块：	1.使用hibernate
+			2.一个总引擎，三个子引擎
+			3.“年月日”、“时分”、“周”三个子引擎可以分别对时间的部分操作，也可以对整体时间操作
+	匹配模块：	1.分别对“年月日”、“时分”、“周”进行匹配
+			2.然后排列组合各种规则
+	服务模块：	1.对外的接口
+			2.对规则的业务逻辑处理
+			
+存在的问题：
+	1.代码问题
+		1.1 代码有冗余，需要改进
+		1.2 程序结构有待改进
+	2.知识问题（最主要的问题）
+		1.1 SSH的学习
+		1.2 Restful的学习
+		1.3 对Maven的进一步理解
+
+遗留的问题：
+	1.代码冗余，耦合性大
+1		1.1 注释
+1		1.2方法的验证及失败的处理方式；测试用例规范
+1		1.3添加日志
+		1.4 。。。。。
+0.5	2.当前时间从哪获取
+	3.hibernate的session打开关闭问题
+0.5	4.restful连接问题
+	5.添加依赖，彻底了解maven
+	
+整理步骤：
+1	1.注释
+1	2.日志
+1	3.测试 
+1	4.验证 
+0.5	5.session开闭
+	6.添加依赖
+	
+	7.再了解restful、maven
+
+第一遍整理的遗留问题：
+	10月16号
+    1.引擎查询中，验证时id的上限   如： com.turing.activity.service.dao.impl.test.TestBaseEngine.testFindById()
+    2.测试中，三个引擎findByShopId(-1)的方法参数边界问题
+    10月17号
+    3.规则的更新有问题     com.turing.activity.service.dao.impl.test.TestBaseEngine.testUpdate()
+    4.BaseEngine中
+      public Long count(String hql, Map<String, Object> params)
+      public void executeHql(String hql)
+                 没测试用例
+
+    
+	
+	
