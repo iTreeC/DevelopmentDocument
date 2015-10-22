@@ -36,13 +36,33 @@ public class TextFindCompanyByCityId {
 		if(list!=null){
 			for(int i=0; i<list.size(); i++){
 				//System.out.println(list.get(i));
-				//System.out.println("11111");
+				//System.out.println("11111");for(int i =0;i<listcom.size();i++){
+				System.out.println(list.get(i).getId());
 				System.out.println(list.get(i).getCompanyName());
+				System.out.println(list.get(i).getUsable());
+				System.out.println(list.get(i).getPos());
+			
 			}
 		}else{
 			System.out.println("查找失败");
 		}
 	}
+	
+	//传入字符串，解析并返回
+	@Test
+	public void testGetbyidForString() {
+		FindCompany find = new FindCompany();
+		String a = "6，7，2";
+		List list = find.FindCompanyForString(a);
+		if(list!=null){
+			for(int i=0; i<list.size(); i++){
+				System.out.println(list.get(i));
+			}
+		}else{
+			System.out.println("查找失败");
+		}
+	}
+	
 	//通过id查询
 	@Test
 	public void testGetbyid() {

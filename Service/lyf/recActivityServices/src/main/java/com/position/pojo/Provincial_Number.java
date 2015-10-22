@@ -3,6 +3,8 @@ package com.position.pojo;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 /**
  * 所有省编号
  * @author Fei
@@ -32,12 +34,14 @@ public class Provincial_Number {
 	public void setUsable(int usable) {
 		this.usable = usable;
 	}
+	@JsonIgnore
 	public Set<City_Number> getCities() {
 		return cities;
 	}
 	public void setCities(Set<City_Number> cities) {
 		this.cities = cities;
 	}
+	@JsonIgnore
 	public Set<Company> getComps() {
 		return comps;
 	}

@@ -18,11 +18,11 @@
             <column name="USABLE" />
         </property>
         <!-- 表之间关系映射 -->
-        <set name="cities" cascade="save-update,delete">
+        <set name="cities" cascade="save-update,delete" lazy="false">
         	<key  column="proID"></key>
         	<one-to-many class="com.position.pojo.City_Number"/>
         </set>
-        <set name="comps" cascade="save-update,delete">
+        <set name="comps" cascade="save-update,delete" lazy="false">
         	<key  column="proID"></key>
         	<one-to-many class="com.position.pojo.Business_Position"/>
         </set>

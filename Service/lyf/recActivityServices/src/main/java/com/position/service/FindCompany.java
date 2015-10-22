@@ -26,14 +26,13 @@ import com.position.pojo.Company;
  * @author Fei
  *
  */
-@Path("/findCompany")
+@Path("/findcompany")
 public class FindCompany {
 
 	private static Logger logger = Logger
 			.getLogger(FindCompany.class);
 	ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
 	CompanyDao comp =  (CompanyDao) ctx.getBean("companydao");
-	
 	
 	private List<Business_Position> list;
 	private List<Company> listcom;
@@ -49,15 +48,15 @@ public class FindCompany {
 	@Path("/bycityid")
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
-	public List<Company> FindCompanyByCityId(@QueryParam("cityId") int cityId) {
+	public List<Company> FindCompanyByCityId(@QueryParam("cityid") int cityid) {
 
 		//边界值验证
-		if(cityId<0 && cityId>65535){
+		if(cityid<0 && cityid>65535){
 			logger.error("传入参数超出范围");
 			return null;
 		}
 		PositionDao pos = new PositionDaoImpl();
-		list = pos.getByCity(cityId);
+		list = pos.getByCity(cityid);
 		comp = new CompanyDaoImpl();
 		listcom = new ArrayList<Company>();
 		
@@ -69,6 +68,7 @@ public class FindCompany {
 				com = comp.getById(a);
 				//System.out.println(a);
 				listcom.add(i, com);
+				//System.out.println(listcom.get(i).getCompanyName());
 			}
 			logger.info("查找成功");
 		} else {
@@ -76,5 +76,30 @@ public class FindCompany {
 			//System.out.println("查找失败");
 		}
 		return listcom;
+	}
+	
+	@GET
+	@Path("/bycityidforString")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<List<Company>> FindCompanyForString(@QueryParam("citiesid") String citiesid) {
+
+		List<List<Company>> listcoms = new ArrayList<List<Company>>();
+		int trans;
+		//边界值验证
+		if(citiesid == null){
+			logger.error("传入参数不能为空");
+			logger.error("传入参数为空");
+			return null;
+		}
+		//解析字符串(中文逗号)
+		String[] result=citiesid.split("，");
+	    for(int i=0;i<result.length;i++) {
+	        System.out.println(result[i]);
+	        trans =Integer.parseInt(result[i]) ;
+	        listcom = this.FindCompanyByCityId(trans);
+	        listcoms.add(listcom);
+	    }
+		return listcoms;
 	}
 }

@@ -96,9 +96,7 @@ public class ProNumberDaoImpl implements ProNumberDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "省信息存储失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
+		} 
 	}
 
 	/*
@@ -118,8 +116,6 @@ public class ProNumberDaoImpl implements ProNumberDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "省信息删除（隐藏）失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
 		}
 	}
 
@@ -140,9 +136,7 @@ public class ProNumberDaoImpl implements ProNumberDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "省信息删除（直接）失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
+		} 
 	}
 
 	/*
@@ -161,9 +155,7 @@ public class ProNumberDaoImpl implements ProNumberDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "省信息更新失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
+		} 
 	}
 	
 	/*
@@ -183,9 +175,7 @@ public class ProNumberDaoImpl implements ProNumberDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "省信息隐藏后恢复失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
+		} 
 	}
 
 }

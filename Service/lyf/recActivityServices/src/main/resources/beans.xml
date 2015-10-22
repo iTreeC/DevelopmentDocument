@@ -11,10 +11,10 @@
 	<context:annotation-config />
 	<aop:aspectj-autoproxy />
 	
-	
-	<!-- <context:component-scan base-package="com.xh.dao.impl"/>  -->
+	<bean id="companydao" name="companydao" class="com.position.dao.impl.CompanyDaoImpl" autowire="default"> </bean>
+	<!-- <context:component-scan base-package="com.position.dao.impl"/>  
 	<bean id="citynumberdao" name="citynumberdao" class="com.position.dao.impl.CityNumberDaoImpl" autowire="default"> </bean>
 	<bean id="companydao" name="companydao" class="com.position.dao.impl.CompanyDaoImpl" autowire="default"> </bean>
 	<bean id="positiondao" name="positiondao" class="com.position.dao.impl.PositionDaoImpl" autowire="default"> </bean>
-	<bean id="pronumberdao" name="pronumberdao" class="com.position.dao.impl.ProNumberDaoImpl" autowire="default"> </bean>
+	<bean id="pronumberdao" name="pronumberdao" class="com.position.dao.impl.ProNumberDaoImpl" autowire="default"> </bean> -->
 </beans>

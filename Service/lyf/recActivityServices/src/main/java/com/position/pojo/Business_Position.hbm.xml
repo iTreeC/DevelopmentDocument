@@ -25,9 +25,9 @@
         </property>
         
         <!-- 表之间关系映射 -->
-        <many-to-one name="province" column="ProID"></many-to-one>
-        <many-to-one name="city" column="CityID"></many-to-one>
+        <many-to-one lazy="false" name="province" column="ProID"></many-to-one>
+        <many-to-one lazy="false" name="city" column="CityID"></many-to-one>
 
-         <many-to-one name="company" class="com.position.pojo.Company" column="id" unique="true"></many-to-one>
+         <many-to-one lazy="false" name="company" class="com.position.pojo.Company" column="id" unique="true"></many-to-one>
     </class>
 </hibernate-mapping>

@@ -1,4 +1,7 @@
 package com.position.pojo;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 /**
  * 存储公司位置信息
  * @author Fei
@@ -13,7 +16,7 @@ public class Business_Position {
 	private int county;//县
 	private int usable;//可用标识
 	private Company company;
-	
+	@JsonIgnore
 	public Company getCompany() {
 		return company;
 	}
@@ -38,12 +41,14 @@ public class Business_Position {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	@JsonIgnore
 	public Provincial_Number getProvince() {
 		return province;
 	}
 	public void setProvince(Provincial_Number province) {
 		this.province = province;
 	}
+	@JsonIgnore
 	public City_Number getCity() {
 		return city;
 	}

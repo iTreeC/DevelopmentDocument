@@ -51,6 +51,7 @@ public class PositionDaoImpl implements PositionDao {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			pos = (Business_Position) session.get(Business_Position.class, id);
+			transaction.commit();
 			return pos;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -159,9 +160,7 @@ public class PositionDaoImpl implements PositionDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "地点信息存储失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
+		} 
 	}
 
 	/*
@@ -182,8 +181,6 @@ public class PositionDaoImpl implements PositionDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "地点信息删除（隐藏）失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
 		}
 	}
 
@@ -204,8 +201,6 @@ public class PositionDaoImpl implements PositionDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "地点信息删除（直接）失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
 		}
 	}
 
@@ -225,9 +220,7 @@ public class PositionDaoImpl implements PositionDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "地点信息更新失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
+		} 
 	}
 	
 	
@@ -248,8 +241,6 @@ public class PositionDaoImpl implements PositionDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "地点信息隐藏后恢复失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
+		} 
 	}
 }

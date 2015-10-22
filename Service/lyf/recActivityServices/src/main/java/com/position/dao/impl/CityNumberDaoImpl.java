@@ -2,12 +2,15 @@ package com.position.dao.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.position.dao.CityNumberDao;
 import com.position.pojo.City_Number;
+import com.position.pojo.Company;
+import com.position.utils.SessionUtils;
 
 public class CityNumberDaoImpl implements CityNumberDao {
 
@@ -20,7 +23,19 @@ public class CityNumberDaoImpl implements CityNumberDao {
 	
 	public City_Number getById(int cityid) {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			//System.out.println(id);
+			session = SessionUtils.getInstance().getSession();
+			transaction = session.beginTransaction();
+			city = (City_Number) session.get(City_Number.class, cityid);
+			transaction.commit();
+			return city;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			logger.log(Level.ALL, "招聘公司信息获取失败", e);
+			return null;
+		}
 	}
 
 	public City_Number getByName(String parentCity) {

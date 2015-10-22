@@ -1,4 +1,7 @@
 package com.position.pojo;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 /**
  * 招聘公司信息（测试用）
  * @author Fei
@@ -10,6 +13,7 @@ public class Company {
 	private int usable;//可用标识
 	private Business_Position pos;//一对一地址
 	
+	@JsonIgnore
 	public Business_Position getPos() {
 		return pos;
 	}

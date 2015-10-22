@@ -18,6 +18,6 @@
             <column name="USABLE" />
         </property>
         <!-- 表之间关系映射 -->
-        <one-to-one name="pos" class="com.position.pojo.Business_Position" property-ref="company"></one-to-one>
+        <one-to-one lazy="false" name="pos" class="com.position.pojo.Business_Position" property-ref="company"></one-to-one>
     </class>
 </hibernate-mapping>

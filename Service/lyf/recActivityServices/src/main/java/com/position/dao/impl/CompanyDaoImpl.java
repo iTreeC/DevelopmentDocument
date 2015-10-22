@@ -114,9 +114,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "招聘公司信息存储失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
+		} 
 	}
 
 	/*
@@ -138,8 +136,6 @@ public class CompanyDaoImpl implements CompanyDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "招聘公司信息删除（隐藏）失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
 		}
 	}
 
@@ -161,9 +157,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "招聘公司信息删除（直接）失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
+		} 
 	}
 
 	/*
@@ -183,9 +177,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "招聘公司信息更新失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
+		} 
 	}
 
 	/*
@@ -206,9 +198,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			e.printStackTrace();
 			logger.log(Level.ALL, "招聘公司信息隐藏后恢复失败", e);
 			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
+		} 
 	}
 
 }
