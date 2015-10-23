@@ -9,9 +9,16 @@ import org.hibernate.Transaction;
 
 import com.position.dao.CityNumberDao;
 import com.position.pojo.City_Number;
-import com.position.pojo.Company;
 import com.position.utils.SessionUtils;
-
+/**
+ * Classname:CityNumberDaoImpl
+ *
+ * Version information:具体实现城市表增删改查操作
+ *
+ * Date：2015-10-17
+ *
+ * Copyright notice：liangyanfei
+ */
 public class CityNumberDaoImpl implements CityNumberDao {
 
 	private static Logger logger = Logger.getLogger(CityNumberDaoImpl.class);

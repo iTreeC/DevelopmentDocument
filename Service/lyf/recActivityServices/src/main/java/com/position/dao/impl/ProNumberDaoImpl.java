@@ -11,7 +11,15 @@ import org.hibernate.Transaction;
 import com.position.dao.ProNumberDao;
 import com.position.pojo.Provincial_Number;
 import com.position.utils.SessionUtils;
-
+/**
+ * Classname:ProNumberDaoImpl
+ *
+ * Version information:具体实现省表增删改查操作
+ *
+ * Date：2015-10-17
+ *
+ * Copyright notice：liangyanfei
+ */
 public class ProNumberDaoImpl implements ProNumberDao {
 
 	private static Logger logger = Logger.getLogger(CompanyDaoImpl.class);

@@ -29,11 +29,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	private Company comp;
 	private List<Company> list;
 
-	/*
-	 * 根据id
-	 * 
-	 * @see com.position.dao.CompanyDao#getById(int)
-	 */
+	//根据id
 	public Company getById(int id) {
 		// TODO Auto-generated method stub
 		try {
@@ -51,11 +47,7 @@ public class CompanyDaoImpl implements CompanyDao {
 		}
 	}
 
-	/*
-	 * 根据公司名
-	 * 
-	 * @see com.position.dao.CompanyDao#getByName(java.lang.String)
-	 */
+	// 根据公司名
 	public Company getByName(String name) {
 		// TODO Auto-generated method stub
 		try {
@@ -76,11 +68,7 @@ public class CompanyDaoImpl implements CompanyDao {
 		} 
 	}
 
-	/*
-	 * 查找所有
-	 * 
-	 * @see com.position.dao.CompanyDao#getAll()
-	 */
+	//查找所有
 	public List<Company> getAll() {
 		// TODO Auto-generated method stub
 		try {
@@ -97,11 +85,7 @@ public class CompanyDaoImpl implements CompanyDao {
 		}
 	}
 
-	/*
-	 * 增加
-	 * 
-	 * @see com.position.dao.CompanyDao#add(com.position.pojo.Company)
-	 */
+	//增加
 	public void add(Company company) {
 		// TODO Auto-generated method stub
 		try {

@@ -4,7 +4,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
+/**
+ * 用于测试restful,请保留
+ * @author Fei
+ *
+ */
 @Path("/test")
 public class test {
 	@GET

@@ -13,8 +13,18 @@ import org.hibernate.Transaction;
 import com.position.dao.PositionDao;
 import com.position.pojo.Business_Position;
 import com.position.pojo.City_Number;
+import com.position.pojo.Company;
 import com.position.utils.SessionUtils;
 
+/**
+ * Classname:PositionDaoImpl
+ *
+ * Version information:具体实现位置表增删改查操作
+ *
+ * Date：2015-10-17
+ *
+ * Copyright notice：liangyanfei
+ */
 public class PositionDaoImpl implements PositionDao {
 
 	private static Logger logger = Logger.getLogger(PositionDaoImpl.class);
@@ -23,7 +33,7 @@ public class PositionDaoImpl implements PositionDao {
 	private Business_Position pos;
 	private List<Business_Position> list;
 	
-	//根据id
+	//根据位置id
 	public Business_Position getById(int id) {
 		// TODO Auto-generated method stub
 		try {
@@ -41,9 +51,7 @@ public class PositionDaoImpl implements PositionDao {
 		}
 	}
 
-	/**
-	 * 根据公司id
-	 */
+	//根据公司id
 	public Business_Position getByPosId(int id) {
 		// TODO Auto-generated method stub
 		try {
@@ -78,10 +86,7 @@ public class PositionDaoImpl implements PositionDao {
 		}
 	}
 
-	/*
-	 * 根据详尽地址查找（模糊查询）
-	 * @see com.position.dao.PositionDao#getByAddress(java.lang.String)
-	 */
+	//根据详尽地址查找（模糊查询）
 	public List<Business_Position> getByAddress(String str) {
 		// TODO Auto-generated method stub
 		try {
@@ -89,7 +94,7 @@ public class PositionDaoImpl implements PositionDao {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			String hql = "from Business_Position b where b.address like"
-					+"%"+str+"%";
+					+"'"+"%"+str+"%"+"'";
 			list =  session.createQuery(hql).list();
 			transaction.commit();
 			return list;
@@ -101,26 +106,19 @@ public class PositionDaoImpl implements PositionDao {
 		} 
 	}
 
-	/*
-	 * 根据省查找
-	 * @see com.position.dao.PositionDao#getByPro(int)
-	 */
+	//根据省查找
 	public List<Business_Position> getByPro(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/*
-	 * 城市id
-	 */
+	//城市id
 	public List<Business_Position> getByCity(int id) {
 		// TODO Auto-generated method stub
 		try {
 			//System.out.println(id);
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
-//			String hql = "from Business_Position b where b.cityid =? ";
-//			list = (List<Business_Position>) session.createQuery(hql).setParameter(0, id).list();			
 			City_Number city = (City_Number) session.get(City_Number.class, id);
 			Set<Business_Position> list = city.getPos();
 			List<Business_Position> list1 = new ArrayList<Business_Position>(list);
@@ -134,20 +132,14 @@ public class PositionDaoImpl implements PositionDao {
 		}
 	}
 
-	/*
-	 * 根据县查找
-	 * @see com.position.dao.PositionDao#getByCount(int)
-	 */
+	//根据县查找
 	public List<Business_Position> getByCount(int id) {
 		// TODO Auto-generated method stub
 		//暂时不开发
 		return null;
 	}
 
-	/*
-	 * 增加
-	 * @see com.position.dao.PositionDao#add(com.position.pojo.Business_Position)
-	 */
+	//增加
 	public void add(Business_Position Bus) {
 		// TODO Auto-generated method stub
 		try {
@@ -163,10 +155,7 @@ public class PositionDaoImpl implements PositionDao {
 		} 
 	}
 
-	/*
-	 * 删除(隐藏式)
-	 * @see com.position.dao.PositionDao#deleteByIdHid(int)
-	 */
+	//删除(隐藏式)
 	public void deleteByIdHid(int ID) {
 		// TODO Auto-generated method stub
 		try {
@@ -184,16 +173,20 @@ public class PositionDaoImpl implements PositionDao {
 		}
 	}
 
-	/*
-	 * 删除（直接删除）
-	 * @see com.position.dao.PositionDao#deleteById(int)
-	 */
+	// 删除（直接删除）。注意该表不能直接删除，次方法仅为测试
 	public void deleteById(int ID) {
 		// TODO Auto-generated method stub
 		try {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			pos = (Business_Position) session.get(Business_Position.class, ID);
+//			pos.setCity(null);
+//			pos.setCompany(null);
+//			pos.setProvince(null);
+			City_Number city = new City_Number();
+			city.getPos().remove(pos);
+			Company c = new Company();
+			c.getPos();
 			session.delete(pos);
 			session.getTransaction().commit();
 		} catch (Exception e) {
@@ -204,10 +197,7 @@ public class PositionDaoImpl implements PositionDao {
 		}
 	}
 
-	/*
-	 * 修改
-	 * @see com.position.dao.PositionDao#update(com.position.pojo.Business_Position)
-	 */
+	//修改
 	public void update(Business_Position Bus) {
 		// TODO Auto-generated method stub
 		try {
@@ -224,10 +214,7 @@ public class PositionDaoImpl implements PositionDao {
 	}
 	
 	
-	/*
-	 * 恢复（隐藏式删除的反向）
-	 * @see com.position.dao.PositionDao#regainByDelete(int)
-	 */
+	//恢复（隐藏式删除的反向）
 	public void regainByDelete(int id){
 		try {
 			session = SessionUtils.getInstance().getSession();
