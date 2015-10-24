@@ -10,7 +10,7 @@ import com.position.dao.CompanyDao;
 import com.position.dao.impl.CompanyDaoImpl;
 import com.position.pojo.Company;
 /**
- * 公司dao测试
+ * 公司表dao层测试(表结构没有确定，只进行了查找的测试)
  * @author Fei
  *
  */

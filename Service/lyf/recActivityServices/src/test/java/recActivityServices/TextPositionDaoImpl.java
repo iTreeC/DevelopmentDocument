@@ -15,7 +15,7 @@ import com.position.pojo.Business_Position;
 import com.position.pojo.City_Number;
 
 /**
- * 地点dao测试
+ * 地点表dao层测试
  * @author Fei
  *
  */
@@ -36,7 +36,7 @@ public class TextPositionDaoImpl {
 	@Test
 	public void testGetbycity() {
 		pos = new PositionDaoImpl();
-		List<Business_Position> list = pos.getByCity(6);
+		list = pos.getByCity(6);
 		if(list!=null){
 			for(int i=0; i<list.size(); i++){
 				System.out.println(list.get(i).getAddress());

@@ -37,7 +37,10 @@ public class PositionDaoImpl implements PositionDao {
 	public Business_Position getById(int id) {
 		// TODO Auto-generated method stub
 		try {
-			//System.out.println(id);
+			if (id < 0 || id > 65535) {
+				logger.error("传入参数超出范围");
+				return null;
+			}
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			pos = (Business_Position) session.get(Business_Position.class, id);
@@ -55,7 +58,10 @@ public class PositionDaoImpl implements PositionDao {
 	public Business_Position getByPosId(int id) {
 		// TODO Auto-generated method stub
 		try {
-			//System.out.println(id);
+			if (id < 0 || id > 65535) {
+				logger.error("传入参数超出范围");
+				return null;
+			}
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			pos = (Business_Position) session.get(Business_Position.class, id);
@@ -90,7 +96,10 @@ public class PositionDaoImpl implements PositionDao {
 	public List<Business_Position> getByAddress(String str) {
 		// TODO Auto-generated method stub
 		try {
-			//System.out.println(str);
+			if (str == null || str.trim().length() == 0) {
+				logger.error("传入参数不能为空");
+				return null;
+			}
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			String hql = "from Business_Position b where b.address like"
@@ -109,6 +118,7 @@ public class PositionDaoImpl implements PositionDao {
 	//根据省查找
 	public List<Business_Position> getByPro(int id) {
 		// TODO Auto-generated method stub
+		//暂不开发，资源不足
 		return null;
 	}
 
@@ -116,7 +126,10 @@ public class PositionDaoImpl implements PositionDao {
 	public List<Business_Position> getByCity(int id) {
 		// TODO Auto-generated method stub
 		try {
-			//System.out.println(id);
+			if (id < 0 && id > 65535) {
+				logger.error("传入参数超出范围");
+				return null;
+			}
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			City_Number city = (City_Number) session.get(City_Number.class, id);
@@ -146,7 +159,7 @@ public class PositionDaoImpl implements PositionDao {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			session.save(Bus);
-			session.getTransaction().commit();
+			transaction.commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -164,7 +177,7 @@ public class PositionDaoImpl implements PositionDao {
 			String hql = "update Business_Position b set b.usable = 0 where id = ?";
 			Query query = session.createQuery(hql).setParameter(0, ID);
 			query.executeUpdate();
-			session.getTransaction().commit();
+			transaction.commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -179,16 +192,9 @@ public class PositionDaoImpl implements PositionDao {
 		try {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
-			pos = (Business_Position) session.get(Business_Position.class, ID);
-//			pos.setCity(null);
-//			pos.setCompany(null);
-//			pos.setProvince(null);
-			City_Number city = new City_Number();
-			city.getPos().remove(pos);
-			Company c = new Company();
-			c.getPos();
-			session.delete(pos);
-			session.getTransaction().commit();
+			String hql = "delete from Business_Position where id=?";
+			session.createQuery(hql).setParameter(0, ID).executeUpdate();
+			transaction.commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -204,7 +210,7 @@ public class PositionDaoImpl implements PositionDao {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			session.update(Bus);
-			session.getTransaction().commit();
+			transaction.commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -222,7 +228,7 @@ public class PositionDaoImpl implements PositionDao {
 			String hql = "update Business_Position b set b.usable = 1 where id = ?";
 			Query query = session.createQuery(hql).setParameter(0, id);
 			query.executeUpdate();
-			session.getTransaction().commit();
+			transaction.commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

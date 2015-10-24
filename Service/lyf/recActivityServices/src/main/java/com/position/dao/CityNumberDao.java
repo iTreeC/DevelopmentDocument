@@ -3,6 +3,7 @@ package com.position.dao;
 import java.util.List;
 
 import com.position.pojo.City_Number;
+import com.position.pojo.Provincial_Number;
 /**
  * 城市表增删改查操作
  * @author Fei
@@ -14,7 +15,7 @@ public interface CityNumberDao {
 	//根据id
 	City_Number getById(int cityid);
 	//根据城市名
-	City_Number getByName(String parentCity);
+	City_Number getByName(String name);
 //	//根据父类名字
 //	List<City_Number> getByParentName(String parentCity);
 	//根据父类id

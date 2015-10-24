@@ -39,6 +39,7 @@ public class FindCompany {
 	private List<Business_Position> list;
 	private List<Company> listcom;
 	private Company com;
+	private List<List<Company>> listcoms = new ArrayList<List<Company>>();
 
 	/**
 	 * 通过城市id查找对应公司
@@ -55,7 +56,7 @@ public class FindCompany {
 	public List<Company> FindCompanyByCityId(@QueryParam("cityid") int cityid) {
 
 		// 边界值验证
-		if (cityid < 0 && cityid > 65535) {
+		if (cityid < 0 || cityid > 65535) {
 			logger.error("传入参数超出范围");
 			return null;
 		}
@@ -66,18 +67,13 @@ public class FindCompany {
 
 		if (list != null) {
 			for (int i = 0; i < list.size(); i++) {
-				// com= new Company();
 				int a = list.get(i).getCompanyID();
-				// System.out.println(a);
 				com = comp.getById(a);
-				// System.out.println(a);
 				listcom.add(i, com);
-				// System.out.println(listcom.get(i).getCompanyName());
 			}
 			logger.info("查找成功");
 		} else {
 			logger.error("查找失败,不存在相应的数据");
-			// System.out.println("查找失败");
 		}
 		return listcom;
 	}
@@ -95,11 +91,9 @@ public class FindCompany {
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<List<Company>> FindCompanyForString(@QueryParam("citiesid") String citiesid) {
-
-		List<List<Company>> listcoms = new ArrayList<List<Company>>();
 		int trans;
 		// 边界值验证
-		if (citiesid == null) {
+		if (citiesid == null || citiesid.trim().length() == 0) {
 			logger.error("传入参数不能为空");
 			return null;
 		}
@@ -129,7 +123,7 @@ public class FindCompany {
 	public List<Company> FindCompanyByaddress(@QueryParam("address") String address) {
 
 		// 边界值验证
-		if (address == null) {
+		if (address == null || address.trim().length() == 0) {
 			logger.error("传入参数不能为空");
 			return null;
 		}

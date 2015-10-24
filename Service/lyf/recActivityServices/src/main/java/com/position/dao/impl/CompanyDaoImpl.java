@@ -33,7 +33,10 @@ public class CompanyDaoImpl implements CompanyDao {
 	public Company getById(int id) {
 		// TODO Auto-generated method stub
 		try {
-			//System.out.println(id);
+			if (id < 0 || id > 65535) {
+				logger.error("传入参数超出范围");
+				return null;
+			}
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			comp = (Company) session.get(Company.class, id);
@@ -51,6 +54,10 @@ public class CompanyDaoImpl implements CompanyDao {
 	public Company getByName(String name) {
 		// TODO Auto-generated method stub
 		try {
+			if (name == null || name.trim().length() == 0) {
+				logger.error("传入参数不能为空");
+				return null;
+			}
 			System.out.println(name);
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
@@ -92,7 +99,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			session.save(company);
-			session.getTransaction().commit();
+			transaction.commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,11 +108,7 @@ public class CompanyDaoImpl implements CompanyDao {
 		} 
 	}
 
-	/*
-	 * 删除(隐藏式)
-	 * 
-	 * @see com.position.dao.CompanyDao#deleteByIdHid(int)
-	 */
+	//删除(隐藏式)
 	public void deleteByIdHid(int ID) {
 		// TODO Auto-generated method stub
 		try {
@@ -114,7 +117,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			String hql = "update Company c set c.usable = 0 where id = ?";
 			Query query = session.createQuery(hql).setParameter(0, ID);
 			query.executeUpdate();
-			session.getTransaction().commit();
+			transaction.commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -123,19 +126,15 @@ public class CompanyDaoImpl implements CompanyDao {
 		}
 	}
 
-	/*
-	 * 删除（直接删除）
-	 * 
-	 * @see com.position.dao.CompanyDao#deleteById(int)
-	 */
+	//删除（直接删除）
 	public void deleteById(int ID) {
 		// TODO Auto-generated method stub
 		try {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
-			comp = (Company) session.get(Company.class, ID);
-			session.delete(comp);
-			session.getTransaction().commit();
+			String hql = "delete from Company where id=?";
+			session.createQuery(hql).setParameter(0, ID).executeUpdate();
+			transaction.commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -144,18 +143,14 @@ public class CompanyDaoImpl implements CompanyDao {
 		} 
 	}
 
-	/*
-	 * 修改
-	 * 
-	 * @see com.position.dao.CompanyDao#update(com.position.pojo.Company)
-	 */
+	//修改
 	public void update(Company company) {
 		// TODO Auto-generated method stub
 		try {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			session.update(company);
-			session.getTransaction().commit();
+			transaction.commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -164,11 +159,7 @@ public class CompanyDaoImpl implements CompanyDao {
 		} 
 	}
 
-	/*
-	 * 恢复（隐藏式删除的反向）
-	 * 
-	 * @see com.position.dao.CompanyDao#regainByDelete(int)
-	 */
+	// 恢复（隐藏式删除的反向）
 	public void regainByDelete(int id) {
 		try {
 			session = SessionUtils.getInstance().getSession();
@@ -176,10 +167,9 @@ public class CompanyDaoImpl implements CompanyDao {
 			String hql = "update Company c set c.usable = 1 where id = ?";
 			Query query = session.createQuery(hql).setParameter(0, id);
 			query.executeUpdate();
-			session.getTransaction().commit();
+			transaction.commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			logger.log(Level.ALL, "招聘公司信息隐藏后恢复失败", e);
 			session.getTransaction().rollback();
 		} 
