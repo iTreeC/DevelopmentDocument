@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.turing.activity.service.entity">
+
+    <class name="Shop" table="T_SHOP">
+    
+        <id name="shopId" type="int">
+            <column name="SHOP_ID" />
+            <generator class="native" />
+        </id>
+        
+        <property name="shopName" type="java.lang.String">
+            <column name="SHOP_NAME" />
+        </property>
+       
+       <!-- table: 指定中间表 -->
+        <set name="rules" table="T_RULE_SHOP">
+            <key>
+                <column name="SHOP_ID" />
+            </key>
+            <!-- 使用many-to-many指定多对多关联关系。
+            	 column指定set集合中持久化类在中间表中外键的名称 -->
+            <many-to-many class="Rule" column="RULE_ID"></many-to-many>
+        
+        </set>
+    </class>
+</hibernate-mapping>
