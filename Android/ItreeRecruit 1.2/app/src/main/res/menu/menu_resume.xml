@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.itree.itreerecruit.ResumeActivity">
+    <item android:id="@+id/delete_item" android:title="删除"
+        android:orderInCategory="100" />
+    <item android:id="@+id/update_item" android:title="更新"
+        android:orderInCategory="100" />
+    <item android:id="@+id/load_item" android:title="上传"
+        android:orderInCategory="100" />
+    <item android:id="@+id/bar_chuangjian" app:showAsAction="always"
+        android:title="创建简历"/>
+</menu>
