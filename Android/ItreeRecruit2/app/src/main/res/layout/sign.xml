@@ -27,7 +27,7 @@
         android:hint="@string/inputPwd"
         android:maxLength="15"
         android:drawableLeft="@drawable/tanhao"
-
+        android:inputType="textPassword"
         android:layout_below="@+id/user_login_name"
         />
     <Button 
