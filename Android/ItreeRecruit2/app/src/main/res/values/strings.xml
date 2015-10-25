@@ -17,7 +17,7 @@
     <string name="textView_refurbish">刷新简历</string>
 
     <!-- sign -->
-    <string name="sure">确定</string>
+    <string name="sign">注册</string>
     <string name="inputPhone">请输入手机号</string>
     <string name="inputYanZheng">请输入验证码</string>
     <string name="inputPwd">请输入密码(15位以内)</string>
@@ -79,4 +79,25 @@
     <string name="title_activity_main_gzdd_">工作地点</string>
     <string name="title_activity_main_hyll_">行业类别</string>
     <string name="title_activity_main_zwll_">职位类别</string>
+
+    <!-- 所有错误提示，都是以e_开头_hint结尾 -->
+    <string name="e_username_hint">请输入正确的用户名</string>
+    <string name="e_password_hint">请输入正确的密码</string>
+
+    <!-- EditText Max Length -->
+    <string name="max_length_username">11</string>
+    <string name="max_length_password">12</string>
+
+    <!-- 常规 -->
+    <string name="edit_text_type">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="submit">Submit</string>
+
+    <!-- LoginActivity -->
+    <string name="login_title">Login</string>
+    <string name="login_username_hint">Enter Username</string>
+    <string name="login_password_hint">Enter Password</string>
+    <string name="login_username_length_hint">Username length between 8 to 12</string>
+    <string name="login_password_length_hint">Password length between 8 to 12</string>
+
+
 </resources>

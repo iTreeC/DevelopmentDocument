@@ -19,7 +19,7 @@ public class CheckUtil {
     public static boolean checkPhoneNum(String phoneNum){
 
         //建立审核规范
-        Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+        Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,3,5-9]))\\d{8}$");
 
         Matcher m = p.matcher(phoneNum);
 
