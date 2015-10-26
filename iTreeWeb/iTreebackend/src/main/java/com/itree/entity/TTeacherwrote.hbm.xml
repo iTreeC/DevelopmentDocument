@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-14 15:26:00 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.itree.entity.TTeacherwrote" table="t_teacherwrote" catalog="itree">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="TUser" class="com.itree.entity.TUser" fetch="select">
+            <column name="user_id" not-null="true">
+                <comment>ID/&#205;&#226;&#188;&#252;</comment>
+            </column>
+        </many-to-one>
+        <property name="teacherContent" type="string">
+            <column name="teacher_content" length="100" not-null="true">
+                <comment>&#188;&#196;&#211;&#239;&#196;&#218;&#200;&#221;</comment>
+            </column>
+        </property>
+        <property name="contentStatus" type="int">
+            <column name="`content_ status`" not-null="true">
+                <comment>&#177;&#234;&#202;&#182;</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
