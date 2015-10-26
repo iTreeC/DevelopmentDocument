@@ -184,21 +184,27 @@ public class addedubgActivity extends AppCompatActivity implements View.OnClickL
                                 datePicker.getMonth() + 1,
                                 datePicker.getDayOfMonth()));
 
-
-
                         //判断毕业时间必须大于入学时间
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                        try {
-                            Date d1=sdf.parse(ruxue_text.getText().toString());
-                            Date d2=sdf.parse(String.valueOf(sb));
-                            if(Math.abs(((d1.getTime() - d2.getTime())/(24*3600*1000))) >=0) {
 
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月DD日");
+                        Calendar c1=Calendar.getInstance();
+                        Calendar c2=Calendar.getInstance();
+                        try {
+                            c1.setTime(sdf.parse(ruxue_text.getText().toString()));
+                            c2.setTime(sdf.parse(String.valueOf(sb)));
+                            int result=c1.compareTo(c2);
+                            if(result<0){
+                                System.out.println("ahskjahkjdfhdskjfhsjd");
+                                Toast.makeText(addedubgActivity.this,"ahskjafadk",Toast.LENGTH_SHORT).show();
+                            }else{
+                                biye_text = (TextView) findViewById(R.id.biye_text);
+                                biye_text.setText(sb);
                             }
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        biye_text = (TextView) findViewById(R.id.biye_text);
-                        biye_text.setText(sb);
+//                        biye_text = (TextView) findViewById(R.id.biye_text);
+//                        biye_text.setText(sb);
                     }
                 });
                 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -211,7 +217,7 @@ public class addedubgActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.layout_intoschool:
                 DatepickerFragment datepickerFragment=new DatepickerFragment();
-                datepickerFragment.show(getFragmentManager(),"datepicker");
+                datepickerFragment.show(getFragmentManager(), "datepicker");
                 break;
                     }
                 }
