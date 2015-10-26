@@ -14,19 +14,24 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.itree.itreerecruit.ConDB.DataBaseAdapter;
 import com.itree.itreerecruit.entity.Resume;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class addedubgActivity extends AppCompatActivity implements View.OnClickListener {
     private Button button_ruxue,button_biye,b4,b5,b6;
+    private  View ruxue_layout,biye_layout;
+    private TextView ruxue_text,biye_text;
     private EditText  schoolname_edit;
     private DataBaseAdapter dataBaseAdapter;
     //定义显示时间控件
@@ -45,13 +50,24 @@ public class addedubgActivity extends AppCompatActivity implements View.OnClickL
         //实例化数据库工具类
         dataBaseAdapter=new DataBaseAdapter(this);
 
-        //获取按钮id
-        button_ruxue= (Button) findViewById(R.id.ruxue);
-        button_biye= (Button) findViewById(R.id.biye);
-        schoolname_edit= (EditText) findViewById(R.id.schoolname_edit);
-        button_ruxue.setOnClickListener(this);
-        button_biye.setOnClickListener(this);
+        //给layout添加点击事件
+        ruxue_layout=findViewById(R.id.layout_intoschool);
+        biye_layout=findViewById(R.id.layout_outschool);
 
+        ruxue_layout.setOnClickListener(this);
+        biye_layout.setOnClickListener(this);
+
+        //获取按钮id
+//        button_ruxue= (Button) findViewById(R.id.ruxue);
+//        button_biye= (Button) findViewById(R.id.biye);
+        ruxue_text= (TextView) findViewById(R.id.ruxue_text);
+        biye_text= (TextView) findViewById(R.id.biye_text);
+        schoolname_edit= (EditText) findViewById(R.id.schoolname_edit);
+//        button_ruxue.setOnClickListener(this);
+//        button_biye.setOnClickListener(this);
+
+
+        //
         SharedPreferences editor =  getSharedPreferences("update_resume", MODE_PRIVATE);
         String str=editor.getString("is_updateresume","");
         if(str.equals("update")){
@@ -59,8 +75,8 @@ public class addedubgActivity extends AppCompatActivity implements View.OnClickL
             Resume resume=dataBaseAdapter.findbyid(id);
             System.out.print(resume);
             schoolname_edit.setText(resume.getSchool_name());
-            button_ruxue.setText(resume.getStime());
-            button_biye.setText(resume.getEtime());
+            ruxue_text.setText(resume.getStime());
+            biye_text.setText(resume.getEtime());
         }
     }
     @Override
@@ -68,46 +84,6 @@ public class addedubgActivity extends AppCompatActivity implements View.OnClickL
         getMenuInflater().inflate(R.menu.menu_addedubg, menu);
         return true;
     }
-    /**
-     * 判定输入汉字
-     * @param c
-     * @return
-     */
-    public  boolean isChinese(char c) {
-        Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
-        if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
-                || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
-                || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
-                || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION
-                || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
-                || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * 检测String是否全是中文
-     * @param name
-     * @return
-     */
-    /*public  boolean checkNameChese(String name)
-    {
-        boolean res=true;
-        char [] cTemp = name.toCharArray();
-        for(int i=0;i<name.length();i++)
-        {
-            if(!isChinese(cTemp[i]))
-            {
-                res=false;
-                break;
-            }
-        }
-        return res;
-    }*/
-
-
-
     /***
      * 验证中文名字
      * @param name
@@ -121,7 +97,6 @@ public class addedubgActivity extends AppCompatActivity implements View.OnClickL
         }
         return false;
     }
-
     /**
      * 判断是否是时间
      * @param date
@@ -129,7 +104,6 @@ public class addedubgActivity extends AppCompatActivity implements View.OnClickL
      */
     public boolean isDateStringValid(String date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月DD日");
-
         try {
             sdf.parse(date);
             return true;
@@ -150,23 +124,23 @@ public class addedubgActivity extends AppCompatActivity implements View.OnClickL
             Boolean tag=checkNameChese(schoolname_edit.getText().toString());
             Resume resume=new Resume();
             resume.setSchool_name(schoolname_edit.getText().toString());
-            resume.setStime(button_ruxue.getText().toString());
-            resume.setEtime(button_biye.getText().toString());
-            if(schoolname_edit.getText().toString().trim().isEmpty()&&!isDateStringValid(button_ruxue.getText().toString())&&
-                    !isDateStringValid(button_biye.getText().toString())){
+            resume.setStime(ruxue_text.getText().toString());
+            resume.setEtime(biye_text.getText().toString());
+            if(schoolname_edit.getText().toString().trim().isEmpty()&&!isDateStringValid(ruxue_text.getText().toString())&&
+                    !isDateStringValid(biye_text.getText().toString())){
                 Toast.makeText(this,"请前去补全信息",Toast.LENGTH_SHORT).show();
             }
-            if(schoolname_edit.getText().toString().trim()!=null&&!isDateStringValid(button_ruxue.getText().toString())&&
-                    !isDateStringValid(button_biye.getText().toString())){
+            if(schoolname_edit.getText().toString().trim()!=null&&!isDateStringValid(ruxue_text.getText().toString())&&
+                    !isDateStringValid(biye_text.getText().toString())){
                 Toast.makeText(this,"请选择时间",Toast.LENGTH_SHORT).show();
             }
             if(schoolname_edit.getText().toString().trim().isEmpty()){
                 Toast.makeText(this,"请输入院校名称",Toast.LENGTH_SHORT).show();
             }else if(tag==false){
                 Toast.makeText(this,"输入内容必须为汉字,且学校名称不能超过15个字",Toast.LENGTH_SHORT).show();
-            } else if(!isDateStringValid(button_ruxue.getText().toString())){
+            } else if(!isDateStringValid(ruxue_text.getText().toString())){
                 Toast.makeText(addedubgActivity.this, "请选择入学时间", Toast.LENGTH_SHORT).show();
-            }else if(!isDateStringValid(button_biye.getText().toString())){
+            }else if(!isDateStringValid(biye_text.getText().toString())){
                 Toast.makeText(addedubgActivity.this, "请选择毕业时间", Toast.LENGTH_SHORT).show();
             }else {
                 SharedPreferences editor =  getSharedPreferences("educate",MODE_PRIVATE);
@@ -175,9 +149,7 @@ public class addedubgActivity extends AppCompatActivity implements View.OnClickL
                 resume.setResume_id(_id1);
                 dataBaseAdapter.updateEducate(resume);
                 ArrayList<Resume> list=dataBaseAdapter.findall();
-                for(Resume s:list){
-                    System.out.println(s);
-                }
+
                 Intent intent = new Intent();
                 intent.setClass(addedubgActivity.this, creatjianliActivity.class);
                 startActivity(intent);
@@ -188,18 +160,14 @@ public class addedubgActivity extends AppCompatActivity implements View.OnClickL
         return super.onOptionsItemSelected(item);
     }
     public void setdatevalue_ryxue(int year,int month,int date){
-        button_ruxue= (Button) findViewById(R.id.ruxue);
-        button_ruxue.setText(year+"年"+(month+1)+"月"+date+"日");
+        ruxue_text= (TextView) findViewById(R.id.ruxue_text);
+        ruxue_text.setText(year+"年"+(month+1)+"月"+date+"日");
     }
-    @Override
+   @Override
     public void onClick(View v) {
         Intent intent=new Intent();
         switch (v.getId()){
-            case R.id.ruxue:
-               DatepickerFragment datepickerFragment=new DatepickerFragment();
-                datepickerFragment.show(getFragmentManager(),"datepicker");
-                break;
-            case R.id.biye:
+            case R.id.layout_outschool:
                 View view = (LinearLayout)getLayoutInflater().inflate(R.layout.date_dialogelayout,null);
                 //创建builder
                AlertDialog.Builder builder=new AlertDialog.Builder(this);
@@ -215,8 +183,22 @@ public class addedubgActivity extends AppCompatActivity implements View.OnClickL
                         sb.append(String.format("%d年%02d月%02d日", datePicker.getYear(),
                                 datePicker.getMonth() + 1,
                                 datePicker.getDayOfMonth()));
-                        Button button_data = (Button) findViewById(R.id.biye);
-                        button_data.setText(sb);
+
+
+
+                        //判断毕业时间必须大于入学时间
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        try {
+                            Date d1=sdf.parse(ruxue_text.getText().toString());
+                            Date d2=sdf.parse(String.valueOf(sb));
+                            if(Math.abs(((d1.getTime() - d2.getTime())/(24*3600*1000))) >=0) {
+
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        biye_text = (TextView) findViewById(R.id.biye_text);
+                        biye_text.setText(sb);
                     }
                 });
                 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -226,6 +208,10 @@ public class addedubgActivity extends AppCompatActivity implements View.OnClickL
                     }
                 });
                 builder.setView(view).create().show();
+                break;
+            case R.id.layout_intoschool:
+                DatepickerFragment datepickerFragment=new DatepickerFragment();
+                datepickerFragment.show(getFragmentManager(),"datepicker");
                 break;
                     }
                 }

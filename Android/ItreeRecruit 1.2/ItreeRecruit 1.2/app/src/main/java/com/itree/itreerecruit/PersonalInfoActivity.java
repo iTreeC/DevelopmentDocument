@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.itree.itreerecruit.ConDB.DataBaseAdapter;
@@ -34,8 +35,9 @@ public class PersonalInfoActivity extends AppCompatActivity {
     private Button btn ;
     private RadioGroup maleOrFemale;
     private RadioButton sex;
-    private Button birthday;
+//    private Button birthday;
     private EditText userName;
+    private TextView birthday;
     private EditText email;
     private EditText tel;
     private  String str;
@@ -57,7 +59,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
         maleOrFemale = (RadioGroup) findViewById(R.id.maleOrFemale);
         email = (EditText) findViewById(R.id.btn_email);
         tel = (EditText) findViewById(R.id.btn_tel);
-        birthday = (Button) findViewById(R.id.btn_birthday);
+        birthday = (TextView) findViewById(R.id.birthday_text);
 
         maleOrFemale.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -81,7 +83,6 @@ public class PersonalInfoActivity extends AppCompatActivity {
             email.setText(resume.getEmail());
             tel.setText(resume.getTel());
         }
-
     }
 
     /**
@@ -166,7 +167,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
     /**
      * 设置选择日期的对话框
-     * @param v
+     * @param
      */
     public void selectDate(View v ){
         View view = (LinearLayout)getLayoutInflater().inflate(R.layout.activity_select_date, null);
@@ -179,7 +180,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
                 sb.append(String.format("%d年%02d月%02d日", datePicker.getYear(),
                         datePicker.getMonth() + 1,
                         datePicker.getDayOfMonth()));
-                birthday = (Button) findViewById(R.id.btn_birthday);
+                birthday = (TextView) findViewById(R.id.birthday_text);
                 birthday.setText(sb);
             }
         }).create().show();

@@ -54,20 +54,49 @@
         android:layout_column="1"
         android:singleLine="true"
         />
-    <Button
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--style = "?android:attr/borderlessButtonStyle"-->
+        <!--android:text="@string/birthday"-->
+        <!--android:id="@+id/btn_birthday"-->
+        <!--android:textSize="12sp"-->
+        <!--android:drawableRight="@drawable/next"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:layout_columnSpan="2"-->
+        <!--android:layout_row="3"-->
+        <!--android:layout_column="0"-->
+        <!--android:onClick="selectDate"-->
+        <!--/>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style = "?android:attr/borderlessButtonStyle"
-        android:text="@string/birthday"
-        android:id="@+id/btn_birthday"
-        android:textSize="12sp"
-        android:drawableRight="@drawable/next"
-        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:id="@+id/layout_birthday"
+        android:onClick="selectDate"
         android:layout_columnSpan="2"
         android:layout_row="3"
-        android:layout_column="0"
-        android:onClick="selectDate"
-        />
+         android:layout_column="0">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/birthday"
+            android:textSize="18dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:id="@+id/bir"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_weight="1"
+            android:textSize="18dp"
+            android:id="@+id/birthday_text"
+            android:drawableRight="@drawable/jiantou"/>
+    </LinearLayout>
  <!--   <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -111,6 +140,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/contact"
         android:background="@color/material_deep_teal_200"
         android:layout_row="7"

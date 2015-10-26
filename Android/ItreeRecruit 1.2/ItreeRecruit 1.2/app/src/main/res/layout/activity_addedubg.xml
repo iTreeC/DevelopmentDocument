@@ -28,18 +28,57 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1" />
     </LinearLayout>
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="入学时间"
-        android:drawableRight="@drawable/jiantou"
-        android:gravity="left"
-        android:id="@+id/ruxue"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_below="@+id/linearLayout"
-        android:layout_alignRight="@+id/linearLayout"
-        android:layout_alignEnd="@+id/linearLayout" />
-    <Button
+        android:orientation="horizontal"
+        android:id="@+id/layout_intoschool"
+        android:layout_below="@+id/linearLayout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="入学时间"
+            android:textSize="18dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:id="@+id/ruxue"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textSize="18dp"
+            android:layout_weight="1"
+            android:id="@+id/ruxue_text"
+            android:drawableRight="@drawable/jiantou"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/layout_outschool"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/layout_intoschool"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="毕业时间"
+            android:textSize="18dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:id="@+id/biye"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_weight="1"
+            android:textSize="18dp"
+            android:id="@+id/biye_text"
+            android:drawableRight="@drawable/jiantou"/>
+    </LinearLayout>
+ <!--   <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableRight="@drawable/jiantou"
@@ -48,5 +87,5 @@
         android:id="@+id/biye"
         style="?android:attr/borderlessButtonStyle"
         android:layout_below="@+id/ruxue"
-         />
+         />-->
 </RelativeLayout>
