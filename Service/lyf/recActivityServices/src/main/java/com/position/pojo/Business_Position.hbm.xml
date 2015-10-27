@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-17 9:50:58 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <!-- 表和类之间的映射 -->
+    <class name="com.position.pojo.Business_Position" table="BUSINESS_POSITION">
+        <!-- 主键映射 -->
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <!-- 属性映射 -->
+        <property name="companyID" type="int">
+            <column name="COMPANYID" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="ADDRESS" />
+        </property>
+        <property name="county" type="int" not-null="false">
+            <column name="COUNTY" />
+        </property>
+        <property name="usable" type="int">
+            <column name="USABLE" />
+        </property>
+        
+        <!-- 表之间关系映射 -->
+        <many-to-one lazy="false" name="province" column="ProID"></many-to-one>
+        <many-to-one lazy="false" name="city" column="CityID"></many-to-one>
+
+         <many-to-one lazy="false" name="company" class="com.position.pojo.Company" column="id" unique="true"></many-to-one>
+    </class>
+</hibernate-mapping>

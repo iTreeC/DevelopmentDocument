@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.turing.activity.service.entity">
+    <class name="Rule" table="T_RULE">
+        <id name="ruleId" type="int">
+            <column name="RULE_ID" />
+            <generator class="native" />
+        </id>
+       
+		<!-- 映射组成关系 -->
+		<component name="yearMonDay" class="YearMonDay">
+			<parent name="rule"/>
+			
+			<property name="sYearMonDay" type="java.lang.String" column="S_YEARMONDAY"/>
+			<property name="eYearMonDay" type="java.lang.String" column="E_YEARMONDAY"/>
+			
+		</component>
+		
+		<component name="hourMin" class="HourMin">
+			<parent name="rule"/>
+			
+			<property name="sHourMin" type="java.lang.String" column="S_HOURMIN"/>
+			<property name="eHourMin" type="java.lang.String" column="E_HOURMIN"/>
+			
+		</component>
+		
+		<component name="week" class="Week">
+			<parent name="rule"/>
+			
+			<property name="sWeek" type="java.lang.String" column="S_WEEK"/>
+			<property name="eWeek" type="java.lang.String" column="E_WEEK"/>
+			
+		</component>
+		
+		<!-- table: 指定中间表 -->
+        <set name="shops" table="T_RULE_SHOP" inverse="true">
+            <key>
+                <column name="RUlE_ID" />
+            </key>
+            <!-- 使用many-to-many指定多对多关联关系。
+            	 column指定set集合中持久化类在中间表中外键的名称 -->
+            <many-to-many class="Shop" column="SHOP_ID"></many-to-many>
+        
+        </set>
+    </class>
+</hibernate-mapping>

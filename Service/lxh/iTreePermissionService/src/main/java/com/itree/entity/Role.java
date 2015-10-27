@@ -6,19 +6,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Entity
-@Table(name="tb_role_permission")
+@Table(name="tb_role")
 
-@Service @Component("role")
 public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO )
 	private int id;
-	private int rid;
-	private int pid;
+	private String name;
 	private int status = 0;
 	
 	////// getter & setter ///////
@@ -29,29 +25,17 @@ public class Role {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getRid() {
-		return rid;
+	public String getName() {
+		return name;
 	}
-	public void setRid(int rid) {
-		this.rid = rid;
-	}
-	public int getPid() {
-		return pid;
-	}
-	public void setPid(int pid) {
-		this.pid = pid;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getStatus() {
 		return status;
 	}
 	public void setStatus(int status) {
 		this.status = status;
-	}
-	
-	@Override
-	public String toString() {
-		return "Role [id=" + id + ", rid=" + rid + ", pid=" + pid + ", status="
-				+ status + "]";
 	}
 	
 	

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
@@ -8,10 +9,29 @@
            http://www.springframework.org/schema/context/spring-context-2.5.xsd
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
-	<context:annotation-config /><!-- 
-	<context:component-scan base-package="com.itree" /> -->
-	<aop:aspectj-autoproxy />
-	<bean id="roledao" name="roledao" class="com.itree.dao.impl.RoleDaoImpl" 
-		autowire="default"> </bean> <bean id="userdao" name="userdao" class="com.itree.dao.impl.UserDaoImpl" 
-		autowire="default"> </bean>
+	<context:annotation-config />
+	<context:component-scan base-package="com.itree.dao.impl,com.itree.engine" />
+	<!-- <aop:aspectj-autoproxy /> -->
+
+
+	<bean id="rpdao" class="com.itree.dao.impl.RolePermissionDaoImpl" />
+	<bean id="updao" class="com.itree.dao.impl.UserPermissionDaoImpl" />
+	<bean id="pdao" class="com.itree.dao.impl.PermissionDaoImpl" />
+	<bean id="urdao" class="com.itree.dao.impl.UserRoleDaoImpl" />
+
+	<!-- 注入有错 -->
+	<bean id="rpengine" class="com.itree.engine.impl.RolesPermissionEngine">
+		<property name="rpdao" ref="rpdao"/>
+	</bean>
+	<bean id="upengine" class="com.itree.engine.impl.UsersPermissionEngine">
+		<property name="updao" ref="updao"/>
+	</bean>
+	<bean id="pengine" class="com.itree.engine.impl.PermissionEngine">
+		<property name="pdao" ref="pdao"/>
+	</bean>
+	<bean id="urengine" class="com.itree.engine.impl.UserRoleEngine">
+		<property name="urdao" ref="urdao"/>
+	</bean>
+
+
 </beans>

@@ -1,0 +1,103 @@
+<resources>
+    <!-- 标题 -->
+    <string name="app_name">iTree招聘</string>
+    <string name="app_login">登录</string>
+    <string name="app_logout">注销</string>
+    <!-- item -->
+    <string name="action_login">登录</string>
+    <string name="action_select">求职宝典</string>
+    <string name="action_money">薪酬查询</string>
+    <string name="action_advices">意见反馈</string>
+    <string name="action_recommend">应用推荐</string>
+    <string name="action_settings">设置</string>
+    <!-- 主界面中的 -->
+    <string name="textView_recommend">职位推荐</string>
+    <string name="textView_feedback">投递反馈</string>
+    <string name="textView_invite">职位邀请</string>
+    <string name="textView_refurbish">刷新简历</string>
+
+    <!-- sign -->
+    <string name="sign">注册</string>
+    <string name="inputPhone">请输入手机号</string>
+    <string name="inputYanZheng">请输入验证码</string>
+    <string name="inputPwd">请输入密码(15位以内)</string>
+    <!-- login -->
+    <string name="login">登录</string>
+    <string name="inputPhoneOrEmail">请输入手机号</string>
+    <string name="inputPassword">请输入密码</string>
+    <string name="forgetPassword">忘记密码？</string>
+
+    <!-- search -->
+    <string name="pleaseInput">请输入关键字/职位/公司/地点搜索</string>
+    <string name="search">搜索</string>
+
+    <!--personal-->
+    <string name="personal">个人信息</string>
+    <string name="inputName">请输入姓名</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="birthday">出生日期</string>
+    <string name="workTime">参加工作时间</string>
+    <string name="cityLive">现居住城市</string>
+    <string name="cityLocation">户口所在地</string>
+    <string name="contact">联系方式</string>
+    <string name="tel">手机号码</string>
+    <string name="email">邮箱地址</string>
+    <string name="saveAndNext">保存并填写下一项</string>
+
+    <!--intension-->
+    <string name="intensionOfJob">求职意向</string>
+    <string name="favorite">偏好选项</string>
+    <string name="workQuality">工作性质</string>
+    <string name="workLocation">工作地点</string>
+    <string name="jobSorts">职位类别</string>
+    <string name="businessSorts">行业类别</string>
+    <string name="Money">期望薪金（税前）</string>
+    <string name="nowZhuangtai">目前状态</string>
+    <string name="jobZhuangtai">求职状态</string>
+    <string name="show">将此求职意向显示在我的简历中</string>
+    <string name="title_activity_personal_info">个人信息</string>
+    <!--提示信息-->
+    <string name="tishi_xiaoxi">提示</string>
+    <string name="tishi_massage">您确定要退出吗？</string>
+    <string name="tishi_ok">确定</string>
+    <string name="tishi_cancle">取消</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_my_resume">MyResumeActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_resume">简历</string>
+    <string name="title_activity_test">test</string>
+    <string name="title_activity_all_resume">AllResume</string>
+    <string name="addedubg">保存</string>
+    <string name="educatebg">保存</string>
+    <string name="title_activity_api">Api</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="title_activity_main_gzdd_">工作地点</string>
+    <string name="title_activity_main_hyll_">行业类别</string>
+    <string name="title_activity_main_zwll_">职位类别</string>
+
+    <!-- 所有错误提示，都是以e_开头_hint结尾 -->
+    <string name="e_username_hint">请输入正确的用户名</string>
+    <string name="e_password_hint">请输入正确的密码</string>
+
+    <!-- EditText Max Length -->
+    <string name="max_length_username">11</string>
+    <string name="max_length_password">12</string>
+
+    <!-- 常规 -->
+    <string name="edit_text_type">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="submit">Submit</string>
+
+    <!-- LoginActivity -->
+    <string name="login_title">Login</string>
+    <string name="login_username_hint">Enter Username</string>
+    <string name="login_password_hint">Enter Password</string>
+    <string name="login_username_length_hint">Username length between 8 to 12</string>
+    <string name="login_password_length_hint">Password length between 8 to 12</string>
+
+
+</resources>

@@ -1,0 +1,13 @@
+@charset "utf-8";
+html{height:100%;}
+.shuffle-me{width:28%;height:150px;margin:3%;display:block;position:relative;float:left;width:26%;height:209px;}
+.shuffle-me a{text-align:center;}
+.info{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.35);padding:20px;text-align:center;display:block;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
+.info h1{font-weight:bold;color:white;font-size:20px;margin:55px 0 0;text-transform:uppercase;letter-spacing:1px;padding:0;}.info h1 a{color:#fff; }
+.info h2{margin-top:0;color:white;font-size:14px;font-family:georgia;font-style:italic;}
+.shuffle-group{position:relative;width:100%;margin-bottom:10px;}
+.shuffle-group .shuffle-me{width:31.9%;float:left;margin:5px;}
+
+</style>
+
+

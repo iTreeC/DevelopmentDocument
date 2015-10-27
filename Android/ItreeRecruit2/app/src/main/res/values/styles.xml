@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+    <color name="blue">#ff0d0eff</color>
+    <color name="baise">#03fe00fe</color>
+    <color name="huise">#9e000018</color>
+    <color name="qianhui">#560000A1</color>
+
+    <!-- 红色按钮 -->
+    <style name="RedButton">
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/button_red_selector</item>
+        <item name="android:textSize">@dimen/button_textsize</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:enabled">false</item>
+    </style>
+</resources>
