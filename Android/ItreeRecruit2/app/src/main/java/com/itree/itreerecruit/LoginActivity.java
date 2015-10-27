@@ -21,17 +21,31 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cndemoz.avalidations.EditTextValidator;
+import com.cndemoz.avalidations.ValidationModel;
 import com.itree.itreerecruit.entity.User;
+import com.itree.itreerecruit.userper_utill.CheckUtil;
+import com.itree.itreerecruit.validations.passwordValidation;
+import com.itree.itreerecruit.validations.userNameValidation;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
 
+import java.security.Signature;
 import java.util.List;
 
 import static com.itree.itreerecruit.userper_utill.CheckUtil.checkEmail;
 import static com.itree.itreerecruit.userper_utill.CheckUtil.checkPhoneNum;
 
 public class LoginActivity extends AppCompatActivity {
+
+	private EditText loginUsername;
+	private EditText loginPassword;
+	private EditText SignUsername;
+	private EditText signPassword;
+	private Button loginButton;
+	private Button signButton;
+	private EditTextValidator editTextValidator;
 
 
 
@@ -53,15 +67,44 @@ public class LoginActivity extends AppCompatActivity {
 	    tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("登录").setContent(R.id.LinearLayout_login));
 	    tabhost.addTab(tabhost.newTabSpec("tab2").setIndicator("注册").setContent(R.id.LinearLayout_sign));
 
-		//login处理
-		//获取button
-		Button login = (Button)findViewById(R.id.user_login);
-		Button sign = (Button)findViewById(R.id.user_login_login);
-		login.setOnClickListener(loginListener);
-		sign.setOnClickListener(loginListener);
+		loginInit();
+		signInit();
+	}
 
-//		判断登录按钮是否可用
-		this.textViewJudge();
+	/**
+	 * 登录界面的初始化方法
+	 * @author 苑雪元
+	 */
+	public void loginInit(){
+		loginUsername = (EditText) findViewById(R.id.user_name);
+		loginPassword = (EditText) findViewById(R.id.user_password);
+		loginButton = (Button) findViewById(R.id.user_login);
+
+		loginButton.setOnClickListener(loginListener);
+
+		editTextValidator = new EditTextValidator(this)
+				.setButton(loginButton)
+				.add(new ValidationModel(loginUsername,new userNameValidation()))
+				.add(new ValidationModel(loginPassword,new passwordValidation()))
+				.execute();
+	}
+
+	/**
+	 * 注册界面的初始化方法
+	 * @author 苑雪元
+	 */
+	public void signInit(){
+		SignUsername = (EditText) findViewById(R.id.user_login_name);
+		signPassword = (EditText) findViewById(R.id.user_login_check);
+		signButton = (Button) findViewById(R.id.user_login_login);
+
+		signButton.setOnClickListener(loginListener);
+
+		editTextValidator = new EditTextValidator(this)
+				.setButton(signButton)
+				.add(new ValidationModel(SignUsername, new userNameValidation()))
+				.add(new ValidationModel(signPassword, new passwordValidation()))
+				.execute();
 	}
 
 	/**
@@ -151,8 +194,12 @@ public class LoginActivity extends AppCompatActivity {
 				switch(v.getId()){
 					case R.id.user_login:
 						if(checkLogin()){
-							goClass(LoginActivity.this,MainActivity.class);
-							finish();
+							if (editTextValidator.validate()) {
+								Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+								goClass(LoginActivity.this,MainActivity.class);
+								finish();
+							}
+
 						}else{
 							Toast.makeText(LoginActivity.this,"用户账号或密码不正确",Toast.LENGTH_SHORT).show();
 						}
@@ -164,6 +211,8 @@ public class LoginActivity extends AppCompatActivity {
 
 			}
 		};
+
+
 	/**
 	 * @author guanjiwei
 	 * @ecffec 从数据库进行取值
@@ -197,7 +246,7 @@ public class LoginActivity extends AppCompatActivity {
 	 * @author chenmeng
 	 * @effect 监听textview双重限定
 	 */
-	public void textViewJudge(){
+	/*public void textViewJudge(){
 		//获取三个对象
 		final EditText userName = (EditText) findViewById(R.id.user_name);
 		final EditText userPwd = (EditText) findViewById(R.id.user_password);
@@ -251,7 +300,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-	}
+	}*/
 
 	/**
 	 * @author：guanjiwei
@@ -265,6 +314,10 @@ public class LoginActivity extends AppCompatActivity {
 		startActivity(intent);
 	}
 
+	/**
+	 * 权限服务
+	 * @return
+	 */
 	public boolean checkLogin(){
 
 
@@ -305,7 +358,6 @@ public class LoginActivity extends AppCompatActivity {
 		}
 		return false;
 	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

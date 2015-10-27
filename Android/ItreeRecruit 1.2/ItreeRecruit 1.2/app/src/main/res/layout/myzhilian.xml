@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/LinearLayout_MyZhiLian"
+    android:weightSum="1">
+
+
+    <Button
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查询手机号归属地"
+        android:id="@+id/toIp"
+        android:background="@drawable/shape_button"
+        />
+
+    <LinearLayout
+        android:id="@+id/Group_Show1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账号"
+            android:id="@+id/toLogin"
+            android:background="@drawable/shape_button"
+            />
+
+        <Button
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="权限组"
+            android:id="@+id/testShow2"
+
+            android:background="@drawable/shape_button"/>
+
+        <Button
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="控制"
+            android:id="@+id/testShow3"
+
+            android:background="@drawable/shape_button"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Group_Show2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="功能A"
+            android:id="@+id/testShow4"
+            android:background="@drawable/shape_button"/>
+
+        <Button
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="功能B"
+            android:id="@+id/testShow5"
+            android:background="@drawable/shape_button"/>
+
+        <Button
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="功能C"
+            android:id="@+id/testShow6"
+            android:background="@drawable/shape_button"/>
+    </LinearLayout>
+
+
+</LinearLayout>

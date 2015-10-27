@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+    <color name="blue">#ff0d0eff</color>
+    <color name="baise">#03fe00fe</color>
+    <color name="huise">#9e000018</color>
+    <color name="qianhui">#560000A1</color>
+</resources>

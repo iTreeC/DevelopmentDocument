@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-name=".*"/>
+  <table-filter match-catalog="itree" match-name="t_duty"/>
+  <table-filter match-catalog="itree" match-name="t_file"/>
+  <table-filter match-catalog="itree" match-name="t_login"/>
+  <table-filter match-catalog="itree" match-name="t_menu"/>
+  <table-filter match-catalog="itree" match-name="t_message"/>
+  <table-filter match-catalog="itree" match-name="t_news"/>
+  <table-filter match-catalog="itree" match-name="t_photo"/>
+  <table-filter match-catalog="itree" match-name="t_plan"/>
+  <table-filter match-catalog="itree" match-name="t_record"/>
+  <table-filter match-catalog="itree" match-name="t_teacherwrote"/>
+  <table-filter match-catalog="itree" match-name="t_user"/>
+</hibernate-reverse-engineering>
