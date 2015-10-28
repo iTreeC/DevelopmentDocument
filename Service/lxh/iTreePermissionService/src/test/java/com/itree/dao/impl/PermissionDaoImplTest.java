@@ -11,33 +11,36 @@ public class PermissionDaoImplTest {
 
 	PermissionDao pdao = new PermissionDaoImpl();
 
+	Perm perm; 
+	int id;
+	String name;
+	
 	@Test
 	public void testAdd() {
-		Perm perm = new Perm();
+		perm = new Perm();
 		perm.setName("1");
 		pdao.add(perm);
 	}
 
 	@Test
 	public void testAdd2() {
-		Perm perm = new Perm();
 		pdao.add(perm);
 	}
 	
 	@Test
 	public void testDeleteByRId() {
-		pdao.deleteByRId(1);
+		pdao.deleteByRId(id);
 	}
 
 	@Test
 	public void testDeleteByRId2() {
-		int i = 0;
-		pdao.deleteByRId(i);
+		id=1;
+		pdao.deleteByRId(id);
 	}
 	
 	@Test
 	public void testUpdate() {
-		Perm perm = new Perm();
+		perm = new Perm();
 		perm.setId(1);
 		perm.setName("a");
 		pdao.update(perm);
@@ -45,9 +48,43 @@ public class PermissionDaoImplTest {
 
 	@Test
 	public void testUpdate2() {
-		Perm perm = null;
 		pdao.update(perm);
 	}
+	
+	@Test
+	public void testGetAll() {
+		pdao.getAll();
+	}
+	
+	@Test
+	public void testGetAllName() {
+		pdao.getAllName();
+	}
+	
+	@Test
+	public void testGetOneById() {
+		pdao.getOneById(id);
+	}
+
+	@Test
+	public void testGetOneById2() {
+		id =1;
+		pdao.getOneById(id);
+	}
+	
+	@Test
+	public void testGetOneByName() {
+		name="a";
+		pdao.getOneByName(name);
+	}
+
+	@Test
+	public void testGetOneByName2() {
+		name=null;
+		pdao.getOneByName(name);
+	}
+	
+	
 	
 
 }
