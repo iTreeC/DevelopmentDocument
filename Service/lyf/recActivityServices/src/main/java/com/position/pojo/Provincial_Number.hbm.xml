@@ -4,7 +4,7 @@
 <!-- Generated 2015-10-17 9:56:58 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <!-- 表和类之间的映射 -->
-    <class name="com.position.pojo.Provincial_Number" table="PROVINCIAL_NUMBER">
+    <class name="com.position.pojo.Provincial_Number" table="PROVINCIAL_NUMBER" dynamic-update="true">
          <!-- 主键映射 -->
         <id name="proID" type="int">
             <column name="PROID" />

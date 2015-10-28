@@ -8,6 +8,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  *
  */
 public class Business_Position {
+	
 	private int id;//编号
 	private int companyID;//一对一公司
 	private String address;//详尽地址
@@ -66,5 +67,12 @@ public class Business_Position {
 	}
 	public void setUsable(int usable) {
 		this.usable = usable;
+	}
+	
+	@Override
+	public String toString() {
+		return "Business_Position [id=" + id + ", companyID=" + companyID + ", address=" + address + ", province="
+				+ province + ", city=" + city + ", county=" + county + ", usable=" + usable + ", company=" + company
+				+ "]";
 	}
 }

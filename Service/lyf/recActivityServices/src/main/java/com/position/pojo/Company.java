@@ -38,4 +38,9 @@ public class Company {
 	public void setUsable(int usable) {
 		this.usable = usable;
 	}
+	@Override
+	public String toString() {
+		return "Company [id=" + id + ", companyName=" + companyName + ", usable=" + usable + ", pos=" + pos + "]";
+	}
+	
 }

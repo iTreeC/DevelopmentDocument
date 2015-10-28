@@ -4,7 +4,7 @@
 <!-- Generated 2015-10-17 9:51:08 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <!-- 表和类之间的映射 -->
-    <class name="com.position.pojo.Company" table="COMPANY">
+    <class name="com.position.pojo.Company" table="COMPANY" dynamic-update="true">
         <!-- 主键映射 -->
         <id name="id" type="int">
             <column name="ID" />

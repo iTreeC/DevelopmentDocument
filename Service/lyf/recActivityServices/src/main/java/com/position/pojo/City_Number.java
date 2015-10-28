@@ -49,4 +49,10 @@ public class City_Number {
 	public void setPro(Provincial_Number pro) {
 		this.pro = pro;
 	}
+	@Override
+	public String toString() {
+		return "City_Number [cityID=" + cityID + ", city=" + city + ", usable=" + usable + ", pro=" + pro + ", pos="
+				+ pos + "]";
+	}
+	
 }
