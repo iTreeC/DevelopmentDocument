@@ -48,10 +48,5 @@ public class Provincial_Number {
 	public void setComps(Set<Company> comps) {
 		this.comps = comps;
 	}
-	@Override
-	public String toString() {
-		return "Provincial_Number [proID=" + proID + ", provincial=" + provincial + ", usable=" + usable + ", cities="
-				+ cities + ", comps=" + comps + "]";
-	}
-	
+		
 }

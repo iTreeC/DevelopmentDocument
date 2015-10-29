@@ -5,10 +5,6 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.position.dao.PositionDao;
-import com.position.dao.impl.PositionDaoImpl;
-import com.position.pojo.Business_Position;
 import com.position.pojo.Company;
 import com.position.service.FindCompany;
 
@@ -29,7 +25,6 @@ public class TextFindCompany {
 	}
 
 	// 通过城市id查询
-	@SuppressWarnings("unused")
 	@Test
 	public void testByCityId() {
 		FindCompany find = new FindCompany();

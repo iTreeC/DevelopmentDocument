@@ -126,7 +126,7 @@ public class PositionDaoImpl implements PositionDao {
 	public List<Business_Position> getByCity(int id) {
 		// TODO Auto-generated method stub
 		try {
-			if (id < 0 && id > 65535) {
+			if (id < 0 || id > 65535) {
 				logger.error("传入参数超出范围");
 				return null;
 			}
