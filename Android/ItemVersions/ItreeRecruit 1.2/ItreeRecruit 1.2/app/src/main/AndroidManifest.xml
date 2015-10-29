@@ -36,6 +36,9 @@
         <activity
             android:name=".addedubgActivity"
             android:label="教育背景" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.itree.itreerecruit.addedubgActivity" />
         </activity>
 
         <activity
@@ -49,6 +52,9 @@
         <activity
             android:name=".creatjianliActivity"
             android:label="@string/app_name" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.itree.itreerecruit.creatjianliActivity" />
         </activity>
         <activity
             android:name=".ResumeActivity"
