@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,10 +31,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.itree.itreerecruit.ConDB.DataBaseAdapter;
-import com.itree.itreerecruit.layout_util.Layout_viewflipper;
-
-import java.util.HashSet;
-import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -55,16 +52,41 @@ public class MainActivity extends AppCompatActivity {
     private int perNum;//权限值
     //测试其他
 
+   /* private TabHost.TabSpec tabSpec;
+    private TabHost tabHost;
+    private Intent intent;
+    private static final int SWIPE_MIN_DISTANCE = 120;
+    private static final int SWIPE_MAX_OFF_PATH = 250;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+    private GestureDetector gestureDetector;
+    View.OnTouchListener gestureListener;*/
+
+    int currentView = 0;
+    private static int maxTabIndex = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //获取volley消息队列
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
         TabHost tabhost = (TabHost)findViewById(R.id.tabhost);
         tabhost.setup();
+     /* //  UtilVar.activities.add(MainActivity.this);
+       // this.initTableHost();
+
+        gestureDetector = new GestureDetector(new MyGestureDetector());
+        gestureListener = new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (gestureDetector.onTouchEvent(event)) {
+                    return true;
+                }
+                return false;
+            }
+        };*/
 
         //动态载入XML，而不需要Activity
         LayoutInflater i= LayoutInflater.from(this);
@@ -118,7 +140,52 @@ public class MainActivity extends AppCompatActivity {
         bt_ss.setOnClickListener(listener_ss);
         init();
     }
-/**
+   /* 左右滑动刚好页面也有滑动效果
+    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                               float velocityY) {
+           // TabHost tabHost = getTabHost();
+            try {
+                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+                    return false;
+                // right to left swipe
+                if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
+                        && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                    Log.i("test", "right");
+                    if (currentView == maxTabIndex) {
+                        currentView = 0;
+                    } else {
+                        currentView++;
+                    }
+                    tabHost.setCurrentTab(currentView);
+                } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
+                        && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                    Log.i("test", "left");
+                    if (currentView == 0) {
+                        currentView = maxTabIndex;
+                    } else {
+                        currentView--;
+                    }
+                    tabHost.setCurrentTab(currentView);
+                }
+            } catch (Exception e) {
+            }
+            return false;
+        }*//*
+    }
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (gestureDetector.onTouchEvent(event)) {
+            event.setAction(MotionEvent.ACTION_CANCEL);
+        }
+        return super.dispatchTouchEvent(event);
+    }*/
+
+
+    /**
  *获取权限值
  */
     public int getGroupPer(){
