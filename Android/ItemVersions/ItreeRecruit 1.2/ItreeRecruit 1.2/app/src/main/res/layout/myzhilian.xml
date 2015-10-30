@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="查询手机号归属地"
         android:id="@+id/toIp"
-        android:background="@drawable/shape_button"
+        android:background="@drawable/shape_button_nomal"
         />
 
     <LinearLayout
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="账号"
             android:id="@+id/toLogin"
-            android:background="@drawable/shape_button"
+            android:background="@drawable/shape_button_nomal"
             />
 
         <Button
@@ -40,7 +40,7 @@
             android:text="权限组"
             android:id="@+id/testShow2"
 
-            android:background="@drawable/shape_button"/>
+            android:background="@drawable/shape_button_nomal"/>
 
         <Button
             android:layout_margin="10dp"
@@ -50,7 +50,7 @@
             android:text="控制"
             android:id="@+id/testShow3"
 
-            android:background="@drawable/shape_button"/>
+            android:background="@drawable/shape_button_nomal"/>
     </LinearLayout>
 
     <LinearLayout
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:text="功能A"
             android:id="@+id/testShow4"
-            android:background="@drawable/shape_button"/>
+            android:background="@drawable/shape_button_nomal"/>
 
         <Button
             android:layout_weight="1"
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:text="功能B"
             android:id="@+id/testShow5"
-            android:background="@drawable/shape_button"/>
+            android:background="@drawable/shape_button_nomal"/>
 
         <Button
             android:layout_weight="1"
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:text="功能C"
             android:id="@+id/testShow6"
-            android:background="@drawable/shape_button"/>
+            android:background="@drawable/shape_button_nomal"/>
     </LinearLayout>
 
 

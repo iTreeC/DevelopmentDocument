@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/sure"
-        android:background="@drawable/shape_button"
+        android:background="@drawable/shape_button_nomal"
         android:layout_below="@+id/user_login_check"
        />
 

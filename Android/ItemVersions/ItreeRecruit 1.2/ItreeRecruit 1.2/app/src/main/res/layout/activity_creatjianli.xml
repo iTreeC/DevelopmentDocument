@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:gravity="center"
-        android:background="@drawable/shape_button"
+        android:background="@drawable/shape_button_nomal"
         android:textColor="#000000"
         android:id="@+id/creatResume"
 
@@ -32,7 +32,7 @@
         android:layout_height="30dp"
         android:gravity="center"
         android:layout_below="@+id/missname_button"
-        android:background="@drawable/shape_button"
+        android:background="@drawable/shape_button_nomal"
         android:textColor="#000000"
         android:id="@+id/creat"
 

@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:text="@string/search"
             android:id="@+id/button_select"
-            android:background="@drawable/shape_button"
+            android:background="@drawable/shape_button_nomal"
             android:textColor="#ffff"
             android:textSize="12sp"
             />
