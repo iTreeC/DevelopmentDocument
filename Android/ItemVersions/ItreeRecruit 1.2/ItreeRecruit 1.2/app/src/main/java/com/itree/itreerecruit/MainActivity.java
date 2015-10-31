@@ -500,8 +500,10 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor =  getSharedPreferences("update_resume",MODE_PRIVATE).edit();
                 editor.putString("is_updateresume","addresume");
                 editor.commit();
+
+
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this,creatjianliActivity.class);
+                intent.setClass(MainActivity.this,CreateresumeActivity.class);
                 startActivity(intent);
             }else{
                 goLogin();

@@ -4,14 +4,15 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
             android:icon="@drawable/logo2"
-            android:logo="@drawable/logo2"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:logo="@drawable/logo2" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +33,6 @@
             android:name=".SelectDateActivity"
             android:label="dsf" >
         </activity>
-
         <activity
             android:name=".addedubgActivity"
             android:label="教育背景" >
@@ -40,7 +40,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.itree.itreerecruit.addedubgActivity" />
         </activity>
-
         <activity
             android:name=".UserPermissions"
             android:label="@string/app_name" >
@@ -68,7 +67,10 @@
             android:name=".Main_zwll_Activity"
             android:label="@string/app_name" >
         </activity>
-
+        <activity
+            android:name=".CreateresumeActivity"
+            android:label="iTree招聘" >
+        </activity>
     </application>
 
 </manifest>

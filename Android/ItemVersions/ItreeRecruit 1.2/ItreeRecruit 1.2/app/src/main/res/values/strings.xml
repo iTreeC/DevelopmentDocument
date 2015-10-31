@@ -44,6 +44,7 @@
     <string name="tel">手机号码</string>
     <string name="email">邮箱地址</string>
     <string name="saveAndNext">保存并填写下一项</string>
+    <string name="eduBg">教育背景</string>
 
     <!--intension-->
     <string name="intensionOfJob">求职意向</string>
@@ -79,4 +80,5 @@
     <string name="title_activity_main_gzdd_">工作地点</string>
     <string name="title_activity_main_hyll_">行业类别</string>
     <string name="title_activity_main_zwll_">职位类别</string>
+    <string name="title_activity_createresume">CreateresumeActivity</string>
 </resources>
