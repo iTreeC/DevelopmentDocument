@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@drawable/shape_button"/>
+        android:background="@drawable/shape_button_nomal"/>
 
     <EditText
 
@@ -31,7 +31,7 @@
 
     <Button
         android:layout_margin="10dp"
-        android:background="@drawable/shape_button"
+        android:background="@drawable/shape_button_nomal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="查询城市"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:text="查询坐标"
         android:id="@+id/user_per_cood_select"
-        android:background="@drawable/shape_button"
+        android:background="@drawable/shape_button_nomal"
         android:layout_below="@+id/user_per_city_select"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

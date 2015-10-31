@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login"
-        android:background="@drawable/shape_button"
+        android:background="@drawable/shape_button_nomal"
         android:layout_below="@+id/user_password"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
