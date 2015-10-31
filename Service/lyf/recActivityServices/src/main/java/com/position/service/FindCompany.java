@@ -5,13 +5,11 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -97,8 +95,10 @@ public class FindCompany {
 			logger.error("传入参数不能为空");
 			return null;
 		}
-		// 解析字符串(中文逗号)
-		String[] result = citiesid.split("，");
+		// 解析字符串1(英文逗号)
+		String[] result = citiesid.split(",");
+		//解析字符串2(中文逗号)
+		//String[] result = citiesid.split("，");
 		for (int i = 0; i < result.length; i++) {
 			System.out.println(result[i]);
 			trans = Integer.parseInt(result[i]);

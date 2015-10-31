@@ -1,0 +1,3 @@
+数据库名：recruitment_service
+登录名：root
+密码：mysql
