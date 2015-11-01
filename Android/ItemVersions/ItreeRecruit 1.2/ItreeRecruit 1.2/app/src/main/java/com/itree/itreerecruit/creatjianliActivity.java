@@ -19,11 +19,6 @@ import android.widget.Toast;
 
 import com.itree.itreerecruit.ConDB.DataBaseAdapter;
 import com.itree.itreerecruit.entity.Resume;
-import com.lidroid.xutils.DbUtils;
-import com.lidroid.xutils.db.sqlite.Selector;
-import com.lidroid.xutils.exception.DbException;
-
-import java.util.List;
 
 
 public class creatjianliActivity extends AppCompatActivity {
@@ -93,7 +88,7 @@ public class creatjianliActivity extends AppCompatActivity {
         weimingming_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //获取自定义布局的layout
+                //        //获取自定义布局的layout
             final RelativeLayout relativeLayout = (RelativeLayout) getLayoutInflater().inflate(R.layout.missnamelayout, null);
             //创建builder
             AlertDialog.Builder builder = new AlertDialog.Builder(creatjianliActivity.this);
@@ -111,6 +106,8 @@ public class creatjianliActivity extends AppCompatActivity {
                      //创建数据库
                      DbUtils db = DbUtils.create(creatjianliActivity.this, "iTreeResume.db");
 
+
+
                      Resume resume = new Resume();
                      Missname_edit = (EditText) relativeLayout.findViewById(R.id.Miss_resumename);
                      if (str.equals("update")) {
@@ -126,6 +123,7 @@ public class creatjianliActivity extends AppCompatActivity {
                          }
 //                         dbAdapter.updateResumename(resume);
                          Toast.makeText(creatjianliActivity.this, "更新成功", Toast.LENGTH_SHORT).show();
+
                      } else {
                          String name = Missname_edit.getText().toString();
                          if (name.trim().isEmpty()) {
@@ -134,6 +132,7 @@ public class creatjianliActivity extends AppCompatActivity {
                          }
                          weimingming_button.setText(name);
                          resume.setResume_name(name);
+<<<<<<< HEAD
 
                          try {
                              db.save(resume);
@@ -150,11 +149,15 @@ public class creatjianliActivity extends AppCompatActivity {
                              e.printStackTrace();
                          }
 //                         Resume r = dbAdapter.findid(name);
+=======
+                         dbAdapter.addResumeNmae(resume);
+                         Resume r = dbAdapter.findid(name);
+>>>>>>> parent of e08d7b0... 提交任务文档，修改代码
                          _id = r.getResume_id();
                          System.out.println(_id);
 
                          //设置按钮可点否
-                         click = true;
+                         click =true;
                          ed_button.setEnabled(true);
                          userinfo.setEnabled(true);
                          weimingming_button.setText(Missname_edit.getText().toString());

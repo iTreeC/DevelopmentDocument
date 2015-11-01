@@ -1,36 +1,18 @@
 package com.itree.itreerecruit.entity;
 
-import com.lidroid.xutils.db.annotation.Column;
-import com.lidroid.xutils.db.annotation.Id;
-import com.lidroid.xutils.db.annotation.Table;
-
 /**
- * Created by tanyadong on 2015/10/17.
+ * Created by dell1 on 2015/10/17.
  */
-
-//创建表结构
-@Table(name="resume_table")
-
 public class Resume {
-    @Id(column = "resume_id")
     private int resume_id;
-    @Column(column = "resume_name")
     private String resume_name;
-    @Column(column = "name")
     private String name;
-    @Column(column = "sex")
     private String sex;
-    @Column(column = "birthday")
     private String birthday;
-    @Column(column = "tel")
     private String tel;
-    @Column(column = "email")
     private String email;
-    @Column(column = "school_name")
     private String school_name;
-    @Column(column = "stime")
     private String stime;
-    @Column(column = "etime")
     private String etime;
 
     public Resume(){};

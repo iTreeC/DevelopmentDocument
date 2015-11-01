@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 import com.itree.itreerecruit.ConDB.DataBaseAdapter;
 import com.itree.itreerecruit.ConDB.DatabaseHelper;
 import com.itree.itreerecruit.entity.Resume;
+import com.itree.itreerecruit.entity.UserInfo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -91,7 +94,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
             // TODO Auto-generated method stub
 
 
-//            UserInfo userInfo = new UserInfo();
+            UserInfo userInfo = new UserInfo();
             String userNames = userName.getText().toString();
             String emails = email.getText().toString();
             String tels = tel.getText().toString();
