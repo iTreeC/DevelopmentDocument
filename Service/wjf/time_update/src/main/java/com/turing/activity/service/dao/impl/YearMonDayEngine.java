@@ -34,7 +34,29 @@ public class YearMonDayEngine extends BaseEngine {
 	public static YearMonDayEngine getSingleton() {
 		return yearMonDayEngine;
 	}
-
+	
+	@Override
+	public void updata(Rule o) {
+		// TODO Auto-generated method stub
+		try {
+			// 打开session,开启事物
+			session = sessionFactory.openSession();
+			transaction = session.beginTransaction();
+			if (o != null) {
+				Rule rule = (Rule) session.get(Rule.class, o.getRuleId());
+				rule.setYearMonDay(o.getYearMonDay());
+				
+				session.saveOrUpdate(rule);
+			} else {
+				logger.debug("更新的对象不能为空！");
+			}
+			transaction.commit();
+			session.close();
+			logger.info("更新成功！");
+		} catch (Exception e) {
+			logger.error("规则更新失败！");
+		}
+	}
 	@Override
 	public List<Rule> findByShopId(int shopId) {
 		try {

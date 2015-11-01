@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.turing.activity.service.entity">
-    <class name="Rule" table="T_RULE">
+    <class name="Rule" table="T_RULE" dynamic-update="true">
         <id name="ruleId" type="int">
             <column name="RULE_ID" />
             <generator class="native" />

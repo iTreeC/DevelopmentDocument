@@ -17,6 +17,20 @@ public class TestYearMonDayEngine {
 	BaseEngine yearMonDayEngine = YearMonDayEngine.getSingleton();
 
 	@Test
+	public void testUpdate(){
+		Rule rule = new Rule();
+		rule.setRuleId(3);
+		
+		YearMonDay y = new YearMonDay();
+		y.seteYearMonDay("2015-02-24");
+		y.setsYearMonDay("2010-01-02");
+		
+		rule.setYearMonDay(y);
+		
+		yearMonDayEngine.updata(rule);
+	}
+	
+	@Test
 	public void testFindByShopId() {
 		// 通过shopid查询相应“年月日”规则
 		List rules = yearMonDayEngine.findByShopId(1);

@@ -98,22 +98,7 @@ public class BaseEngine implements Engine {
 
 	@Override
 	public void updata(Rule o) {
-		// TODO Auto-generated method stub
-		try {
-			// 打开session,开启事物
-			session = sessionFactory.openSession();
-			transaction = session.beginTransaction();
-			if (o != null) {
-				session.saveOrUpdate(o);
-			} else {
-				logger.debug("更新的对象不能为空！");
-			}
-			transaction.commit();
-			session.close();
-			logger.info("更新成功！");
-		} catch (Exception e) {
-			logger.error("规则更新失败！");
-		}
+		
 	}
 
 	@Override
@@ -128,7 +113,6 @@ public class BaseEngine implements Engine {
 			if (id > 0) {
 				rule = (Rule) session.load(Rule.class, id);
 				transaction.commit();
-				logger.info("通过" + id + "查找规则成功！");
 			} else {
 				logger.debug("查找的规则id必须大于0！");
 			}
@@ -151,7 +135,6 @@ public class BaseEngine implements Engine {
 			if (hql != null) {
 				list = session.createQuery(hql).list();
 				transaction.commit();
-				logger.info("查询成功！");
 			} else {
 				logger.debug("规则查找语句为空！");
 			}
@@ -255,7 +238,7 @@ public class BaseEngine implements Engine {
 				Query query = session.createSQLQuery(sql).addEntity(Rule.class);
 				listRule = query.list();
 				transaction.commit();
-				logger.info("通过商家号" + shopId + "查询成功!");
+				//logger.info("通过商家号" + shopId + "查询成功!");
 			} else {
 				logger.debug("shopId必须大于0!");
 			}
@@ -375,7 +358,7 @@ public class BaseEngine implements Engine {
 				Query query = session.createSQLQuery(sql);
 				listRule = query.list();
 				transaction.commit();
-				logger.info("查询成功！");
+				//logger.info("查询成功！");
 			} else {
 				logger.debug("shopId必须大于0!");
 			}
@@ -401,7 +384,7 @@ public class BaseEngine implements Engine {
 				Query query = session.createSQLQuery(sql).addEntity(Shop.class);
 				listShop = query.list();
 				transaction.commit();
-				logger.info("查询成功！");
+				//logger.info("查询成功！");
 			} else {
 				logger.debug("shopId必须大于0!");
 			}
@@ -428,7 +411,7 @@ public class BaseEngine implements Engine {
 				Query query = session.createSQLQuery(sql);
 				listShop = query.list();
 				transaction.commit();
-				logger.info("查询成功！");
+				//logger.info("查询成功！");
 			} else {
 				logger.debug("ruleId必须大于0!");
 			}

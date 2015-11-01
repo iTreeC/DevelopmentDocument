@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import org.junit.Test;
 
 import com.turing.activity.service.dao.impl.BaseEngine;
@@ -12,8 +14,10 @@ import com.turing.activity.service.entity.Rule;
 import com.turing.activity.service.entity.Shop;
 import com.turing.activity.service.entity.Week;
 import com.turing.activity.service.entity.YearMonDay;
+import com.turing.activity.service.utils.SessionUtils;
 
 public class TestBaseEngine {
+	private static Logger logger = Logger.getLogger(BaseEngine.class);
 	BaseEngine baseEngine = BaseEngine.getSingleton();
 	
 	@Test
@@ -40,42 +44,40 @@ public class TestBaseEngine {
 	
 	@Test
 	public void testDelete(){
-		//删除超过下限
-		baseEngine.delete(-1);
+//		//删除超过下限
+//		baseEngine.delete(-1);
 //		//若有数据，可以删除
 //		baseEngine.delete(1);
-//		//删除超过上限
-//		baseEngine.delete(1000000);
+		//删除超过上限
+		baseEngine.delete(1000000);
 	}
 	
-	@Test
-	public void testUpdate(){
-		//更新 有点小问题
-		Rule rule = new Rule();
-		YearMonDay y = new YearMonDay();
-		
-		rule.setRuleId(2);
-		y.seteYearMonDay("2015-02-24");
-		baseEngine.updata(rule);
-	}
 	
 	@Test
 	public void testFindById() {
-		//查询小于1的Id
-//		Rule rule1 = baseEngine.findById(-1);
-		//查询在范围中的id
-		Rule rule1 = baseEngine.findById(1);
-		//查询大于最大id的id
-//		Rule rule1 = baseEngine.findById(10000000);
-		System.out.println(rule1);
+		try {
+			//查询小于1的Id
+	//		Rule rule1 = baseEngine.findById(-1);
+			//查询在范围中的id
+			Rule rule1 = baseEngine.findById(3);
+			//查询大于最大id的id
+//			Rule rule1 = baseEngine.findById(10000000);
+			System.out.println(rule1);
+		} catch (Exception e) {
+			logger.error("规则查找失败！");
+		}
 	}
 	
 	@Test
-	public void testFin() {
-		//按hql语句查询
-		String hql = "from Rule as r where r.ruleId = 2";
-		List rules = baseEngine.find(hql);
-		System.out.println(((Rule)rules.get(0)).getYearMonDay().getsYearMonDay());
+	public void testFind() {
+		try {
+			//按hql语句查询
+			String hql = "from Rule as r where r.ruleId = 2";
+			List rules = baseEngine.find(hql);
+			System.out.println(((Rule)rules.get(0)).getYearMonDay().getsYearMonDay());
+		} catch (Exception e) {
+			logger.error("规则查找失败！");
+		}
 	}
 	
 	@Test
@@ -176,7 +178,8 @@ public class TestBaseEngine {
 	@Test
 	public void testShopByShopId(){
 		List<Shop> list = baseEngine.findShopByShopId(1);
-		
-		System.out.println(list.get(0));
+		for(int i=0; i<list.size(); i++){
+			System.out.println(list.get(i));
+		}
 	}
 }
