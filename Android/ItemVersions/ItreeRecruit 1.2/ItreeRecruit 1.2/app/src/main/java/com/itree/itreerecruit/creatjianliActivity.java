@@ -108,6 +108,8 @@ public class creatjianliActivity extends AppCompatActivity {
 
 
 
+
+
                      Resume resume = new Resume();
                      Missname_edit = (EditText) relativeLayout.findViewById(R.id.Miss_resumename);
                      if (str.equals("update")) {
@@ -133,6 +135,7 @@ public class creatjianliActivity extends AppCompatActivity {
                          weimingming_button.setText(name);
                          resume.setResume_name(name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                          try {
                              db.save(resume);
@@ -149,6 +152,10 @@ public class creatjianliActivity extends AppCompatActivity {
                              e.printStackTrace();
                          }
 //                         Resume r = dbAdapter.findid(name);
+=======
+                         dbAdapter.addResumeNmae(resume);
+                         Resume r = dbAdapter.findid(name);
+>>>>>>> parent of e08d7b0... 提交任务文档，修改代码
 =======
                          dbAdapter.addResumeNmae(resume);
                          Resume r = dbAdapter.findid(name);
