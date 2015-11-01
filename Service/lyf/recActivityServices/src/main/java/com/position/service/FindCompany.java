@@ -28,17 +28,7 @@ import com.position.pojo.Company;
  * 
  */
 @Path("/findcompany")
-public class FindCompany {
-
-	private static Logger logger = Logger.getLogger(FindCompany.class);
-	ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-	CompanyDao comp = (CompanyDao) ctx.getBean("companydao");
-
-	private List<Business_Position> list;
-	private List<Company> listcom;
-	private Company com;
-	private List<List<Company>> listcoms = new ArrayList<List<Company>>();
-
+public interface FindCompany {
 	/**
 	 * 通过城市id查找对应公司
 	 * 
@@ -47,34 +37,7 @@ public class FindCompany {
 	 * @return listcom 有数据则返回公司实体集合，否则返回null
 	 * @author Fei
 	 */
-	@GET
-	@Path("/bycityid")
-	@Consumes({ MediaType.APPLICATION_JSON })
-	@Produces({ MediaType.APPLICATION_JSON })
-	public List<Company> FindCompanyByCityId(@QueryParam("cityid") int cityid) {
-
-		// 边界值验证
-		if (cityid < 0 || cityid > 65535) {
-			logger.error("传入参数超出范围");
-			return null;
-		}
-		PositionDao pos = new PositionDaoImpl();
-		list = pos.getByCity(cityid);
-		comp = new CompanyDaoImpl();
-		listcom = new ArrayList<Company>();
-
-		if (list != null) {
-			for (int i = 0; i < list.size(); i++) {
-				int a = list.get(i).getCompanyID();
-				com = comp.getById(a);
-				listcom.add(i, com);
-			}
-			logger.info("查找成功");
-		} else {
-			logger.error("查找失败,不存在相应的数据");
-		}
-		return listcom;
-	}
+	public List<Company> FindCompanyByCityId(int cityid);
 
 	/**
 	 * 通过城市id集合，查找与之一一对应的公司集合
@@ -84,29 +47,7 @@ public class FindCompany {
 	 * @return listcoms 与每个城市相对应的公司信息集合，没有数据则返回NULL
 	 * @author Fei
 	 */
-	@GET
-	@Path("/bycityidforString")
-	@Consumes({ MediaType.APPLICATION_JSON })
-	@Produces({ MediaType.APPLICATION_JSON })
-	public List<List<Company>> FindCompanyForString(@QueryParam("citiesid") String citiesid) {
-		int trans;
-		// 边界值验证
-		if (citiesid == null || citiesid.trim().length() == 0) {
-			logger.error("传入参数不能为空");
-			return null;
-		}
-		// 解析字符串1(英文逗号)
-		String[] result = citiesid.split(",");
-		//解析字符串2(中文逗号)
-		//String[] result = citiesid.split("，");
-		for (int i = 0; i < result.length; i++) {
-			System.out.println(result[i]);
-			trans = Integer.parseInt(result[i]);
-			listcom = this.FindCompanyByCityId(trans);
-			listcoms.add(listcom);
-		}
-		return listcoms;
-	}
+	public List<List<Company>> FindCompanyForString(String citiesid);
 
 	/**
 	 *	通过部分地址，查找地址中包含其名字的公司集合
@@ -116,32 +57,5 @@ public class FindCompany {
 	 * @param address
 	 * @return listcom 有数据则返回公司实体集合，否则返回null
 	 */
-	@GET
-	@Path("/byaddress")
-	@Consumes({ MediaType.APPLICATION_JSON })
-	@Produces({ MediaType.APPLICATION_JSON })
-	public List<Company> FindCompanyByaddress(@QueryParam("address") String address) {
-
-		// 边界值验证
-		if (address == null || address.trim().length() == 0) {
-			logger.error("传入参数不能为空");
-			return null;
-		}
-		PositionDao pos = new PositionDaoImpl();
-		list = pos.getByAddress(address);
-		comp = new CompanyDaoImpl();
-		listcom = new ArrayList<Company>();
-
-		if (list != null) {
-			for (int i = 0; i < list.size(); i++) {
-				int a = list.get(i).getCompanyID();
-				com = comp.getById(a);
-				listcom.add(i, com);
-			}
-			logger.info("查找成功");
-		} else {
-			logger.error("查找失败,不存在相应的数据");
-		}
-		return listcom;
-	}
+	public List<Company> FindCompanyByaddress(String address);
 }

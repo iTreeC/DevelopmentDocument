@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import com.position.pojo.Company;
 import com.position.service.FindCompany;
+import com.position.service.impl.FindCompanyServices;
 
 /**
  * 查找公司restful接口本地测试
@@ -27,7 +28,7 @@ public class TextFindCompany {
 	// 通过城市id查询
 	@Test
 	public void testByCityId() {
-		FindCompany find = new FindCompany();
+		FindCompany find = new FindCompanyServices();
 		List<Company> list = find.FindCompanyByCityId(6);
 		// System.out.println(list.size());
 		if (list != null) {
@@ -49,7 +50,7 @@ public class TextFindCompany {
 	// 传入字符串，解析并返回
 	@Test
 	public void testGetbyidForString() {
-		FindCompany find = new FindCompany();
+		FindCompany find = new FindCompanyServices();
 		String a = "6，7，2";
 		List list = find.FindCompanyForString(a);
 		if (list != null) {
@@ -64,7 +65,7 @@ public class TextFindCompany {
 	// 通过地址模糊查询
 	@Test
 	public void testByAddress() {
-		FindCompany find = new FindCompany();
+		FindCompany find = new FindCompanyServices();
 		List<Company> list = find.FindCompanyByaddress("珠峰大街");
 		if (list != null) {
 			for (int i = 0; i < list.size(); i++) {
