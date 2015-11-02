@@ -1,8 +1,16 @@
+/**
+ * @info 
+ * @author ÀîÏþ»¶
+ * @time 2015.10.28
+ */
 package com.itree.engine.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
 
 import com.itree.dao.api.PermissionDao;
 import com.itree.engine.api.PermissionEngineAPI;
@@ -15,6 +23,7 @@ public class PermissionEngine implements PermissionEngineAPI {
 
 	PermissionDao pdao;
 
+	@Resource @Required
 	public void setPdao(PermissionDao pdao) {
 		this.pdao = pdao;
 	}

@@ -1,3 +1,8 @@
+/**
+ * @info 
+ * @author ÀîÏþ»¶
+ * @time 2015.10.28
+ */
 package com.itree.dao.impl;
 
 import java.util.List;
@@ -12,8 +17,7 @@ import com.itree.dao.api.UserPermissionDao;
 import com.itree.entity.UserPermission;
 import com.itree.utils.SessionUtils;
 
-@Service
-@Component("updao")
+@Component
 public class UserPermissionDaoImpl implements UserPermissionDao {
 
 	private static Logger logger = Logger

@@ -1,5 +1,7 @@
 /**
- * hibernate çš„session
+ * @info hibernate µÄ session
+ * @author ÀîÏş»¶
+ * @time 2015.10.28
  */
 
 package com.itree.utils;

@@ -1,3 +1,8 @@
+/**
+ * @info 
+ * @author ÀîÏþ»¶
+ * @time 2015.10.28
+ */
 package com.itree.dao.impl;
 
 import java.util.List;
@@ -11,7 +16,7 @@ import org.springframework.stereotype.Service;
 import com.itree.dao.api.PermissionDao;
 import com.itree.entity.Perm;
 import com.itree.utils.SessionUtils;
-//@Service @Component("pdao")
+@Component
 public class PermissionDaoImpl implements PermissionDao {
 
 	private static Logger logger = Logger.getLogger(PermissionDaoImpl.class);

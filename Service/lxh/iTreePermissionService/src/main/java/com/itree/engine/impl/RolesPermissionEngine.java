@@ -1,9 +1,17 @@
+/**
+ * @info 
+ * @author ÀîÏþ»¶
+ * @time 2015.10.28
+ */
 package com.itree.engine.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
 
 import com.itree.dao.api.RolePermissionDao;
 import com.itree.engine.api.RolesPermissionEngineAPI;
@@ -16,6 +24,7 @@ public class RolesPermissionEngine implements RolesPermissionEngineAPI {
 
 	RolePermissionDao rpdao;
 
+	@Resource  @Required
 	public void setRpdao(RolePermissionDao rpdao) {
 		this.rpdao = rpdao;
 	}

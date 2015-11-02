@@ -1,3 +1,8 @@
+/**
+ * @info 
+ * @author ÀîÏþ»¶
+ * @time 2015.10.28
+ */
 package com.itree.service;
 
 import java.util.List;
@@ -41,11 +46,11 @@ public class PermissionService {
 		return pengine.update(permission);
 	}
 
-	/*@GET
+	@GET
 	@Path("/get/all")
 	public List<Perm> getAll() {
 		return pengine.getAll();
-	}*/
+	}
 
 	@GET
 	@Path("/get/all/pnames")
@@ -53,11 +58,11 @@ public class PermissionService {
 		return pengine.getAllName();
 	}
 
-	/*@GET
+	@GET
 	@Path("/get/one")
 	public Perm getOneByID(@QueryParam("id") int id) {
 		return pengine.getOneByID(id);
-	}*/
+	}
 
 	@GET
 	@Path("/get/one/pname")

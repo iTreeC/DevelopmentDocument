@@ -1,3 +1,8 @@
+/**
+ * @info 
+ * @author ÀîÏþ»¶
+ * @time 2015.10.28
+ */
 package com.itree.dao.impl;
 
 import java.util.List;
@@ -12,8 +17,7 @@ import com.itree.dao.api.RolePermissionDao;
 import com.itree.entity.RolePermission;
 import com.itree.utils.SessionUtils;
 
-@Service
-@Component("rpdao")
+@Component
 public class RolePermissionDaoImpl implements RolePermissionDao {
 
 	private static Logger logger = Logger

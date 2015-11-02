@@ -1,9 +1,17 @@
+/**
+ * @info 
+ * @author ÀîÏþ»¶
+ * @time 2015.10.28
+ */
 package com.itree.engine.impl;
 
 import java.util.HashSet;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
 
 import com.itree.dao.api.UserPermissionDao;
 import com.itree.engine.api.UsersPermissionEngineAPI;
@@ -16,6 +24,7 @@ public class UsersPermissionEngine implements UsersPermissionEngineAPI {
 
 	UserPermissionDao updao;
 
+	@Resource  @Required
 	public void setUpdao(UserPermissionDao updao) {
 		this.updao = updao;
 	}

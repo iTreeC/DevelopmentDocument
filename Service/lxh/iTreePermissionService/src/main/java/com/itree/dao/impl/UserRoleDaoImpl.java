@@ -1,15 +1,23 @@
+/**
+ * @info 
+ * @author ÀîÏþ»¶
+ * @time 2015.10.28
+ */
 package com.itree.dao.impl;
 
 import java.util.List;
 
+
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 
 import com.itree.dao.api.UserRoleDao;
 import com.itree.entity.UserRole;
 import com.itree.utils.SessionUtils;
 
+@Component
 public class UserRoleDaoImpl implements UserRoleDao {
 
 	private static Logger logger = Logger.getLogger(UserRoleDaoImpl.class);

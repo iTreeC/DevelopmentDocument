@@ -14,23 +14,22 @@
 	<!-- <aop:aspectj-autoproxy /> -->
 
 
-	<bean id="rpdao" class="com.itree.dao.impl.RolePermissionDaoImpl" />
+	<!-- <bean id="rpdao" class="com.itree.dao.impl.RolePermissionDaoImpl" />
 	<bean id="updao" class="com.itree.dao.impl.UserPermissionDaoImpl" />
 	<bean id="pdao" class="com.itree.dao.impl.PermissionDaoImpl" />
-	<bean id="urdao" class="com.itree.dao.impl.UserRoleDaoImpl" />
+	<bean id="urdao" class="com.itree.dao.impl.UserRoleDaoImpl" /> -->
 
-	<!-- 注入有错 -->
 	<bean id="rpengine" class="com.itree.engine.impl.RolesPermissionEngine">
-		<property name="rpdao" ref="rpdao"/>
+		<!-- <property name="rpdao" ref="rpdao"/> -->
 	</bean>
 	<bean id="upengine" class="com.itree.engine.impl.UsersPermissionEngine">
-		<property name="updao" ref="updao"/>
+		<!-- <property name="updao" ref="updao"/> -->
 	</bean>
 	<bean id="pengine" class="com.itree.engine.impl.PermissionEngine">
-		<property name="pdao" ref="pdao"/>
+		<!-- <property name="pdao" ref="pdao"/> -->
 	</bean>
 	<bean id="urengine" class="com.itree.engine.impl.UserRoleEngine">
-		<property name="urdao" ref="urdao"/>
+		<!-- <property name="urdao" ref="urdao"/> -->
 	</bean>
 
 

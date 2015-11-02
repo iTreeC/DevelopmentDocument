@@ -5,13 +5,18 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.itree.dao.api.UserPermissionDao;
 
 public class UserPermissionDaoImplTest {
 
-	UserPermissionDao udao = new UserPermissionDaoImpl();
+	UserPermissionDao udao  = new UserPermissionDaoImpl();
 
 	int uid;
 	List<Integer> pid;
