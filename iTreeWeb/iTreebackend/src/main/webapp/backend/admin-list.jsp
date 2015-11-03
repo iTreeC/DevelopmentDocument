@@ -92,7 +92,7 @@
 					<td>${TUser.userTel }</td>
 					
 					<!--根据user的identity来选择相应的图标及信息  -->
-				    <s:if test="${TUser.userStatus }==0">
+				    <%-- <s:if test="%{TUser.userStatus}==0"> --%>
 				    <td class="td-status"><span class="label label-default radius">已停用</span></td>
 					<td class="td-manage"><a  id = "${TUser.id}" style="text-decoration:none" onClick="admin_start(this,$(this).attr('id'))" 
 					title="启用"><i class="Hui-iconfont">&#xe615;</i></a>
@@ -102,10 +102,10 @@
 					<a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none">
 					<i class="Hui-iconfont">&#xe6e2;</i></a>
 					</td>
-					</s:if>
-					<%-- id = "${UserID}" --%>
-					<%-- id = "<s:property value="#u.UserID">" --%>
-					<s:elseif test="${TUser.userStatus }==1">
+					<%-- </s:if>
+					id = "${UserID}"
+					id = "<s:property value="#u.UserID">"
+					<s:elseif test="%{TUser.userStatus }==1">
 				    <td class="td-status"><span class="label label-success radius">已启用</span></td>
 					<td class="td-manage"><a  id = "${TUser.id}" style="text-decoration:none" onClick="admin_stop(this,$(this).attr('id'))"
 					title="停用"><i class="Hui-iconfont">&#xe631;</i></a>
@@ -116,8 +116,8 @@
 
 					<a title="删除" href="javascript:;" id = "${TUser.id}" onclick="admin_del(this,$(this).attr('id'))" class="ml-5" style="text-decoration:none">
 					<i class="Hui-iconfont">&#xe6e2;</i></a>
-					</td>	
-					</s:elseif>	
+					</td>	 
+					</s:elseif>	--%>
 				</tr>
 				</s:iterator>
 			
