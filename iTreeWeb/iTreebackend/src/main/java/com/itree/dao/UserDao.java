@@ -2,8 +2,9 @@ package com.itree.dao;
 
 import java.util.List;
 
-import com.itree.entity.User;
+import com.itree.entity.TLogin;
+
 
 public interface UserDao {
-	public List<User> findAll();
+	public List<TLogin> getAll();
 }

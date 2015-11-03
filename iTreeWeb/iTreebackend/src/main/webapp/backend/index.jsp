@@ -168,7 +168,7 @@
 				<ul>
 					<li><a _href="admin-role.jsp" href="javascript:void(0)">角色管理</a></li>
 					<li><a _href="admin-permission.jsp" href="javascript:void(0)">权限管理</a></li>
-					<li><a _href="userAction!userList.action" href="javascript:void(0)">管理员列表</a></li>
+					<li><a _href="user-list" href="javascript:void(0)">管理员列表</a></li>
 				</ul>
 			</dd>
 		</dl>

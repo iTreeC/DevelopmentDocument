@@ -16,13 +16,21 @@
 				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
-		<!-- 使用新的拦截器栈 -->
+   <!-- 使用新的拦截器栈 -->
 		<default-interceptor-ref name="itreeStack"></default-interceptor-ref>
 		<action name="news-*" class="newsAction"
         	method="{1}">
         	<result name="list">news-list.jsp</result>
         	<result name="success" type="redirect">/news-list</result>
     
-	</action>
+		</action>
+		
+	<!-- About User -->
+		<action name="user-*" class="userAction"
+		method="{1}">
+		<result name="list">admin-list.jsp</result>
+		</action>
+		
+		
 	</package>
 </struts>

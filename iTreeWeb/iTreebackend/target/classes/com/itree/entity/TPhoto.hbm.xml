@@ -20,7 +20,7 @@
         <property name="photoStatus" type="int">
             <column name="`photo_ status`" not-null="true" />
         </property>
-        <set name="TNewses" table="t_news" inverse="true" lazy="true" fetch="select">
+        <set name="TNewses" table="t_news" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="photo_id">
                     <comment>&#213;&#213;&#198;&#172;/&#205;&#226;&#188;&#252;</comment>
@@ -28,7 +28,7 @@
             </key>
             <one-to-many class="com.itree.entity.TNews" />
         </set>
-        <set name="TFiles" table="t_file" inverse="true" lazy="true" fetch="select">
+        <set name="TFiles" table="t_file" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="photo_id">
                     <comment>&#213;&#213;&#198;&#172;/&#205;&#226;&#188;&#252;</comment>
@@ -36,7 +36,7 @@
             </key>
             <one-to-many class="com.itree.entity.TFile" />
         </set>
-        <set name="TRecords" table="t_record" inverse="true" lazy="true" fetch="select">
+        <set name="TRecords" table="t_record" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="photo_id">
                     <comment>&#213;&#213;&#198;&#172;/&#205;&#226;&#188;&#252;</comment>
@@ -44,7 +44,7 @@
             </key>
             <one-to-many class="com.itree.entity.TRecord" />
         </set>
-        <set name="TPlans" table="t_plan" inverse="true" lazy="true" fetch="select">
+        <set name="TPlans" table="t_plan" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="photo_id">
                     <comment>&#205;&#188;&#198;&#172;/&#205;&#226;&#188;&#252;</comment>
@@ -52,7 +52,7 @@
             </key>
             <one-to-many class="com.itree.entity.TPlan" />
         </set>
-        <set name="TUsers" table="t_user" inverse="true" lazy="true" fetch="select">
+        <set name="TUsers" table="t_user" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="photo_id" not-null="true">
                     <comment>&#213;&#213;&#198;&#172;/&#205;&#226;&#188;&#252;</comment>

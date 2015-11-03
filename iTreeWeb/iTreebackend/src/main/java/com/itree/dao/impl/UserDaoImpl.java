@@ -6,25 +6,27 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.itree.dao.UserDao;
-import com.itree.entity.User;
+import com.itree.entity.TLogin;
 import com.itree.utils.SessionUtils;
-public class UserDaoImpl implements UserDao {
+public class UserDaoimpl implements UserDao {
 
 	Session session;
 	Transaction transaction;
 
-	public List<User> findAll() {
-		try {
-			session = SessionUtils.getInstance().getSession();
-			transaction = session.beginTransaction();
-			List<User> users = session.createQuery("from Role").list();
-			transaction.commit();
-
-			return users;
-		} catch (Exception e) {
-
-			return null;
-		}
-
+	public List<TLogin> getAll(){
+		System.out.println("UserDaoimpl的getAll（）方法"); 
+		try{
+	    	 session = SessionUtils.getInstance().getSession();
+				transaction = session.beginTransaction();
+				List<TLogin> user = session.createQuery("from TLogin").list();
+				transaction.commit();
+				System.out.println(user);
+				return user;		
+	    	 
+		 }catch (Exception e){
+	    		 e.printStackTrace(); 
+	    		 System.out.println(e.getMessage()); 
+	    		 return null;
+	    		 }
+	    	 }
 	}
-}

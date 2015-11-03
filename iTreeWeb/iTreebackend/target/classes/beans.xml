@@ -28,7 +28,18 @@
 	</bean>
 	<bean id="newsAction" class="com.itree.action.NewsAction" scope="prototype">
 		<property name="newsService" ref="newsService"></property>	
-		
 	</bean>
+	
+	
+	<!-- About users -->   
+	<bean id="userdao" class="com.itree.dao.impl.UserDaoimpl"></bean>
+	
+	<bean id="userService" class="com.itree.service.impl.UserServiceimpl">
+		<property name="userdao" ref="userdao"></property>
+	</bean>
+	<bean id="userAction" class="com.itree.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>	
+	</bean>
+	
 	
 </beans>

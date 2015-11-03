@@ -29,7 +29,7 @@
 <title>管理员列表</title>
 </head>
 <body>
-<%! int identity=1;%>
+<%-- <%! int identity=1;%> --%>
 	<nav class="breadcrumb">
 	<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
 	管理员管理 <span class="c-gray en">&gt;</span> 管理员列表 <a
@@ -60,7 +60,7 @@
 				class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
 					添加成员</a></span> 
 			<s:set id="users" value="users"></s:set>
-			<span class="r">共有数据：<strong><s:property value="#users.size" /></strong> 条</span>
+			<span class="r">共有数据：<strong><s:property value="#request.user.size" /></strong> 条</span>
 		</div>
 		<table class="table table-border table-bordered table-bg">
 			<thead>
@@ -81,24 +81,43 @@
 			</thead>
 			<tbody>
 			
-			<s:iterator id="users" value="users">
+			<s:iterator id="users" value="#request.user">
 				<tr class="text-c">
 					<td><input type="checkbox" value="1" name=""></td>
-					<td><s:property value="#users.UserID" /> </td>
-					<td><s:property value="#users.UserName" /></td>
-					<td><s:property value="#users.Duty" /></td>
-					<td><s:property value="#users.UserSex" /></td>	
-					<td><s:property value="#users.PassWord" /></td>
-					<td><s:property value="#users.UserTel" /></td>
-					<td class="td-status"><span class="label label-success radius">已启用</span></td>
-					<td class="td-manage"><a style="text-decoration:none" 
-					onClick="admin_stop(this,'10001')" href="javascript:;" title="停用">
-					<i class="Hui-iconfont">&#xe631;</i></a> <a title="编辑" href="javascript:;" 
-					onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')" class="ml-5" style="text-decoration:none">
+					<td>${TUser.id }</td>
+					<td>${TUser.userName }</td>
+					<td>${TUser.TDuty.dutyName }</td>
+					<td>${TUser.userSex }</td>	
+					<td>${password }</td>
+					<td>${TUser.userTel }</td>
+					
+					<!--根据user的identity来选择相应的图标及信息  -->
+				    <s:if test="${TUser.userStatus }==0">
+				    <td class="td-status"><span class="label label-default radius">已停用</span></td>
+					<td class="td-manage"><a  id = "${TUser.id}" style="text-decoration:none" onClick="admin_start(this,$(this).attr('id'))" 
+					title="启用"><i class="Hui-iconfont">&#xe615;</i></a>
+					<a title="编辑" href="javascript:;" 
+					onclick="admin_edit('管理员编辑','admin-add.jsp','1','800','500')" class="ml-5" style="text-decoration:none">
 					<i class="Hui-iconfont">&#xe6df;</i></a> 
 					<a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none">
 					<i class="Hui-iconfont">&#xe6e2;</i></a>
 					</td>
+					</s:if>
+					<%-- id = "${UserID}" --%>
+					<%-- id = "<s:property value="#u.UserID">" --%>
+					<s:elseif test="${TUser.userStatus }==1">
+				    <td class="td-status"><span class="label label-success radius">已启用</span></td>
+					<td class="td-manage"><a  id = "${TUser.id}" style="text-decoration:none" onClick="admin_stop(this,$(this).attr('id'))"
+					title="停用"><i class="Hui-iconfont">&#xe631;</i></a>
+				    
+				    <a title="编辑" href="javascript:;" 
+					onclick="admin_edit('管理员编辑','admin-add.jsp','1','800','500')" class="ml-5" style="text-decoration:none">
+					<i class="Hui-iconfont">&#xe6df;</i></a> 
+
+					<a title="删除" href="javascript:;" id = "${TUser.id}" onclick="admin_del(this,$(this).attr('id'))" class="ml-5" style="text-decoration:none">
+					<i class="Hui-iconfont">&#xe6e2;</i></a>
+					</td>	
+					</s:elseif>	
 				</tr>
 				</s:iterator>
 			
@@ -149,7 +168,11 @@ function admin_add(title,url,w,h){
 function admin_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		//此处请求后台程序，下方是成功后的前台处理……
-		
+		ajax({
+			 url:"userAction!deleteById.action",
+             data: {'userID':id},
+             type:"get", 
+		})
 		$(obj).parents("tr").remove();
 		layer.msg('已删除!',{icon:1,time:1000});
 	});

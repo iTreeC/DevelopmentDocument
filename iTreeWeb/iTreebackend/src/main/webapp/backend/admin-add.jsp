@@ -29,7 +29,7 @@
 	<div class="pd-20">
 		<form action="userAction!userAdd.action" method="post" class="form form-horizontal" id="form-admin-add">
 			
-			<!-- 该项存在问题。由于需要暂且这样，具体情况看README#存在问题第一条。 -->
+			
 			<div class="row cl">
 				<label class="form-label col-3"><span class="c-red">*</span>成员ID</label>
 				<div class="formControls col-5">
@@ -50,18 +50,17 @@
 			
 			<div class="row cl">
 				<label class="form-label col-3"><span class="c-red">*</span>性别：</label>
-				<div class="formControls col-5 skin-minimal">
-					<div class="radio-box">
-					<input type="radio" id="sex-1" name="user.UserSex" datatype="*" nullmsg="请选择性别！">
-					<label for="sex-1">男</label>
+			<div class="formControls col-5 skin-minimal">
+				<div class="radio-box">
+					<input type="radio" id="1" name="sex" datatype="*" nullmsg="请选择性别！">
+					<label for="1">男</label>
 				</div>
 				<div class="radio-box">
-					<input type="radio" id="sex-2" name="user.UserSex">
-					<label for="sex-2">女</label>
+					<input type="radio" id="2" name="sex">
+					<label for="0">女</label>
 				</div>
-	
-				</div>				
-				<div class="col-4"></div>
+			</div>
+			<div class="col-4"> </div>
 			</div>
 			
 			

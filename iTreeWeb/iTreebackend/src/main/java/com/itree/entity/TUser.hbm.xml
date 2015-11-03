@@ -38,7 +38,7 @@
                 <comment>&#215;&#249;&#211;&#210;&#195;&#250;</comment>
             </column>
         </property>
-        <property name="userTel" type="int">
+        <property name="userTel" type="string">
             <column name="user_tel" not-null="true">
                 <comment>&#193;&#170;&#207;&#181;&#183;&#189;&#202;&#189;,&#202;&#214;&#187;&#250;&#186;&#197;&#194;&#235;</comment>
             </column>
@@ -54,7 +54,7 @@
                 &#177;&#234;&#202;&#182;&#163;&#168;1&#177;&#237;&#202;&#190;&#191;&#201;&#211;&#195;&#163;&#172;0&#177;&#237;&#202;&#190;&#178;&#187;&#191;&#201;&#211;&#195;&#163;&#169;</comment>
             </column>
         </property>
-        <set name="TLogins" table="t_login" inverse="true" lazy="true" fetch="select">
+        <set name="TLogins" table="t_login" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="user_id" not-null="true">
                     <comment>&#179;&#201;&#212;&#177;&#208;&#197;&#207;&#162;/&#205;&#226;&#188;&#252;</comment>
@@ -62,7 +62,7 @@
             </key>
             <one-to-many class="com.itree.entity.TLogin" />
         </set>
-        <set name="TFiles" table="t_file" inverse="true" lazy="true" fetch="select">
+        <set name="TFiles" table="t_file" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="user_id" not-null="true">
                     <comment>&#215;&#247;&#213;&#223;/&#205;&#226;&#188;&#252;</comment>
@@ -70,7 +70,7 @@
             </key>
             <one-to-many class="com.itree.entity.TFile" />
         </set>
-        <set name="TRecords" table="t_record" inverse="true" lazy="true" fetch="select">
+        <set name="TRecords" table="t_record" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="user_id" not-null="true">
                     <comment>ID/&#205;&#226;&#188;&#252;</comment>
@@ -78,7 +78,7 @@
             </key>
             <one-to-many class="com.itree.entity.TRecord" />
         </set>
-        <set name="TPlans" table="t_plan" inverse="true" lazy="true" fetch="select">
+        <set name="TPlans" table="t_plan" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="user_id" not-null="true">
                     <comment>ID/&#205;&#226;&#188;&#252;</comment>
@@ -86,7 +86,7 @@
             </key>
             <one-to-many class="com.itree.entity.TPlan" />
         </set>
-        <set name="TTeacherwrotes" table="t_teacherwrote" inverse="true" lazy="true" fetch="select">
+        <set name="TTeacherwrotes" table="t_teacherwrote" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="user_id" not-null="true">
                     <comment>ID/&#205;&#226;&#188;&#252;</comment>

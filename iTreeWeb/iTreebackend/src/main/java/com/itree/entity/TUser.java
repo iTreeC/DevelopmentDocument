@@ -21,9 +21,12 @@ public class TUser implements java.io.Serializable {
 	private int userSex;
 	private String userHoby;
 	private String userMotto;
-	private int userTel;
+	private String userTel;
 	private String userProfile;
 	private int userStatus;
+	
+
+	/*表间结构：one-to-many*/
 	private Set TLogins = new HashSet(0);
 	private Set TFiles = new HashSet(0);
 	private Set TRecords = new HashSet(0);
@@ -34,7 +37,7 @@ public class TUser implements java.io.Serializable {
 	}
 
 	public TUser(TPhoto TPhoto, TDuty TDuty, String userName, int userSex,
-			int userTel, String userProfile, int userStatus) {
+			String userTel, String userProfile, int userStatus) {
 		this.TPhoto = TPhoto;
 		this.TDuty = TDuty;
 		this.userName = userName;
@@ -42,12 +45,14 @@ public class TUser implements java.io.Serializable {
 		this.userTel = userTel;
 		this.userProfile = userProfile;
 		this.userStatus = userStatus;
+		
 	}
 
 	public TUser(TPhoto TPhoto, TDuty TDuty, String userName, int userSex,
-			String userHoby, String userMotto, int userTel, String userProfile,
+			String userHoby, String userMotto, String userTel, String userProfile,
 			int userStatus, Set TLogins, Set TFiles, Set TRecords, Set TPlans,
 			Set TTeacherwrotes) {
+		
 		this.TPhoto = TPhoto;
 		this.TDuty = TDuty;
 		this.userName = userName;
@@ -120,11 +125,11 @@ public class TUser implements java.io.Serializable {
 		this.userMotto = userMotto;
 	}
 
-	public int getUserTel() {
+	public String getUserTel() {
 		return this.userTel;
 	}
 
-	public void setUserTel(int userTel) {
+	public void setUserTel(String userTel) {
 		this.userTel = userTel;
 	}
 
