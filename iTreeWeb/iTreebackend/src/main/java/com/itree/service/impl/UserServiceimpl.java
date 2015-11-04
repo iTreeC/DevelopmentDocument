@@ -8,11 +8,9 @@ import com.itree.service.UserService;
 
 public class UserServiceimpl implements UserService {
 	private UserDao userdao;
-	
 	public UserDao getUserdao() {
 		return userdao;
 	}
-
 	public void setUserdao(UserDao userdao) {
 		this.userdao = userdao;
 	}
@@ -23,5 +21,17 @@ public class UserServiceimpl implements UserService {
 		List<TLogin> user = userdao.getAll();
 		return user;
 	}
+	
+	public void delete(int id){
+		
+		userdao.delete(id);
+	}
 
+	public void stop(int id){
+		userdao.stop(id);
+	}
+	
+	public void start(int id){
+		userdao.start(id);
+	}
 }

@@ -16,15 +16,14 @@ import com.opensymphony.xwork2.Preparable;
 public class UserAction extends ActionSupport implements ModelDriven<TLogin>,RequestAware,Preparable{
 	
 	private static final long serialVersionUID = 1L;
-	
-	private UserService userService;
-	/*private String userID;//定义变量，用于接受从前台传递过来的数据。*/
+
+	HttpServletRequest re = ServletActionContext.getRequest();//获取request作用于，接受前台ajax传来的值。
 	
 	/*因为TLogin中包含TUser表，而TUser表中含有user的全部信息（除密码），考虑到级联查询，故
 	 *定义一个TLogin类型的user
     */
 	public TLogin user;
-	
+	private UserService userService;
 	public UserService getUserService() {
 		return userService;
 	}
@@ -39,8 +38,25 @@ public class UserAction extends ActionSupport implements ModelDriven<TLogin>,Req
 	}
 	//删除操作。根据选中行的ID,删除该行。
 	public void deleteById(){
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String d = request.getParameter("userID");
+		System.out.println("删除操作");
+		int d = Integer.parseInt(re.getParameter("delete"));
+		userService.delete(d);
+		System.out.println(d);
+	}
+	//更改用户表示，停用
+	public void stop(){
+		System.out.println("用户停用");
+		int d = Integer.parseInt(re.getParameter("stop"));
+		System.out.println("aaaaaa");
+		userService.stop(d);
+		System.out.println("bbb");
+		System.out.println(d);
+	}
+	//更改用户表示，启用
+	public void start(){
+		System.out.println("用户停用");
+		int d = Integer.parseInt(re.getParameter("start"));
+		userService.start(d);
 		System.out.println(d);
 	}
 	
