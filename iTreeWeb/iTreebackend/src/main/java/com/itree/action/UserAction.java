@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 
+import com.itree.entity.AddUserInfo;
 import com.itree.entity.TLogin;
 import com.itree.service.UserService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -22,8 +23,17 @@ public class UserAction extends ActionSupport implements ModelDriven<TLogin>,Req
 	/*因为TLogin中包含TUser表，而TUser表中含有user的全部信息（除密码），考虑到级联查询，故
 	 *定义一个TLogin类型的user
     */
-	public TLogin user;
+	public AddUserInfo aui;
+	
 	private UserService userService;
+	
+	public AddUserInfo getAui() {
+		return aui;
+	}
+	public void setAui(AddUserInfo aui) {
+		this.aui = aui;
+	}
+
 	public UserService getUserService() {
 		return userService;
 	}
@@ -47,19 +57,23 @@ public class UserAction extends ActionSupport implements ModelDriven<TLogin>,Req
 	public void stop(){
 		System.out.println("用户停用");
 		int d = Integer.parseInt(re.getParameter("stop"));
-		System.out.println("aaaaaa");
+		System.out.println("aaa");
 		userService.stop(d);
 		System.out.println("bbb");
 		System.out.println(d);
 	}
 	//更改用户表示，启用
 	public void start(){
-		System.out.println("用户停用");
+		System.out.println("用户启用");
 		int d = Integer.parseInt(re.getParameter("start"));
 		userService.start(d);
 		System.out.println(d);
 	}
-	
+	//增加用户
+	public void add(){
+		System.out.println("增加用户");
+		userService.save(aui);
+	}
 	
 	private Map<String, Object> request;
 	public void setRequest(Map<String, Object> arg0) {

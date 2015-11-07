@@ -3,6 +3,7 @@ package com.itree.service.impl;
 import java.util.List;
 
 import com.itree.dao.UserDao;
+import com.itree.entity.AddUserInfo;
 import com.itree.entity.TLogin;
 import com.itree.service.UserService;
 
@@ -33,5 +34,8 @@ public class UserServiceimpl implements UserService {
 	
 	public void start(int id){
 		userdao.start(id);
+	}
+	public void save(AddUserInfo aui){
+		userdao.save(aui);
 	}
 }

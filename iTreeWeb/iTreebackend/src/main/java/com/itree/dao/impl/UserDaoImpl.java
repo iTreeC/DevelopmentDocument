@@ -1,5 +1,6 @@
 package com.itree.dao.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -7,7 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.itree.dao.UserDao;
+import com.itree.entity.AddUserInfo;
+import com.itree.entity.TDuty;
 import com.itree.entity.TLogin;
+import com.itree.entity.TUser;
 import com.itree.utils.SessionUtils;
 public class UserDaoimpl implements UserDao {
 
@@ -49,6 +53,7 @@ public class UserDaoimpl implements UserDao {
    		 	return;
 		}
 	}
+	//更改用户标识，停用
 	public void stop(int id){
 		try{
 			System.out.println("UserDaoImpl的stop方法");
@@ -65,6 +70,7 @@ public class UserDaoimpl implements UserDao {
    		 	return;
 		}
 	}
+	//更改用户标识，启用
 	public void start(int id){
 		try{
 			System.out.println("UserDaoImpl的stop方法");
@@ -79,6 +85,45 @@ public class UserDaoimpl implements UserDao {
 			e.printStackTrace(); 
    		 	System.out.println(e.getMessage()); 
    		 	return;
+		}
+	}
+	//增加用户
+
+	public void save(AddUserInfo aui){
+		try{
+			System.out.println("UserDaoImpi的save方法");
+			session = SessionUtils.getInstance().getSession();
+			transaction = session.beginTransaction();
+			//存储数据
+			/*Query query = session.createQuery("select * from TDuty t where t.dutyName='"+aui.getDuty()+"'");
+			Iterator<TDuty> duty = query.iterate();
+			while(duty.hasNext()){
+				
+			}*/
+			//System.out.println(aui.getDuty());
+			int a = aui.getDuty();
+			System.out.println(a);
+			TDuty d = (TDuty)session.get(TDuty.class, a );
+			System.out.println(d);
+			/*TUser u = new TUser();
+			u.setTDuty(d);
+			u.setUserName("aui.getName()");
+			u.setUserHoby("aui.getHobby()");
+			u.setUserProfile("aui.getProfile()");
+			u.setUserTel("aui.getTelephone()");
+			u.setUserSex(aui.getSex());
+			//session.save(u);
+			TLogin l = new TLogin();
+			l.setTUser(u);
+			l.setPassword("aui.getPassword()");
+			
+			session.save(l);*/
+			
+			transaction.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			return;
 		}
 	}
 	}

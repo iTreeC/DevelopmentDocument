@@ -14,12 +14,15 @@ import javax.persistence.Table;
 @Table(name="t_login",catalog="itree")
 public class TLogin implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private TUser TUser;
 	private Date accountNo;
 	private String password;
 	private int loginStatus;
 
+	
 	public TLogin() {
 	}
 
