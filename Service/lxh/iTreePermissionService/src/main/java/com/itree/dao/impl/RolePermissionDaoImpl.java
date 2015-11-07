@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import com.itree.dao.api.RolePermissionDao;
 import com.itree.entity.RolePermission;
@@ -27,6 +26,15 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 	Transaction transaction;
 	RolePermission role;
 
+	/**
+	 * 功能：添加
+	 * 
+	 * @param rid
+	 *            角色id
+	 * @param pid
+	 *            权限id
+	 * @return true/false
+	 */
 	public boolean add(int rid, List<Integer> pid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -48,6 +56,13 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 
 	}
 
+	/**
+	 * 功能：通过角色ID删除（将删除整个角色所有权限）
+	 * 
+	 * @param rid
+	 *            角色id
+	 * @return true/false
+	 */
 	public boolean deleteByRId(int rid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -64,6 +79,15 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 		}
 	}
 
+	/**
+	 * 功能：更新权限（先删掉旧的，再加入新的）
+	 * 
+	 * @param rid
+	 *            角色ID
+	 * @param pid
+	 *            权限ID
+	 * @return true/false
+	 */
 	public boolean updatePermission(int rid, List<Integer> pid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -91,6 +115,11 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 		}
 	}
 
+	/**
+	 * 功能：查看所有角色-列表
+	 * 
+	 * @return 角色-权限列表
+	 */
 	public List<RolePermission> findAll() {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -107,6 +136,13 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 		}
 	}
 
+	/**
+	 * 功能：通过角色ID查看角色-权限列表
+	 * 
+	 * @param rid
+	 *            角色ID
+	 * @return 角色-权限列表
+	 */
 	public List<RolePermission> findByRId(int rid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -125,6 +161,13 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 
 	}
 
+	/**
+	 * 功能：通过角色id查看权限id集合
+	 * 
+	 * @param rid
+	 *            角色ID
+	 * @return 权限id集合
+	 */
 	public List<Integer> findRolePIds(int rid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();

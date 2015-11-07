@@ -1,5 +1,5 @@
 /**
- * @info hibernate 的 session
+ * @info 单例模式获取 hibernate 的 session
  * @author 李晓欢
  * @time 2015.10.28
  */
@@ -13,34 +13,35 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 public class SessionUtils {
-	
-	private SessionUtils(){
-		
+
+	private SessionUtils() {
+
 	}
-	private static SessionUtils instance =new SessionUtils();
-	
-	public static SessionUtils getInstance(){
+
+	private static SessionUtils instance = new SessionUtils();
+
+	public static SessionUtils getInstance() {
 		return instance;
 	}
-	
 
 	private SessionFactory sessionFactory;
-	
-	public SessionFactory getSessionFactory(){
-		
-		if(sessionFactory == null){
+
+	public SessionFactory getSessionFactory() {
+
+		if (sessionFactory == null) {
 			Configuration configuration = new Configuration().configure();
 			ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
-							.applySettings(configuration.getProperties()).buildServiceRegistry();
+					.applySettings(configuration.getProperties())
+					.buildServiceRegistry();
 			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 		}
-		
+
 		return sessionFactory;
-		
+
 	}
-	
-	public Session getSession(){
+
+	public Session getSession() {
 		return getSessionFactory().getCurrentSession();
-		
+
 	}
 }

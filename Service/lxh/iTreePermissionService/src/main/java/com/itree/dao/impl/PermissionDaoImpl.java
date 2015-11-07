@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import com.itree.dao.api.PermissionDao;
 import com.itree.entity.Perm;
@@ -26,6 +25,11 @@ public class PermissionDaoImpl implements PermissionDao {
 
 	Perm perm;
 
+	/**
+	 * 功能：添加
+	 * @param perm 
+	 * @return true/false
+	 */
 	public boolean add(Perm perm) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -40,6 +44,11 @@ public class PermissionDaoImpl implements PermissionDao {
 		}
 	}
 
+	/**
+	 * 功能：通过ID删除
+	 * @param id
+	 * @return true/false
+	 */
 	public boolean deleteByRId(int id) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -56,6 +65,11 @@ public class PermissionDaoImpl implements PermissionDao {
 
 	}
 
+	/**
+	 * 功能：更新
+	 * @param perm
+	 * @return true/false
+	 */
 	public boolean update(Perm perm) {
 
 		session = SessionUtils.getInstance().getSession();
@@ -73,6 +87,10 @@ public class PermissionDaoImpl implements PermissionDao {
 
 	}
 
+	/**
+	 * 功能：查看列表
+	 * @return 权限列表
+	 */
 	public List<Perm> getAll() {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -91,6 +109,10 @@ public class PermissionDaoImpl implements PermissionDao {
 		}
 	}
 
+	/**
+	 * 功能：查看所有权限值集合
+	 * @return 权限值集合
+	 */
 	public List<String> getAllName() {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -108,6 +130,11 @@ public class PermissionDaoImpl implements PermissionDao {
 		}
 	}
 
+	/**
+	 * 功能：通过id查看一条权限
+	 * @param id
+	 * @return 一条权限
+	 */
 	public Perm getOneById(int id) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -122,6 +149,11 @@ public class PermissionDaoImpl implements PermissionDao {
 		}
 	}
 
+	/**
+	 * 功能：通过name查看一条权限信息
+	 * @param name
+	 * @return 一条权限信息
+	 */
 	public Perm getOneByName(String name) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();

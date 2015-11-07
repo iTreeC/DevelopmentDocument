@@ -31,33 +31,33 @@
 		<property name="hbm2ddl.auto">update</property>
 
 
-	<!-- 	 最大连接数 
+		<!-- 最大连接数 -->
 		<property name="hibernate.c3p0.max_size">20</property>
 
-		最小连接数
+		<!-- 最小连接数 -->
 		<property name="hibernate.c3p0.min_size">5</property>
 
-		获得连接的超时时间,如果超过这个时间,会抛出异常，单位毫秒
+		<!-- 获得连接的超时时间,如果超过这个时间,会抛出异常，单位毫秒 -->
 		<property name="hibernate.c3p0.timeout">120</property>
 
-		最大的PreparedStatement的数量
+		<!-- 最大的PreparedStatement的数量 -->
 		<property name="hibernate.c3p0.max_statements">100</property>
 
-		每隔120秒检查连接池里的空闲连接 ，单位是秒
+		<!-- 每隔120秒检查连接池里的空闲连接 ，单位是秒 -->
 		<property name="hibernate.c3p0.idle_test_period">120</property>
 
-		当连接池里面的连接用完的时候，C3P0一下获取的新的连接数
+		<!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->
 		<property name="hibernate.c3p0.acquire_increment">2</property>
 
-		每次都验证连接是否可用
-		<property name="hibernate.c3p0.validate">true</property> -->
+		<!-- 每次都验证连接是否可用 -->
+		<property name="hibernate.c3p0.validate">true</property>
 
-		<!-- c3p0 -->
+		<!-- c3p0
 		<property name="c3p0.min_size">5</property>
-	<property name="c3p0.max_size">20</property>
-	<property name="c3p0.timeout">1800</property>
-	<property name="c3p0.max_statements">50</property>
-
+		<property name="c3p0.max_size">20</property>
+		<property name="c3p0.timeout">1800</property>
+		<property name="c3p0.max_statements">50</property>
+		 -->
 
 		<!-- 指定关联的 .hbm.xml 文件 -->
 		<mapping class="com.itree.entity.UserPermission" />

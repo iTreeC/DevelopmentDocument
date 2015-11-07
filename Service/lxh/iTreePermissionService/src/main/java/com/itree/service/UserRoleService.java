@@ -18,6 +18,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.itree.engine.api.PermissionEngineAPI;
 import com.itree.engine.api.RolesPermissionEngineAPI;
 import com.itree.engine.api.UserRoleEngineAPI;
+import com.itree.entity.Perm;
 
 @Path("/userrole")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -32,7 +33,12 @@ public class UserRoleService {
 
 	List<Integer> rid;
 	List<Integer> pid; 
-	
+	/**
+	 * 功能：增加用户角色
+	 * @param uid 用户id
+	 * @param rid 角色id
+	 * @return true/false
+	 */
 	@POST
 	@Path("/post")
 	public Boolean postPermission(@QueryParam("uid") int uid,
@@ -40,12 +46,23 @@ public class UserRoleService {
 		return urengine.add(uid, rid);
 	}
 
+	/**
+	 * 功能：删除用户角色
+	 * @param uid 用户id
+	 * @return true/false
+	 */
 	@DELETE
 	@Path("/delete")
 	public Boolean deletePermission(@QueryParam("uid") int uid) {
 		return urengine.delete(uid);
 	}
 
+	/**
+	 * 功能：更新用户角色
+	 * @param uid 用户id
+	 * @param rid 角色id
+	 * @return true/false
+	 */
 	@PUT
 	@Path("/put")
 	public Boolean putPermission(@QueryParam("uid") int uid,
@@ -53,13 +70,23 @@ public class UserRoleService {
 		return urengine.update(uid, rid);
 	}
 
+	/**
+	 * 功能：查看某用户的权限id
+	 * @param uid 用户id
+	 * @return 权限id列表
+	 */
 	@GET
 	@Path("/get/one/rids")
 	public List<Integer> getRIds(@QueryParam("uid") int uid) {
 		return urengine.getRIds(uid);
 	}
 
-/*	@GET
+	/**
+	 * 功能：查看某用户权限列表
+	 * @param uid
+	 * @return 权限列表
+	 */
+	@GET
 	@Path("/get/one/permissions")
 	public List<Perm> getPermission(@QueryParam("uid") int uid) {
 		rid = urengine.getRIds(uid);
@@ -89,7 +116,12 @@ public class UserRoleService {
 			return null;
 		}
 	}
-*/
+
+	/**
+	 * 功能：查看某用户权限值
+	 * @param uid 用户id
+	 * @return 权限值列表
+	 */
 	@GET
 	@Path("/get/one/pnames")
 	public List<String> getPermissionName(@QueryParam("uid") int uid) {
@@ -122,6 +154,12 @@ public class UserRoleService {
 		}
 	}
 
+	/**
+	 * 功能 用户-角色匹配
+	 * @param uid 用户id
+	 * @param rid 角色id
+	 * @return true/false
+	 */
 	@GET
 	@Path("/cando")
 	public Boolean cando(@QueryParam("uid")int uid, @QueryParam("rid")int rid) {

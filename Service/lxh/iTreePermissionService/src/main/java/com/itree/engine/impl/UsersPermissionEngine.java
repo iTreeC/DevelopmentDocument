@@ -24,34 +24,51 @@ public class UsersPermissionEngine implements UsersPermissionEngineAPI {
 
 	UserPermissionDao updao;
 
-	@Resource  @Required
+	@Resource
+	@Required
 	public void setUpdao(UserPermissionDao updao) {
 		this.updao = updao;
 	}
 
-	public Boolean add(int uid, List<Integer> pids) {
+	/**
+	 * 功能：添加
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @param pid
+	 *            权限ID
+	 * @return true/false
+	 */
+	public Boolean add(int uid, List<Integer> pid) {
 
-		if (uid == 0 || pids.equals(null)) {
+		if (uid == 0 || pid.equals(null)) {
 			logger.error("角色或权限ID不能为空值！！！");
 			return false;
 		}
 
 		// 去除重复数据
-		HashSet<Integer> id = new HashSet<Integer>(pids);
-		pids.clear();
-		pids.addAll(id);
+		HashSet<Integer> id = new HashSet<Integer>(pid);
+		pid.clear();
+		pid.addAll(id);
 
 		List<Integer> pid2 = updao.findUserPIds(uid);
 		if (pid2 != null)
-			pids.removeAll(pid2);
+			pid.removeAll(pid2);
 
-		if (pids.size() == 0) {
+		if (pid.size() == 0) {
 			logger.error("该权限已经存在，不能重复添加");
 			return false;
 		}
-		return updao.add(uid, pids);
+		return updao.add(uid, pid);
 	}
 
+	/**
+	 * 功能：删除
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @return true/false
+	 */
 	public Boolean delete(int uid) {
 		if (uid == 0) {
 			logger.error("用户名为空！！！");
@@ -60,6 +77,15 @@ public class UsersPermissionEngine implements UsersPermissionEngineAPI {
 		return updao.deleteByUId(uid);
 	}
 
+	/**
+	 * 功能：更新
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @param pid
+	 *            权限ID
+	 * @return true/false
+	 */
 	public Boolean update(int uid, List<Integer> pid) {
 		if (uid == 0 || pid.equals(null)) {
 			logger.error("角色或权限ID不能为空值！！！");
@@ -73,6 +99,13 @@ public class UsersPermissionEngine implements UsersPermissionEngineAPI {
 		return updao.updatePermission(uid, pid);
 	}
 
+	/**
+	 * 功能：查看
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @return 用户-权限关系的列表
+	 */
 	public List<UserPermission> getPermission(int uid) {
 		if (uid == 0) {
 			logger.error("用户名为空！！！");
@@ -91,6 +124,13 @@ public class UsersPermissionEngine implements UsersPermissionEngineAPI {
 		}
 	}
 
+	/**
+	 * 功能：查看用户权限ID
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @return 用户权限ID集合
+	 */
 	public List<Integer> getPermissionID(int uid) {
 		if (uid == 0) {
 			logger.error("用户名为空！！！");
@@ -107,6 +147,15 @@ public class UsersPermissionEngine implements UsersPermissionEngineAPI {
 		}
 	}
 
+	/**
+	 * 功能：用户-角色匹配
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @param pid
+	 *            权限ID
+	 * @return true/false
+	 */
 	public Boolean cando(int uid, int pid) {
 		if (uid == 0) {
 			logger.error("用户名为空！！！");

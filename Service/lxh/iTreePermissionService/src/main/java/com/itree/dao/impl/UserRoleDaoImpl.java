@@ -7,7 +7,6 @@ package com.itree.dao.impl;
 
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -27,6 +26,15 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	List<UserRole> userroles;
 	UserRole userrole;
 
+	/**
+	 * 功能 ：添加
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @param rid
+	 *            角色ID
+	 * @return true/false
+	 */
 	public boolean add(int uid, List<Integer> rid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -48,6 +56,13 @@ public class UserRoleDaoImpl implements UserRoleDao {
 
 	}
 
+	/**
+	 * 功能：通过用户ID删除（将删除整个用户所具有的角色关系）
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @return true/false
+	 */
 	public boolean deleteByUId(int uid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -64,6 +79,15 @@ public class UserRoleDaoImpl implements UserRoleDao {
 		}
 	}
 
+	/**
+	 * 功能：更新（将删除用户所有角色关系后，在插入新的角色关系）
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @param rid
+	 *            角色ID
+	 * @return true/false
+	 */
 	public boolean update(int uid, List<Integer> rid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -88,6 +112,11 @@ public class UserRoleDaoImpl implements UserRoleDao {
 		}
 	}
 
+	/**
+	 * 功能：查看用户-角色列表
+	 * 
+	 * @return 用户-角色列表
+	 */
 	public List<UserRole> findAll() {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -103,6 +132,13 @@ public class UserRoleDaoImpl implements UserRoleDao {
 		}
 	}
 
+	/**
+	 * 功能：通过用户ID查看 用户-角色 列表
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @return 用户-角色列表
+	 */
 	public List<UserRole> findByUId(int uid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -120,6 +156,13 @@ public class UserRoleDaoImpl implements UserRoleDao {
 		}
 	}
 
+	/**
+	 * 功能：通过用户ID查看用户角色ID集合
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @return 用户角色ID的集合
+	 */
 	public List<Integer> findUserRIds(int uid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
