@@ -6,7 +6,7 @@
     <class name="com.itree.entity.TPhoto" table="t_photo" catalog="itree">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="identity" />
+            <generator class="native" />
         </id>
         <property name="photoProfile" type="string">
             <column name="photo_profile" length="50" not-null="true" />

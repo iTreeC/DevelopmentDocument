@@ -1,8 +1,6 @@
 package com.itree.dao.impl;
 
-import java.util.Iterator;
 import java.util.List;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -95,31 +93,27 @@ public class UserDaoimpl implements UserDao {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
 			//存储数据
-			/*Query query = session.createQuery("select * from TDuty t where t.dutyName='"+aui.getDuty()+"'");
-			Iterator<TDuty> duty = query.iterate();
-			while(duty.hasNext()){
-				
-			}*/
-			//System.out.println(aui.getDuty());
 			int a = aui.getDuty();
-			System.out.println(a);
-			TDuty d = (TDuty)session.get(TDuty.class, a );
-			System.out.println(d);
-			/*TUser u = new TUser();
+			TDuty d = (TDuty)session.get(TDuty.class, a);
+			
+			TUser u = new TUser();
+			
 			u.setTDuty(d);
-			u.setUserName("aui.getName()");
-			u.setUserHoby("aui.getHobby()");
-			u.setUserProfile("aui.getProfile()");
-			u.setUserTel("aui.getTelephone()");
+			u.setUserName(aui.getName());
+			u.setUserHoby(aui.getHobby());
+			u.setUserProfile(aui.getProfile());
+			u.setUserTel(aui.getTelephone());
 			u.setUserSex(aui.getSex());
-			//session.save(u);
+			u.setUserStatus(aui.getUserStatus());
+			session.save(u);
 			TLogin l = new TLogin();
 			l.setTUser(u);
-			l.setPassword("aui.getPassword()");
-			
-			session.save(l);*/
+			l.setPassword(aui.getPassword());
+					
+			session.save(l);
 			
 			transaction.commit();
+			System.out.println("SUCCESS");
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println(e.getMessage());

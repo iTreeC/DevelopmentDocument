@@ -29,6 +29,7 @@
 		<action name="user-*" class="userAction"
 		method="{1}">
 		<result name="list">admin-list.jsp</result>
+
 		</action>
 		
 		

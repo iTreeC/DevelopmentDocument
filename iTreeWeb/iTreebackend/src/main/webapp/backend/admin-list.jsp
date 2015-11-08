@@ -102,7 +102,7 @@
 					<td class="td-manage"><a  id = "${id}" style="text-decoration:none" onClick="admin_start(this,$(this).attr('id'))" 
 					title="启用"><i class="Hui-iconfont">&#xe615;</i></a>
 					<a title="编辑" href="javascript:;" 
-					onclick="admin_edit('管理员编辑','admin-add.jsp','1','800','500')" class="ml-5" style="text-decoration:none">
+					onclick="admin_edit('管理员编辑','admin-edit.jsp','1','800','500')" class="ml-5" style="text-decoration:none">
 					<i class="Hui-iconfont">&#xe6df;</i></a> 
 					<a title="删除" href="javascript:;" id="${id}" onclick="admin_del(this,$(this).attr('id'))" class="ml-5" style="text-decoration:none">
 					<i class="Hui-iconfont">&#xe6e2;</i></a>
@@ -116,7 +116,7 @@
 					title="停用"><i class="Hui-iconfont">&#xe631;</i></a>
 				    
 				    <a title="编辑" href="javascript:;" 
-					onclick="admin_edit('管理员编辑','admin-add.jsp','1','800','500')" class="ml-5" style="text-decoration:none">
+					onclick="admin_edit('管理员编辑','admin-edit.jsp','1','800','500')" class="ml-5" style="text-decoration:none">
 					<i class="Hui-iconfont">&#xe6df;</i></a> 
 
 					<a title="删除" href="javascript:;" id ="${id }" onclick="admin_del(this,$(this).attr('id'))" class="ml-5" style="text-decoration:none">

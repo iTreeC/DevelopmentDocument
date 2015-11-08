@@ -12,7 +12,7 @@ public class AddUserInfo {
 	private String hoby;
 	private String telephone;
 	private String profile;
-	private boolean userStatus;
+	private int userStatus;
 
 	public String getName() {
 		return name;
@@ -70,10 +70,11 @@ public class AddUserInfo {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-	public boolean isUserStatus() {
+	
+	public int getUserStatus() {
 		return userStatus;
 	}
-	public void setUserStatus(boolean userStatus) {
+	public void setUserStatus(int userStatus) {
 		this.userStatus = userStatus;
 	}
 	@Override

@@ -171,7 +171,7 @@
 			</div>
 			 <div class="row cl">
 				<div class="col-9 col-offset-3">
-					 <input class="btn btn-primary radius" type="submit" onclick="test()"
+					 <input class="btn btn-primary radius" type="submit"
 						value="&nbsp;&nbsp;提 交&nbsp;&nbsp;"> 
 				</div>
 			</div>
@@ -203,26 +203,13 @@ $(function(){
 		//}
 	});
 });
-function test(){
-	 try {
-	      
-	   } catch (e) {
-
-	   }
- } 
- 
- //关闭当前页面
- /* function logout(){
-	 		  
-              var browserName=navigator.appName;
-              if (browserName=="Netscape"){
-                    window.open('', '_self', '');
-                    window.close();
-              }
-              if (browserName=="Microsoft Internet Explorer") {
-                    window.parent.opener = "whocares";
-                    window.parent.close();
-              }
+/* function select(){
+	var myselect=document.getElementById("duty");
+	var index = myselect.selectedIndex;
+	user.UserID = myselect.options[index].value;
+	alert(user.UserID);
+	//myselect.options[index].text;
+	
 } */
 </script>
 </body>

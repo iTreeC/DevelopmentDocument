@@ -5,14 +5,14 @@
 <hibernate-mapping>
     <class name="com.itree.entity.TUser" table="t_user" catalog="itree">
         <id name="id" type="java.lang.Integer">
-            <column name="id" />
-            <generator class="identity" />
+            <column name="id" not-null="true"/>
+            <generator class="native" />
         </id>
-        <many-to-one name="TPhoto" class="com.itree.entity.TPhoto" fetch="select">
-            <column name="photo_id" not-null="true">
+       <!--  <many-to-one name="TPhoto" class="com.itree.entity.TPhoto" fetch="select">
+            <column name="photo_id" not-null="false" >
                 <comment>&#213;&#213;&#198;&#172;/&#205;&#226;&#188;&#252;</comment>
             </column>
-        </many-to-one>
+        </many-to-one> -->
         <many-to-one name="TDuty" class="com.itree.entity.TDuty" fetch="select">
             <column name="duty_id" not-null="true">
                 <comment>&#214;&#176;&#206;&#241;/&#205;&#226;&#188;&#252;</comment>

@@ -73,6 +73,9 @@ public class UserAction extends ActionSupport implements ModelDriven<TLogin>,Req
 	public void add(){
 		System.out.println("增加用户");
 		userService.save(aui);
+		
+//		this.list();
+//		return "list";
 	}
 	
 	private Map<String, Object> request;

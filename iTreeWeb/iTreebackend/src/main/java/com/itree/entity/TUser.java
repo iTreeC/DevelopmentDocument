@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class TUser implements java.io.Serializable {
 
 	private Integer id;
-	private TPhoto TPhoto;
+	/*private TPhoto TPhoto;*/
 	private TDuty TDuty;
 	private String userName;
 	private int userSex;
@@ -36,9 +36,9 @@ public class TUser implements java.io.Serializable {
 	public TUser() {
 	}
 
-	public TUser(TPhoto TPhoto, TDuty TDuty, String userName, int userSex,
+	public TUser(TDuty TDuty, String userName, int userSex,
 			String userTel, String userProfile, int userStatus) {
-		this.TPhoto = TPhoto;
+		/*this.TPhoto = TPhoto;*/
 		this.TDuty = TDuty;
 		this.userName = userName;
 		this.userSex = userSex;
@@ -48,12 +48,12 @@ public class TUser implements java.io.Serializable {
 		
 	}
 
-	public TUser(TPhoto TPhoto, TDuty TDuty, String userName, int userSex,
+	public TUser( TDuty TDuty, String userName, int userSex,
 			String userHoby, String userMotto, String userTel, String userProfile,
 			int userStatus, Set TLogins, Set TFiles, Set TRecords, Set TPlans,
 			Set TTeacherwrotes) {
 		
-		this.TPhoto = TPhoto;
+		/*this.TPhoto = TPhoto;*/
 		this.TDuty = TDuty;
 		this.userName = userName;
 		this.userSex = userSex;
@@ -77,14 +77,14 @@ public class TUser implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public TPhoto getTPhoto() {
+	/*public TPhoto getTPhoto() {
 		return this.TPhoto;
 	}
 
 	public void setTPhoto(TPhoto TPhoto) {
 		this.TPhoto = TPhoto;
 	}
-
+*/
 	public TDuty getTDuty() {
 		return this.TDuty;
 	}
