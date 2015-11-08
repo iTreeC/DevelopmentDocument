@@ -69,10 +69,5 @@ public class Business_Position {
 		this.usable = usable;
 	}
 	
-	@Override
-	public String toString() {
-		return "Business_Position [id=" + id + ", companyID=" + companyID + ", address=" + address + ", province="
-				+ province + ", city=" + city + ", county=" + county + ", usable=" + usable + ", company=" + company
-				+ "]";
-	}
+
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-14 15:26:00 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.itree.entity.TPlan" table="t_plan" catalog="itree">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="TUser" class="com.itree.entity.TUser" fetch="select">
+            <column name="user_id" not-null="true">
+                <comment>ID/&#205;&#226;&#188;&#252;</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="TPhoto" class="com.itree.entity.TPhoto" fetch="select">
+            <column name="photo_id">
+                <comment>&#205;&#188;&#198;&#172;/&#205;&#226;&#188;&#252;</comment>
+            </column>
+        </many-to-one>
+        <property name="planContent" type="string">
+            <column name="plan_content" length="100" not-null="true">
+                <comment>&#188;&#198;&#187;&#174;&#196;&#218;&#200;&#221;</comment>
+            </column>
+        </property>
+        <property name="planStart" type="timestamp">
+            <column name="plan_start" length="19" not-null="true">
+                <comment>&#188;&#198;&#187;&#174;&#191;&#170;&#202;&#188;&#202;&#177;&#188;&#228;</comment>
+            </column>
+        </property>
+        <property name="planEnd" type="timestamp">
+            <column name="plan_end" length="19" not-null="true">
+                <comment>&#188;&#198;&#187;&#174;&#189;&#225;&#202;&#248;&#202;&#177;&#188;&#228;</comment>
+            </column>
+        </property>
+        <property name="planUpdate" type="timestamp">
+            <column name="plan_update" length="19" not-null="true">
+                <comment>&#184;&#252;&#208;&#194;&#188;&#199;&#194;&#188;&#202;&#177;&#188;&#228;</comment>
+            </column>
+        </property>
+        <property name="planParent" type="int">
+            <column name="plan_parent" not-null="true">
+                <comment>&#184;&#184;&#192;&#224;</comment>
+            </column>
+        </property>
+        <property name="planCompared" type="int">
+            <column name="plan_compared" not-null="true">
+                <comment>&#205;&#234;&#179;&#201;,1&#206;&#170;&#210;&#209;&#205;&#234;&#179;&#201;&#163;&#172;0&#206;&#170;&#180;&#253;&#205;&#234;&#179;&#201;</comment>
+            </column>
+        </property>
+        <property name="planStatus" type="int">
+            <column name="`plan_ status`" not-null="true">
+                <comment>&#177;&#234;&#202;&#182;</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

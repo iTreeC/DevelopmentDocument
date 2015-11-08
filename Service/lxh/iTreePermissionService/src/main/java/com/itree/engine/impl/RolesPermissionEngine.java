@@ -1,9 +1,17 @@
+/**
+ * @info 
+ * @author 李晓欢
+ * @time 2015.10.28
+ */
 package com.itree.engine.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
 
 import com.itree.dao.api.RolePermissionDao;
 import com.itree.engine.api.RolesPermissionEngineAPI;
@@ -16,12 +24,23 @@ public class RolesPermissionEngine implements RolesPermissionEngineAPI {
 
 	RolePermissionDao rpdao;
 
+	@Resource
+	@Required
 	public void setRpdao(RolePermissionDao rpdao) {
 		this.rpdao = rpdao;
 	}
 
 	RolePermission role;
 
+	/**
+	 * 功能：添加 角色-权限信息（只添加数据库没有的数据，不改变已有数据）
+	 * 
+	 * @param rid
+	 *            角色ID
+	 * @param pid
+	 *            权限ID
+	 * @return true/false
+	 */
 	public Boolean add(int rid, List<Integer> pid) {
 		// 空值
 		if (rid == 0 || pid.equals(null)) {
@@ -51,6 +70,13 @@ public class RolesPermissionEngine implements RolesPermissionEngineAPI {
 		return rpdao.add(rid, pids);
 	}
 
+	/**
+	 * 功能 ：通过角色ID删除
+	 * 
+	 * @param rid
+	 *            角色ID
+	 * @return true/false
+	 */
 	public Boolean delete(int rid) {
 		// 空值
 		if (rid == 0) {
@@ -63,6 +89,15 @@ public class RolesPermissionEngine implements RolesPermissionEngineAPI {
 		return true;
 	}
 
+	/**
+	 * 功能：更新
+	 * 
+	 * @param rid
+	 *            角色ID
+	 * @param pid
+	 *            权限ID
+	 * @return true/false
+	 */
 	public Boolean update(int rid, List<Integer> pid) {
 		// 空值
 		if (rid == 0 || pid.equals(null)) {
@@ -81,6 +116,13 @@ public class RolesPermissionEngine implements RolesPermissionEngineAPI {
 		return rpdao.updatePermission(rid, pids);
 	}
 
+	/**
+	 * 功能：通过角色ID查询
+	 * 
+	 * @param rid
+	 *            角色ID
+	 * @return 权限ID集合
+	 */
 	public List<Integer> getPermissionID(int rid) {
 		// 空值
 		if (rid == 0) {
@@ -98,6 +140,15 @@ public class RolesPermissionEngine implements RolesPermissionEngineAPI {
 		}
 	}
 
+	/**
+	 * 功能：角色-权限 匹配
+	 * 
+	 * @param rid
+	 *            角色ID
+	 * @param pid
+	 *            权限ID
+	 * @return true/false
+	 */
 	public Boolean cando(int rid, int pid) {
 		// 空值
 		if (rid == 0 || pid == 0) {

@@ -1,3 +1,8 @@
+/**
+ * @info 
+ * @author 李晓欢
+ * @time 2015.10.28
+ */
 package com.itree.dao.impl;
 
 import java.util.List;
@@ -6,14 +11,12 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import com.itree.dao.api.UserPermissionDao;
 import com.itree.entity.UserPermission;
 import com.itree.utils.SessionUtils;
 
-@Service
-@Component("updao")
+@Component
 public class UserPermissionDaoImpl implements UserPermissionDao {
 
 	private static Logger logger = Logger
@@ -24,6 +27,15 @@ public class UserPermissionDaoImpl implements UserPermissionDao {
 	List<UserPermission> users;
 	UserPermission user;
 
+	/**
+	 * 功能：添加
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @param pid
+	 *            权限ID
+	 * @return true/false *
+	 */
 	public boolean add(int uid, List<Integer> pid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -44,6 +56,13 @@ public class UserPermissionDaoImpl implements UserPermissionDao {
 		}
 	}
 
+	/**
+	 * 功能:通过用户ID删除 （将删除整个用户所有权限）
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @return true/false
+	 */
 	public boolean deleteByUId(int uid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -60,6 +79,15 @@ public class UserPermissionDaoImpl implements UserPermissionDao {
 		}
 	}
 
+	/**
+	 * 功能：更新用户权限（将删除整个用户所有权限关系，然后插入新的权限关系）
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @param pid
+	 *            权限ID
+	 * @return true/false
+	 */
 	public boolean updatePermission(int uid, List<Integer> pid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -85,6 +113,11 @@ public class UserPermissionDaoImpl implements UserPermissionDao {
 		}
 	}
 
+	/**
+	 * 功能：查看所有用户权限列表
+	 * 
+	 * @return 权限列表
+	 */
 	public List<UserPermission> findAll() {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -100,6 +133,13 @@ public class UserPermissionDaoImpl implements UserPermissionDao {
 		}
 	}
 
+	/**
+	 * 功能：通过用户ID查看用户权限
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @return 用户权限列表
+	 */
 	public List<UserPermission> findByUId(int uid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -116,6 +156,13 @@ public class UserPermissionDaoImpl implements UserPermissionDao {
 		}
 	}
 
+	/**
+	 * 功能：通过用户ID查看用户权限ID
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @return 权限ID集合
+	 */
 	public List<Integer> findUserPIds(int uid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();

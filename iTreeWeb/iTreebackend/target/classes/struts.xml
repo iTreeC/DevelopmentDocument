@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="true" />
+	<package name="default" namespace="/" extends="struts-default">
+	<!-- 定义新的拦截器栈, 配置 prepare 拦截器栈的 alwaysInvokePrepare 参数值为 false -->
+		<interceptors>
+			<interceptor-stack name="itreeStack">
+				<interceptor-ref name="paramsPrepareParamsStack">
+					<param name="prepare.alwaysInvokePrepare">false</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+   <!-- 使用新的拦截器栈 -->
+		<default-interceptor-ref name="itreeStack"></default-interceptor-ref>
+		<action name="news-*" class="newsAction"
+        	method="{1}">
+        	<result name="list">news-list.jsp</result>
+        	<result name="success" type="redirect">/news-list</result>
+    
+		</action>
+		
+	<!-- About User -->
+		<action name="user-*" class="userAction"
+		method="{1}">
+		<result name="list">admin-list.jsp</result>
+
+		</action>
+		
+		
+	</package>
+</struts>

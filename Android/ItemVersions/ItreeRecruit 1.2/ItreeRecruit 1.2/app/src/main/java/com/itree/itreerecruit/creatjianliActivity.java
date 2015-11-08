@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -67,7 +69,6 @@ public class creatjianliActivity extends AppCompatActivity {
                     intent.setClass(creatjianliActivity.this, addedubgActivity.class);
                     startActivity(intent);
                 }
-
             }
         });
         userinfo.setOnClickListener(new View.OnClickListener() {
@@ -99,20 +100,30 @@ public class creatjianliActivity extends AppCompatActivity {
                     dialog.dismiss();
                 }
             });
-             builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+             builder.setPositiveButton("确定", new DialogInterface.OnClickListener()  {
                  @Override
                  public void onClick(DialogInterface dialog, int which) {
+                     //创建数据库
+                     DbUtils db = DbUtils.create(creatjianliActivity.this, "iTreeResume.db");
+
+
 
 
 
                      Resume resume = new Resume();
-                     System.out.println(str + "asf sdf sfg fdg f hg ");
                      Missname_edit = (EditText) relativeLayout.findViewById(R.id.Miss_resumename);
                      if (str.equals("update")) {
                          weimingming_button.setText(Missname_edit.getText().toString());
                          resume.setResume_name(Missname_edit.getText().toString());
                          resume.setResume_id(id);
-                         dbAdapter.updateResumename(resume);
+                         //xUtils更新
+                         try {
+                             resume=db.findFirst(Selector.from(Resume.class).where("resume_id", "=", String.valueOf(id)));
+                             db.update(resume,"resume_name");
+                         } catch (DbException e) {
+                             e.printStackTrace();
+                         }
+//                         dbAdapter.updateResumename(resume);
                          Toast.makeText(creatjianliActivity.this, "更新成功", Toast.LENGTH_SHORT).show();
 
                      } else {
@@ -123,8 +134,32 @@ public class creatjianliActivity extends AppCompatActivity {
                          }
                          weimingming_button.setText(name);
                          resume.setResume_name(name);
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+                         try {
+                             db.save(resume);
+                         } catch (DbException e) {
+                             e.printStackTrace();
+                         }
+//                         dbAdapter.addResumeNmae(resume);
+
+                         Resume r = null;
+                         try {
+                             r = db.findFirst(Selector.from(Resume.class).where("resume_name", "=", name));
+                             System.out.println(r.toString());
+                         } catch (DbException e) {
+                             e.printStackTrace();
+                         }
+//                         Resume r = dbAdapter.findid(name);
+=======
                          dbAdapter.addResumeNmae(resume);
                          Resume r = dbAdapter.findid(name);
+>>>>>>> parent of e08d7b0... 提交任务文档，修改代码
+=======
+                         dbAdapter.addResumeNmae(resume);
+                         Resume r = dbAdapter.findid(name);
+>>>>>>> parent of e08d7b0... 提交任务文档，修改代码
                          _id = r.getResume_id();
                          System.out.println(_id);
 
@@ -133,15 +168,14 @@ public class creatjianliActivity extends AppCompatActivity {
                          ed_button.setEnabled(true);
                          userinfo.setEnabled(true);
                          weimingming_button.setText(Missname_edit.getText().toString());
-                         resume.setResume_name(Missname_edit.getText().toString());
-                         resume.setResume_id(_id);
-                         dbAdapter.updateResumename(resume);
+//                         resume.setResume_name(Missname_edit.getText().toString());
+//                         resume.setResume_id(_id);
+//                         dbAdapter.updateResumename(resume);
                          //获取SharedPreferences对象
                          SharedPreferences.Editor editor = getSharedPreferences("educate", MODE_PRIVATE).edit();
                          editor.putInt("educateid", _id);
                          editor.putString("res_name", name);
                          editor.commit();
-                         System.out.println(_id);
                          Toast.makeText(creatjianliActivity.this, "简历名称保存成功", Toast.LENGTH_SHORT).show();
                          dialog.dismiss();
 
@@ -155,23 +189,26 @@ public class creatjianliActivity extends AppCompatActivity {
 
     }
 
-    public void init(){
+    public void init() {
         SharedPreferences editor = getSharedPreferences("update_resume", MODE_PRIVATE);
         str = editor.getString("is_updateresume", null);
         id = editor.getInt("updateresumeid", 0);
         if (str.equals("update")) {
-            Resume resume = dbAdapter.findbyid(id);
+//            Resume resume = dbAdapter.findbyid(id);
+            DbUtils db = DbUtils.create(creatjianliActivity.this, "iTreeResume.db");
+            Resume resume= null;
+            try {
+                resume = db.findFirst(Selector.from(Resume.class).where("resume_id", "=", String.valueOf(id)));
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
             System.out.print(resume);
             weimingming_button.setText(resume.getResume_name());
             click =true;
             ed_button.setEnabled(true);
             userinfo.setEnabled(true);
-//            Intent intent = new Intent();
-
         }
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_creatjianli, menu);
@@ -182,7 +219,15 @@ public class creatjianliActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
+                Intent upIntent = NavUtils.getParentActivityIntent(this);
+                if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
+                    TaskStackBuilder.create(this)
+                            .addNextIntentWithParentStack(upIntent)
+                            .startActivities();
+                } else {
+                    upIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    NavUtils.navigateUpTo(this, upIntent);
+                }
                 return true;
         }
         if (id == R.id.action_settings) {

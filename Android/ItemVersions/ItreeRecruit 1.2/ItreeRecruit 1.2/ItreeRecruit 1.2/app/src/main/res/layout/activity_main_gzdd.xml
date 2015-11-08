@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.itree.itreesousuo.Main_gzdd_Activity"
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants">
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView1_main_gzdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:entries="@array/city"
+        android:completionThreshold="1"
+        android:drawableLeft="@android:drawable/ic_menu_search" >
+
+        <requestFocus />
+    </AutoCompleteTextView>
+    <ListView
+        android:id="@+id/listView1_gzdd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:cacheColorHint="#00000000"
+        android:dividerHeight="2dp"
+        android:fastScrollEnabled="true" >
+    </ListView>
+
+</LinearLayout>

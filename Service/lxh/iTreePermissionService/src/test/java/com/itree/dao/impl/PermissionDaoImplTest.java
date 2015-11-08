@@ -2,14 +2,19 @@ package com.itree.dao.impl;
 
 import static org.junit.Assert.*;
 
+import javax.annotation.Resource;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.itree.dao.api.PermissionDao;
 import com.itree.entity.Perm;
 
 public class PermissionDaoImplTest {
 
-	PermissionDao pdao = new PermissionDaoImpl();
+	PermissionDao pdao  = new PermissionDaoImpl();
 
 	Perm perm; 
 	int id;

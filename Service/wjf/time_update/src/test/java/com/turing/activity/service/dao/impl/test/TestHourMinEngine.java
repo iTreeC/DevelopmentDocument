@@ -9,12 +9,27 @@ import org.junit.Test;
 import com.turing.activity.service.dao.impl.BaseEngine;
 import com.turing.activity.service.dao.impl.HourMinEngine;
 import com.turing.activity.service.dao.impl.YearMonDayEngine;
+import com.turing.activity.service.entity.HourMin;
 import com.turing.activity.service.entity.Rule;
 import com.turing.activity.service.entity.YearMonDay;
 
 public class TestHourMinEngine {
 	BaseEngine hourMinEngine =HourMinEngine.getSingleton();
 
+	@Test
+	public void testUpdate(){
+		Rule rule = new Rule();
+		rule.setRuleId(3);
+		
+		HourMin h = new HourMin();
+		h.setsHourMin("9:00");
+		h.seteHourMin("20:00");
+		
+		rule.setHourMin(h);
+		
+		hourMinEngine.updata(rule);
+	}
+	
 	@Test
 	public void testFindByShopId() {
 		// 通过shopid查询相应“时分”规则

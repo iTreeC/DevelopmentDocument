@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-14 15:26:00 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.itree.entity.TLogin" table="t_login" catalog="itree">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="TUser" class="com.itree.entity.TUser" fetch="select">
+            <column name="user_id" >
+                <comment>&#179;&#201;&#212;&#177;&#208;&#197;&#207;&#162;/&#205;&#226;&#188;&#252;</comment>
+            </column>
+        </many-to-one>
+        <!--
+         generated有三个可选值：
+         never(默认) 表明此属性不是从数据库生成的
+         insert  表明此属性在insert的时候生成，但是也会在随后的update时从新生成（解决办法目前只有在update的代码中使用hql语句操作）
+     	 always  表明此属性在insert时或者update时都被生成  -->
+        
+        <property name="accountNo" generated="insert" >
+            <column name="account_no" sql-type="timestamp" default="CURRENT_TIMESTAMP">
+                <comment>&#213;&#203;&#186;&#197;</comment>
+            </column>
+        </property>
+   
+        <property name="password" type="string">
+            <column name="password" length="200" not-null="true">
+                <comment>&#195;&#220;&#194;&#235;</comment>
+            </column>
+        </property>
+        <property name="loginStatus" type="int">
+            <column name="`login_ status`" not-null="true">
+                <comment>&#177;&#234;&#202;&#182;</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
