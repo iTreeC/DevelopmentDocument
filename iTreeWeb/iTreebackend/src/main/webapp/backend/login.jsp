@@ -34,7 +34,7 @@
 	<div class="header"></div>
 	<div class="loginWraper">
 		<div id="loginform" class="loginBox">
-			<form class="form form-horizontal" action="loginAction.action" method="post">
+			<form class="form form-horizontal" action="loginAction.action" method="post" id="form1">
 				<div class="row cl">
 					<label class="form-label col-3"><i class="Hui-iconfont">&#xe60d;</i></label>
 					<div class="formControls col-8">
@@ -70,7 +70,7 @@
 				
 				<div class="row">
 					<div class="formControls col-8 col-offset-3">
-						<input name="" type="submit" class="btn btn-success radius size-L"
+						<input name="" type="submit" onclick="check()" class="btn btn-success radius size-L"
 							value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;"> <input
 							name="" type="reset" class="btn btn-default radius size-L"
 							value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
@@ -79,7 +79,7 @@
 			</form>
 		</div>
 	</div>
-	<div class="footer">Copyright 你的公司名称 by H-ui.admin.v2.3</div>
+	<div class="footer">Copyright iTree by H-ui.admin.v2.3</div>
 	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/H-ui.js"></script>
 	<script>
@@ -92,6 +92,10 @@ var _hmt = _hmt || [];
 })();
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F080836300300be57b7f34f4b3e97d911' type='text/javascript'%3E%3C/script%3E"));
+
+function check(){
+	document.getElementById(form1);
+}
 </script>
 </body>
 </html>

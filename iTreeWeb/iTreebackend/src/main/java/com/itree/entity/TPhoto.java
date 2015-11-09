@@ -20,7 +20,7 @@ public class TPhoto implements java.io.Serializable {
 	private String photoPath;
 	private Date upTime;
 	private int photoStatus;
-	/*一对多关系 ，HahsSet(0)在此处并无实际意义*/
+
 	private Set TNewses = new HashSet(0);
 	private Set TFiles = new HashSet(0);
 	private Set TRecords = new HashSet(0);
@@ -130,6 +130,6 @@ public class TPhoto implements java.io.Serializable {
 
 	public void setTUsers(Set TUsers) {
 		this.TUsers = TUsers;
-	}
+	} 
 
 }
