@@ -29,26 +29,28 @@
 <title>新增文章</title> 
 </head>
 <body>
+
 	<div class="pd-20">	
-		<form action="news-save" method="post" class="form form-horizontal" "
-			id="form-article-add">
+		<form action="news-save" method="post" class="form form-horizontal" 
+			id="form-article-add"  >
+			
 			<div class="row cl">
 				<label class="form-label col-2"><span class="c-red">*</span>文章标题：</label>
 				<div class="formControls col-10">
 				
-				<input type="text" class="input-text" value="0" placeholder="" id="newsTittle"
-						 name="model.NewsTittle">
+				<input type="text" class="input-text" value="${news.newsTittle}" id="newsTittle"
+						 name="news.NewsTittle">
 					
 				</div>
 				
 			</div>
-			<!-- <div class="row cl">
-				<label class="form-label col-2">简略标题：</label>
+			<div class="row cl">
+				<label class="form-label col-2">序号：</label>
 				<div class="formControls col-10">
-					<input type="text" class="input-text" value="" placeholder="" id=""
-						name="">
+					<input type="text" class="input-text" value="${news.id}" placeholder="" id="id"
+						name="news.id">
 				</div>
-			</div> -->
+			</div> 
 			<div class="row cl">
 				<label class="form-label col-2"><span class="c-red">*</span>分类栏目：</label>
 				<div class="formControls col-2">
@@ -88,7 +90,9 @@
 				<div class="formControls col-10">
 					<textarea id="newsProfile" Label="NewsProfile" cols="" rows="" class="textarea" 
 						placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true"
-						nullmsg="备注不能为空！" onKeyUp="textarealength(this,200)" name="model.NewsProfile"></textarea>
+						nullmsg="备注不能为空！" onKeyUp="textarealength(this,200)" name="news.NewsProfile" value="">
+						${news.newsProfile }
+						</textarea>
 					<p class="textarea-numberbar">
 						<em class="textarea-length">0</em>/200
 					</p>
@@ -97,8 +101,8 @@
 			<div class="row cl">
 				<label class="form-label col-2">文章作者：</label>
 				<div class="formControls col-2">
-					<input type="text" class="input-text" value="0" placeholder=""
-						id="newsAuthor" name="model.NewsAuthor">
+					<input type="text" class="input-text" value="${ news.newsAuthor}"  placeholder=""
+						id="newsAuthor" name="news.NewsAuthor">
 				</div>
 				<!-- <label class="form-label col-2">文章来源：</label>
 				<div class="formControls col-2">
@@ -118,7 +122,7 @@
 				<div class="formControls col-2">
 					<input type="text"
 						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
-						id="datemin" class="input-text Wdate" name="model.NewsDate">
+						id="datemin" class="input-text Wdate" name="news.NewsDate" value="${news.newsDate}">
 				</div>
 				<!-- <label class="form-label col-2">评论结束日期：</label>
 				<div class="formControls col-2">
@@ -153,7 +157,11 @@
 				<label class="form-label col-2">文章内容：</label>
 				<div class="formControls col-10">
 					<script id="editor" type="text/plain"
-						style="width:100%;height:400px;"  name="model.NewsContent"></script>
+						style="width:100%;height:400px;"  name="news.NewsContent" value="${news.newsContent }">
+                        ${news.newsContent }
+
+
+</script>
 				</div>
 			</div>
 			<div class="row cl">
@@ -170,6 +178,7 @@
 						type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 				</div>
 			</div>
+			</div>			
 		</form>
 	</div>
 	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
