@@ -1,60 +1,54 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2015-10-14 15:26:00 by Hibernate Tools 3.4.0.CR1 -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-11-15 16:02:01 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="com.itree.entity.TFile" table="t_file" catalog="itree">
+    <class name="com.itree.entity.TFile" table="t_file" catalog="itreetable">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
         <many-to-one name="TUser" class="com.itree.entity.TUser" fetch="select">
-            <column name="user_id" not-null="true">
-                <comment>&#215;&#247;&#213;&#223;/&#205;&#226;&#188;&#252;</comment>
-            </column>
-        </many-to-one>
-        <many-to-one name="TPhoto" class="com.itree.entity.TPhoto" fetch="select" lazy="false">
-            <column name="photo_id">
-                <comment>&#213;&#213;&#198;&#172;/&#205;&#226;&#188;&#252;</comment>
-            </column>
+            <column name="user_id" />
         </many-to-one>
         <property name="fileProfile" type="string">
-            <column name="file_profile" length="50" not-null="true">
-                <comment>&#188;&#242;&#189;&#233;</comment>
-            </column>
+            <column name="file_profile" length="50" />
         </property>
-        <property name="fileTittle" type="string">
-            <column name="file_tittle" length="50" not-null="true">
-                <comment>&#177;&#234;&#204;&#226;</comment>
-            </column>
+        <property name="fileTitle" type="string">
+            <column name="file_title" length="50" not-null="true" />
         </property>
         <property name="filePath" type="string">
-            <column name="file_path" length="100" not-null="true">
-                <comment>&#194;&#183;&#190;&#182;</comment>
+            <column name="file_path" length="100" />
+        </property>
+        <property name="filtetypeId" type="java.lang.Integer">
+            <column name="filtetype_id">
+                <comment>
+                &#206;&#196;&#188;&#254;&#214;&#214;&#192;&#224;&#163;&#172;&#192;&#253;&#200;&#231;&#205;&#188;&#198;&#172;&#163;&#172;&#206;&#196;&#181;&#181;&#181;&#200;</comment>
             </column>
         </property>
-        <property name="fileType" type="string">
-            <column name="file_type" length="10" not-null="true">
-                <comment>&#206;&#196;&#188;&#254;&#192;&#224;&#208;&#205;</comment>
-            </column>
+        <property name="fileStatus" type="java.lang.Integer">
+            <column name="file_status" />
         </property>
         <property name="uploadTime" type="timestamp">
-            <column name="upload_time" length="19" not-null="true">
-                <comment>&#206;&#196;&#188;&#254;&#201;&#207;&#180;&#171;&#202;&#177;&#188;&#228;</comment>
-            </column>
+            <column name="upload_time" length="19" />
         </property>
-        <property name="fileStatus" type="int">
-            <column name="`file_ status`" not-null="true">
-                <comment>&#177;&#234;&#202;&#182;</comment>
-            </column>
-        </property>
-        <set name="TRecords" table="t_record" inverse="true" lazy="false" fetch="select">
+        <set name="TFiletypes" table="t_filetype" inverse="true" lazy="false" fetch="select">
             <key>
-                <column name="file_id">
-                    <comment>&#206;&#196;&#188;&#254;/&#205;&#226;&#188;&#252;</comment>
-                </column>
+                <column name="file_id" not-null="true" />
             </key>
-            <one-to-many class="com.itree.entity.TRecord" />
+            <one-to-many class="com.itree.entity.TFiletype" />
+        </set>
+        <set name="TNewses" table="t_news" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="file_id" />
+            </key>
+            <one-to-many class="com.itree.entity.TNews" />
+        </set>
+        <set name="TUsers" table="t_user" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="file_id" />
+            </key>
+            <one-to-many class="com.itree.entity.TUser" />
         </set>
     </class>
 </hibernate-mapping>

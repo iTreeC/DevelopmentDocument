@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.itree.dao.NewsDao;
-import com.itree.entity.PageModel;
 import com.itree.entity.TNews;
 import com.itree.utils.SessionUtils;
 

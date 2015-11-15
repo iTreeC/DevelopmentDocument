@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-11-15 16:02:01 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.itree.entity.TNewstype" table="t_newstype" catalog="itreetable">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="TNews" class="com.itree.entity.TNews" fetch="select">
+            <column name="news_id" not-null="true" />
+        </many-to-one>
+        <property name="newsType" type="string">
+            <column name="news_type" length="20" not-null="true" />
+        </property>
+        <set name="TNewses" table="t_news" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="newstype_id" not-null="true" />
+            </key>
+            <one-to-many class="com.itree.entity.TNews" />
+        </set>
+    </class>
+</hibernate-mapping>
