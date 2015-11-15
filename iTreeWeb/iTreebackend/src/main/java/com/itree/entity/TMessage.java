@@ -13,7 +13,8 @@ public class TMessage implements java.io.Serializable {
 	private Date messageDate;
 	private String messageTel;
 	private int messageStatus;
-
+	private String messageName;
+	
 	public TMessage() {
 	}
 
@@ -21,7 +22,8 @@ public class TMessage implements java.io.Serializable {
 		this.messageStatus = messageStatus;
 	}
 
-	public TMessage(String messageContent, Date messageDate, String messageTel, int messageStatus) {
+	public TMessage(String messageName,String messageContent, Date messageDate, String messageTel, int messageStatus) {
+		this.messageName=messageName;
 		this.messageContent = messageContent;
 		this.messageDate = messageDate;
 		this.messageTel = messageTel;
@@ -34,6 +36,13 @@ public class TMessage implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public String getMessageName() {
+		return messageName;
+	}
+
+	public void setMessageName(String messageName) {
+		this.messageName = messageName;
 	}
 
 	public String getMessageContent() {

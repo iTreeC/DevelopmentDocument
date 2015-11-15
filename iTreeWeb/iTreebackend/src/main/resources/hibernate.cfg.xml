@@ -33,21 +33,15 @@
 		
 
 		<!-- 指定关联的 .hbm.xml 文件 -->
-		<mapping class="com.itree.entity.User"/>
+		<!--<mapping class="com.itree.entity.User"/> -->
 		<mapping resource="com/itree/entity/TDuty.hbm.xml"/>
 		<mapping resource="com/itree/entity/TFile.hbm.xml"/>
 		<mapping resource="com/itree/entity/TLogin.hbm.xml"/>
-		<mapping resource="com/itree/entity/TMenu.hbm.xml"/>
-		
 		<mapping resource="com/itree/entity/TMessage.hbm.xml"/>
 		<mapping resource="com/itree/entity/TUser.hbm.xml"/>
-	
-		<mapping resource="com/itree/entity/TPhoto.hbm.xml"/>
-		
 		<mapping resource="com/itree/entity/TNews.hbm.xml"/>
-		<mapping resource="com/itree/entity/TPlan.hbm.xml"/>
-		<mapping resource="com/itree/entity/TRecord.hbm.xml"/>
-		<mapping resource="com/itree/entity/TTeacherwrote.hbm.xml"/>
+		<mapping resource="com/itree/entity/TNewstype.hbm.xml"/>
+		<mapping resource="com/itree/entity/TFiletype.hbm.xml"/>
 		
 
 			
