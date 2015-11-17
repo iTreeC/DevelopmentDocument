@@ -1,25 +1,36 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2015-11-15 16:02:01 by Hibernate Tools 4.0.0 -->
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-14 15:26:00 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.itree.entity.TMessage" table="t_message" catalog="itreetable">
+    <class name="com.itree.entity.TMessage" table="t_message" catalog="itree">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
         <property name="messageContent" type="string">
-            <column name="message_content" length="65535" />
+            <column name="message_content" length="65535" not-null="true">
+                <comment>&#196;&#218;&#200;&#221;</comment>
+            </column>
         </property>
         <property name="messageDate" type="timestamp">
-            <column name="message_date" length="19" />
+            <column name="message_date" length="19" not-null="true">
+                <comment>&#202;&#177;&#188;&#228;</comment>
+            </column>
+        </property>
+        <property name="messageName" type="string">
+            <column name="message_name" length="10">
+                <comment>&#208;&#213;&#195;&#251;</comment>
+            </column>
         </property>
         <property name="messageTel" type="string">
-            <column name="message_tel" length="11" />
+            <column name="message_tel" length="50">
+                <comment>&#193;&#170;&#207;&#181;&#183;&#189;&#202;&#189;</comment>
+            </column>
         </property>
         <property name="messageStatus" type="int">
-            <column name="message_status" not-null="true">
-                <comment>&#215;&#180;&#204;&#172;&#161;&#163;1&#206;&#180;&#182;&#193;&#163;&#172;0&#210;&#209;&#182;&#193;</comment>
+            <column name="`message_ status`" not-null="true">
+                <comment>&#177;&#234;&#202;&#182;</comment>
             </column>
         </property>
     </class>

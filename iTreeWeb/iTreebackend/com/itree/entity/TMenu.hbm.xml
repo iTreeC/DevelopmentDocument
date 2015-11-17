@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-14 15:26:00 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.itree.entity.TMenu" table="t_menu" catalog="itree">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="pid" type="int">
+            <column name="pid" not-null="true">
+                <comment>&#184;&#184;&#192;&#224;</comment>
+            </column>
+        </property>
+        <property name="menuName" type="string">
+            <column name="menu_name" length="200" not-null="true">
+                <comment>&#195;&#251;&#179;&#198;</comment>
+            </column>
+        </property>
+        <property name="menuUrl" type="string">
+            <column name="menu_url" length="8" not-null="true">
+                <comment>&#194;&#183;&#190;&#182;</comment>
+            </column>
+        </property>
+        <property name="menuStatus" type="int">
+            <column name="menu_status" not-null="true">
+                <comment>&#177;&#234;&#202;&#182;</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

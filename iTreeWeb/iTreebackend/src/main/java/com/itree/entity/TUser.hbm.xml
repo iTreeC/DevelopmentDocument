@@ -1,62 +1,98 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2015-11-15 16:02:01 by Hibernate Tools 4.0.0 -->
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-14 15:26:00 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.itree.entity.TUser" table="t_user" catalog="itreetable">
+    <class name="com.itree.entity.TUser" table="t_user" catalog="itree">
         <id name="id" type="java.lang.Integer">
-            <column name="id" />
-            <generator class="identity" />
+            <column name="id" not-null="true"/>
+            <generator class="native" />
         </id>
+       <!--  <many-to-one name="TPhoto" class="com.itree.entity.TPhoto" fetch="select">
+            <column name="photo_id" not-null="false" >
+                <comment>&#213;&#213;&#198;&#172;/&#205;&#226;&#188;&#252;</comment>
+            </column>
+        </many-to-one> -->
         <many-to-one name="TDuty" class="com.itree.entity.TDuty" fetch="select">
             <column name="duty_id" not-null="true">
-                <comment>&#214;&#176;&#206;&#187;&#161;&#163;1&#206;&#170;&#209;&#167;&#201;&#250;&#163;&#172;0&#206;&#170;&#189;&#204;&#202;&#166;&#181;&#200;</comment>
+                <comment>&#214;&#176;&#206;&#241;/&#205;&#226;&#188;&#252;</comment>
             </column>
         </many-to-one>
-        <many-to-one name="TFile" class="com.itree.entity.TFile" fetch="select">
-            <column name="file_id" />
-        </many-to-one>
         <property name="userName" type="string">
-            <column name="user_name" length="10" not-null="true" />
+            <column name="user_name" length="10" not-null="true">
+                <comment>&#208;&#213;&#195;&#251;</comment>
+            </column>
         </property>
         <property name="userSex" type="int">
-            <column name="user_sex" not-null="true" />
+            <column name="user_sex" not-null="true">
+                <comment>&#208;&#212;&#177;&#240;</comment>
+            </column>
         </property>
         <property name="userHoby" type="string">
-            <column name="user_hoby" length="50" />
+            <column name="user_hoby" length="50">
+                <comment>&#176;&#174;&#186;&#195;</comment>
+            </column>
         </property>
         <property name="userMotto" type="string">
-            <column name="user_motto" length="50" />
+            <column name="user_motto" length="50">
+                <comment>&#215;&#249;&#211;&#210;&#195;&#250;</comment>
+            </column>
         </property>
         <property name="userTel" type="string">
-            <column name="user_tel" length="11" />
+            <column name="user_tel" not-null="true">
+                <comment>&#193;&#170;&#207;&#181;&#183;&#189;&#202;&#189;,&#202;&#214;&#187;&#250;&#186;&#197;&#194;&#235;</comment>
+            </column>
         </property>
         <property name="userProfile" type="string">
-            <column name="user_profile" length="50" />
+            <column name="user_profile" length="50" not-null="true">
+                <comment>&#188;&#242;&#189;&#233;</comment>
+            </column>
         </property>
         <property name="userStatus" type="int">
             <column name="user_status" not-null="true">
                 <comment>
-                &#211;&#195;&#187;&#167;&#215;&#180;&#204;&#172;&#161;&#163;0&#206;&#170;&#205;&#163;&#211;&#195;&#163;&#172;1&#206;&#170;&#198;&#244;&#211;&#195;</comment>
+                &#177;&#234;&#202;&#182;&#163;&#168;1&#177;&#237;&#202;&#190;&#191;&#201;&#211;&#195;&#163;&#172;0&#177;&#237;&#202;&#190;&#178;&#187;&#191;&#201;&#211;&#195;&#163;&#169;</comment>
             </column>
         </property>
+        <set name="TLogins" table="t_login" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="user_id" not-null="true">
+                    <comment>&#179;&#201;&#212;&#177;&#208;&#197;&#207;&#162;/&#205;&#226;&#188;&#252;</comment>
+                </column>
+            </key>
+            <one-to-many class="com.itree.entity.TLogin" />
+        </set>
         <set name="TFiles" table="t_file" inverse="true" lazy="false" fetch="select">
             <key>
-                <column name="user_id" />
+                <column name="user_id" not-null="true">
+                    <comment>&#215;&#247;&#213;&#223;/&#205;&#226;&#188;&#252;</comment>
+                </column>
             </key>
             <one-to-many class="com.itree.entity.TFile" />
         </set>
-        <set name="TNewses" table="t_news" inverse="true" lazy="false" fetch="select">
+        <set name="TRecords" table="t_record" inverse="true" lazy="false" fetch="select">
             <key>
-                <column name="user_id" not-null="true" />
+                <column name="user_id" not-null="true">
+                    <comment>ID/&#205;&#226;&#188;&#252;</comment>
+                </column>
             </key>
-            <one-to-many class="com.itree.entity.TNews" />
+            <one-to-many class="com.itree.entity.TRecord" />
         </set>
-        <set name="TLogins" table="t_login" inverse="true" lazy="false" fetch="select">
+        <set name="TPlans" table="t_plan" inverse="true" lazy="false" fetch="select">
             <key>
-                <column name="user_id" not-null="true" />
+                <column name="user_id" not-null="true">
+                    <comment>ID/&#205;&#226;&#188;&#252;</comment>
+                </column>
             </key>
-            <one-to-many class="com.itree.entity.TLogin" />
+            <one-to-many class="com.itree.entity.TPlan" />
+        </set>
+        <set name="TTeacherwrotes" table="t_teacherwrote" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="user_id" not-null="true">
+                    <comment>ID/&#205;&#226;&#188;&#252;</comment>
+                </column>
+            </key>
+            <one-to-many class="com.itree.entity.TTeacherwrote" />
         </set>
     </class>
 </hibernate-mapping>
