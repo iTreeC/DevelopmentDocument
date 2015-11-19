@@ -7,9 +7,9 @@
 
 			<!-- 配置连接数据库的基本信息 -->
 		<property name="connection.username">root</property>
-		<property name="connection.password">123456</property>
+		<property name="connection.password">sa</property>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost/itree</property>
+		<property name="connection.url">jdbc:mysql://localhost/itreetable</property>
 
 		<!-- 配置 hibernate 的基本信息 -->
 		<!-- hibernate 所使用的数据库方言  -->
@@ -33,21 +33,15 @@
 		
 
 		<!-- 指定关联的 .hbm.xml 文件 -->
-		<mapping class="com.itree.entity.User"/>
+		<!--<mapping class="com.itree.entity.User"/> -->
 		<mapping resource="com/itree/entity/TDuty.hbm.xml"/>
 		<mapping resource="com/itree/entity/TFile.hbm.xml"/>
 		<mapping resource="com/itree/entity/TLogin.hbm.xml"/>
-		<mapping resource="com/itree/entity/TMenu.hbm.xml"/>
-		
 		<mapping resource="com/itree/entity/TMessage.hbm.xml"/>
 		<mapping resource="com/itree/entity/TUser.hbm.xml"/>
-	
-		<mapping resource="com/itree/entity/TPhoto.hbm.xml"/>
-		
 		<mapping resource="com/itree/entity/TNews.hbm.xml"/>
-		<mapping resource="com/itree/entity/TPlan.hbm.xml"/>
-		<mapping resource="com/itree/entity/TRecord.hbm.xml"/>
-		<mapping resource="com/itree/entity/TTeacherwrote.hbm.xml"/>
+		<mapping resource="com/itree/entity/TNewstype.hbm.xml"/>
+		<mapping resource="com/itree/entity/TFiletype.hbm.xml"/>
 		
 
 			

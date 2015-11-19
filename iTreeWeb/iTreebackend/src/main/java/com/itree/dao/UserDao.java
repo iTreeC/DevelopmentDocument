@@ -12,4 +12,6 @@ public interface UserDao {
 	public void stop(int id);
 	public void start(int id);
 	public void save(AddUserInfo aui);
+	public TLogin get(int id);
+	public void doUpdate(AddUserInfo aui,int id);
 }

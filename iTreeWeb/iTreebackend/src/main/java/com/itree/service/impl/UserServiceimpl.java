@@ -38,4 +38,10 @@ public class UserServiceimpl implements UserService {
 	public void save(AddUserInfo aui){
 		userdao.save(aui);
 	}
+	public TLogin get(int id){
+		return userdao.get(id);
+	}
+	public void doUpdate(AddUserInfo aui,int id){
+		userdao.doUpdate(aui,id);
+	}
 }

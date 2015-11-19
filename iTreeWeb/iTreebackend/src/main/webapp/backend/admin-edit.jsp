@@ -29,7 +29,7 @@
 <body>
 	<div class="pd-20">
 	<!--id="form-admin-add"删除后submit即可调用  -->
-		<form action="user-add" method="post" class="form form-horizontal" id="form-admin-add">
+		<form action="user-doUpdate.action" method="post" class="form form-horizontal" >
 			
 			<!-- 该项存在问题。由于需要暂且这样，具体情况看README#存在问题第一条。 -->
 			<%-- <div class="row cl">
@@ -40,12 +40,12 @@
 				</div>
 				<div class="col-4"></div>
 			</div> --%>
-			
+			<input type="hidden" name="id" value="${info.id }" id="id">
 			<div class="row cl">
 				<label class="form-label col-3"><span class="c-red">*</span>姓名</label>
 				<div class="formControls col-5">
-					<input type="text" class="input-text" value="" placeholder=""
-						id="name" name="aui.name" datatype="*2-6" nullmsg="姓名不能为空">
+					<input type="text" class="input-text" value="${info.TUser.userName}" 
+					placeholder="" id="name" name="aui.name" datatype="*2-6" nullmsg="姓名不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
@@ -82,7 +82,8 @@
 			<label class="form-label col-3"><span class="c-red">*</span>性别：</label>
 			<div class="formControls col-5 skin-minimal" name="aui.sex">
 				<div class="radio-box">
-					<input type="radio" id="1" name="sex" datatype="*" nullmsg="请选择性别！">
+					<input type="radio" id="1" name="sex" value="${info.TUser.userSex }"
+					 datatype="*" nullmsg="请选择性别！">
 					<label for="1">男</label>
 				</div>
 				<div class="radio-box">
@@ -97,7 +98,7 @@
 			<div class="row cl">
 			<label class="form-label col-3"><span class="c-red">*</span>初始密码：</label>
 			<div class="formControls col-5">
-				<input name="aui.password" type="password" placeholder="密码" autocomplete="on" value="" class="input-text" datatype="*6-20" nullmsg="密码不能为空">
+				<input name="aui.password" type="text"  value="${info.password }" class="input-text" datatype="*6-20" nullmsg="密码不能为空">
 			</div>
 			<div class="col-4"> </div>
 		</div>
@@ -113,7 +114,7 @@
 			<div class="row cl">
 				<label class="form-label col-3">照片</label>
 				<div class="formControls col-5">
-					<input type="file" value="" id="Photo" name="aui.photoPath">
+					<input type="file" value="${info.TUser.TFile.filePath}" id="Photo" name="aui.photoPath">
 				</div>
 				<div class="col-4"></div>
 			</div>
@@ -121,7 +122,7 @@
 			<div class="row cl">
 				<label class="form-label col-3">爱好</label>
 				<div class="formControls col-5">
-					<input type="text" class="input-text" value="" id="UserHoby" name="aui.hoby">
+					<input type="text" class="input-text" value="${info.TUser.userHoby}" id="UserHoby" name="aui.hoby">
 				</div>
 				<div class="col-4"></div>
 			</div>	
@@ -129,7 +130,8 @@
 			<div class="row cl">
 				<label class="form-label col-3"><span class="c-red">*</span>手机：</label>
 				<div class="formControls col-5">
-					<input type="text" class="input-text" id="UserTel" name="aui.telephone" datatype="m" nullmsg="手机不能为空">
+					<input type="text" class="input-text" id="UserTel" value="${info.TUser.userTel}" 
+					name="aui.telephone" datatype="m" nullmsg="手机不能为空">
 				</div>
 				<div class="col-4"></div>
 			</div>
@@ -148,8 +150,8 @@
 			<div class="row cl">
 				<label class="form-label col-3">简介：</label>
 				<div class="formControls col-5">
-					<textarea name="aui.profile" cols="" rows="" class="textarea"
-						placeholder="说点什么...100个字符以内" dragonfly="true"
+					<textarea name="aui.profile" cols="" rows="" class="textarea" 
+					value="${info.TUser.userProfile}" placeholder="说点什么...100个字符以内" dragonfly="true"
 						onKeyUp="textarealength(this,100)"></textarea>
 					<p class="textarea-numberbar">
 						<em class="textarea-length">0</em>/100
@@ -186,23 +188,24 @@
 	<script type="text/javascript" src="js/H-ui.admin.js"></script>
 	<script type="text/javascript">
 	
-$(function(){
-	$('.skin-minimal input').iCheck({
-		checkboxClass: 'icheckbox-blue',
-		radioClass: 'iradio-blue',
-		increaseArea: '20%'
-	});
+// $(function(){
+// 	$('.skin-minimal input').iCheck({
+// 		checkboxClass: 'icheckbox-blue',
+// 		radioClass: 'iradio-blue',
+// 		increaseArea: '20%'
+// 	});
 	
-	$("#form-admin-add").Validform({
-		tiptype:2,
+// 	$("#form-admin-add").Validform({
+// 		tiptype:2,
 		 //callback:function(form){
 		   // form[0].submit();   
 			//var index = parent.layer.getFrameIndex(window.name);/* 获取当前所在iframe层的索引。 只允许在iframe页面内部调用 */
 			//parent.$('.btn-refresh').click();
 			//parent.layer.close(index); /*用于手动关闭层。参数为layer的索引值。索引即通过弹出方法返回的值  */
 		//}
-	});
-});
+	
+// 	});
+// });
 /* function select(){
 	var myselect=document.getElementById("duty");
 	var index = myselect.selectedIndex;

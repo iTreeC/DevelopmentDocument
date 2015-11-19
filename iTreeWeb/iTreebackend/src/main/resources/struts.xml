@@ -7,7 +7,7 @@
 
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 	<constant name="struts.devMode" value="true" />
-	<package name="default" namespace="/" extends="struts-default">
+	<package name="default"  extends="struts-default" >
 	<!-- 定义新的拦截器栈, 配置 prepare 拦截器栈的 alwaysInvokePrepare 参数值为 false -->
 		<interceptors>
 			<interceptor-stack name="itreeStack">
@@ -22,14 +22,15 @@
         	method="{1}">
         	<result name="list">news-list.jsp</result>
         	<result name="success" type="redirect">/news-list</result>
-    
+    		
 		</action>
 		
 	<!-- About User -->
 		<action name="user-*" class="userAction"
 		method="{1}">
 		<result name="list">admin-list.jsp</result>
-
+		<result name="edit">/backend/admin-edit.jsp</result>
+		<result name="update" type="redirect">/backend/user-list.action</result>
 		</action>
 		
 		

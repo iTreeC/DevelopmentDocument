@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2015-10-14 15:26:00 by Hibernate Tools 3.4.0.CR1 -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-11-15 16:02:01 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="com.itree.entity.TDuty" table="t_duty" catalog="itree">
+    <class name="com.itree.entity.TDuty" table="t_duty" catalog="itreetable">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
@@ -19,10 +19,10 @@
                 &#177;&#234;&#202;&#182;&#163;&#168;1&#177;&#237;&#202;&#190;&#191;&#201;&#211;&#195;&#163;&#172;0&#177;&#237;&#202;&#190;&#178;&#187;&#191;&#201;&#211;&#195;&#163;&#169;</comment>
             </column>
         </property>
-        <set name="TUsers" table="t_user" inverse="true" lazy="false" fetch="select">
+        <set name="TUsers" table="t_user" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="duty_id" not-null="true">
-                    <comment>&#214;&#176;&#206;&#241;/&#205;&#226;&#188;&#252;</comment>
+                    <comment>&#214;&#176;&#206;&#187;&#161;&#163;1&#206;&#170;&#209;&#167;&#201;&#250;&#163;&#172;0&#206;&#170;&#189;&#204;&#202;&#166;&#181;&#200;</comment>
                 </column>
             </key>
             <one-to-many class="com.itree.entity.TUser" />
