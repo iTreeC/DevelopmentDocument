@@ -31,6 +31,8 @@
 		<result name="list">admin-list.jsp</result>
 		<result name="edit">/backend/admin-edit.jsp</result>
 		<result name="update" type="redirect">/backend/user-list.action</result>
+		<result name="success">/backend/index.jsp</result>
+		<result name="404">/backend/404.jsp</result>
 		</action>
 		
 		

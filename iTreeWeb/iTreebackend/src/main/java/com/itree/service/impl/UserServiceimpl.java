@@ -15,9 +15,13 @@ public class UserServiceimpl implements UserService {
 	public void setUserdao(UserDao userdao) {
 		this.userdao = userdao;
 	}
+	
 
 	
-	
+	public TLogin login(String name){
+		TLogin loginInfo = userdao.login(name);
+		return loginInfo;
+	}
 	public List<TLogin> getAll(){
 		List<TLogin> user = userdao.getAll();
 		return user;

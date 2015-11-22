@@ -34,6 +34,28 @@ public class UserDaoimpl implements UserDao {
 	    		 return null;
 	    		 }
 	    	 }
+	//登录功能。更加用户名查找密码。
+	public TLogin login(String name){
+		try{
+			System.out.println("UserDaoImpl的login方法");
+			session = SessionUtils.getInstance().getSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("select u.id from TUser u where u.userName='"+name+"'");
+			 Integer id = (Integer) query.uniqueResult();
+			System.out.println(id);
+			Query q = session.createQuery("from TLogin t where t.TUser.id='"+id+"'");
+			TLogin loginInfo = (TLogin) q.uniqueResult();
+			/*TUser user = (TUser)session.load(TUser.class, id);*/
+			transaction.commit();
+			System.out.println(loginInfo);
+			return loginInfo;
+			
+		}catch(Exception e){
+			e.printStackTrace(); 
+   		 	System.out.println("用户名不存在"); 
+   		 	return null;
+		}
+	}
 	//根据ID，删除用户信息。
 	public void delete(int id){
 		try{

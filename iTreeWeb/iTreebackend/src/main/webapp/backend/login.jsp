@@ -34,18 +34,18 @@
 	<div class="header"></div>
 	<div class="loginWraper">
 		<div id="loginform" class="loginBox">
-			<form class="form form-horizontal" action="loginAction.action" method="post" id="form1">
+			<form class="form form-horizontal" action="user-login" method="post" id="form1">
 				<div class="row cl">
 					<label class="form-label col-3"><i class="Hui-iconfont">&#xe60d;</i></label>
 					<div class="formControls col-8">
-						<input id="" name="user.UserName" type="text" placeholder="账户"
+						<input id="" name="name" type="text" placeholder="账户"
 							class="input-text size-L">
 					</div>
 				</div>
 				<div class="row cl">
 					<label class="form-label col-3"><i class="Hui-iconfont">&#xe60e;</i></label>
 					<div class="formControls col-8">
-						<input id="" name="user.PassWord" type="password" placeholder="密码"
+						<input id="pwd" name="pwd" type="password" placeholder="密码"
 							class="input-text size-L">
 					</div>
 				</div>
@@ -93,9 +93,10 @@ var _hmt = _hmt || [];
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F080836300300be57b7f34f4b3e97d911' type='text/javascript'%3E%3C/script%3E"));
 
-function check(){
+/* function check(){
 	document.getElementById(form1);
-}
+	
+} */
 </script>
 </body>
 </html>

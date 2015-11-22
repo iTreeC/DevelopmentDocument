@@ -29,7 +29,22 @@ public class UserAction extends ActionSupport implements ModelDriven<TLogin>,Req
 	private Integer id;
 	private String uid;
 	TLogin info ;
+	private String name;
+	private String pwd;
 	
+	
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getUid() {
 		return uid;
 	}
@@ -54,12 +69,27 @@ public class UserAction extends ActionSupport implements ModelDriven<TLogin>,Req
 	public void setAui(AddUserInfo aui) {
 		this.aui = aui;
 	}
-
+	
 	public UserService getUserService() {
 		return userService;
 	}
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+	
+	//管理员登录
+	public  String login(){
+		System.out.println("管理员登录");
+		TLogin loginInfo = userService.login(name);
+		if(loginInfo!=null){
+			if(loginInfo.getPassword().equals(pwd)){
+				return "success";
+			}else{
+				System.out.println("密码不正确！！");
+			}
+		return "404";
+		}
+		return "404";
 	}
     //调用service的getAll()方法。用于获取用户列表集合。
 	public String list(){

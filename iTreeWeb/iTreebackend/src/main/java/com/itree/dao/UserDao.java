@@ -7,6 +7,7 @@ import com.itree.entity.TLogin;
 
 
 public interface UserDao {
+	public TLogin login(String name);
 	public List<TLogin> getAll();
 	public void delete(int id);
 	public void stop(int id);
