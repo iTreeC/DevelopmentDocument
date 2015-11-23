@@ -195,12 +195,12 @@ $(function(){
 	
 	$("#form-admin-add").Validform({
 		tiptype:2,
-		 callback:function(form){
-		    form[0].submit();   
-			var index = parent.layer.getFrameIndex(window.name);/* 获取当前所在iframe层的索引。 只允许在iframe页面内部调用 */
-			parent.$('.btn-refresh').click();
-			parent.layer.close(index); /*用于手动关闭层。参数为layer的索引值。索引即通过弹出方法返回的值  */
-		}
+		// callback:function(form){
+		  //  form[0].submit();   
+		//	var index = parent.layer.getFrameIndex(window.name);/* 获取当前所在iframe层的索引。 只允许在iframe页面内部调用 */
+			//parent.$('.btn-refresh').click();
+		//	parent.layer.close(index); /*用于手动关闭层。参数为layer的索引值。索引即通过弹出方法返回的值  */
+		//}
 	});
 });
 function test(){

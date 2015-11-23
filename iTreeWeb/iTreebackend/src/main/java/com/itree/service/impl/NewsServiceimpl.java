@@ -40,6 +40,37 @@ public class NewsServiceimpl implements NewsService {
 		return newsdao.get(id);
 	}
 
+	public void stop(Integer id) {
+		newsdao.stop(id);
+		
+	}
+
+	public void start(Integer id) {
+		newsdao.start(id);
+		
+		
+	}
+
+	public void del(Integer id) {
+		try{
+			newsdao.del(id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+//批量删除
+	public void delmore(String[] delIds) {
+		for(String id : delIds){
+			del(Integer.valueOf(id));
+		}
+		System.out.println("进入dao");
+		
+	}
+
+	
 }
 
 /*

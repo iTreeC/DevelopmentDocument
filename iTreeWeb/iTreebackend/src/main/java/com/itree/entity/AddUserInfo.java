@@ -1,4 +1,5 @@
 /*
+ * 辅助实体
  * 该实体类用于接受“admin-add.jsp”页面传来的数据。
  */
 package com.itree.entity;

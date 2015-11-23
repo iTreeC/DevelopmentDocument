@@ -57,9 +57,9 @@
 		</div>
 		 -->
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"><a href="javascript:;" onclick="datadel()"
+			<%-- <span class="l"><a href="javascript:;" onclick="datadel()"
 				class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
-					批量删除</a>
+					批量删除</a> --%>
 			 <a href="javascript:;"onclick="admin_add('添加成员','admin-add.jsp','800','500')"
 				class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
 					添加成员</a>
@@ -92,7 +92,13 @@
 					<td>${TUser.id }</td>
 					<td>${TUser.userName }</td>
 					<td>${TUser.TDuty.dutyName }</td>
-					<td>${TUser.userSex }</td>	
+					<%-- <s:if test="TUser.userSex==1">
+					<td>男</td>
+					</s:if>
+					<s:elseif test="TUSer.userSex==0">
+					<td>女</td>
+					</s:elseif>--%>
+					<td>${TUser.userSex }</td>	 
 					<td>${password }</td>
 					<td>${TUser.userTel }</td>
 					
@@ -101,9 +107,11 @@
 				    <td class="td-status"><span class="label label-default radius">已停用</span></td>
 					<td class="td-manage"><a  id = "${id}" style="text-decoration:none" onClick="admin_start(this,$(this).attr('id'))" 
 					title="启用"><i class="Hui-iconfont">&#xe615;</i></a>
+					
 					<a title="编辑" href="javascript:;" 
-					onclick="admin_edit('管理员编辑','admin-edit.jsp','1','1000','800')" class="ml-5" style="text-decoration:none">
+					onclick="admin_edit('管理员编辑','user-edit?id=${id}',$(this).attr('id'),'800','500')" class="ml-5" style="text-decoration:none">
 					<i class="Hui-iconfont">&#xe6df;</i></a> 
+					
 					<a title="删除" href="javascript:;" id="${id}" onclick="admin_del(this,$(this).attr('id'))" class="ml-5" style="text-decoration:none">
 					<i class="Hui-iconfont">&#xe6e2;</i></a>
 					</td>
@@ -116,7 +124,7 @@
 					title="停用"><i class="Hui-iconfont">&#xe631;</i></a>
 				    
 				    <a title="编辑" href="javascript:;" 
-					onclick="admin_edit('管理员编辑','admin-edit.jsp','1','800','500')" class="ml-5" style="text-decoration:none">
+					onclick="admin_edit('管理员编辑','user-edit?id=${id}',$(this).attr('id'),'800','500')" class="ml-5" style="text-decoration:none">
 					<i class="Hui-iconfont">&#xe6df;</i></a> 
 
 					<a title="删除" href="javascript:;" id ="${id }" onclick="admin_del(this,$(this).attr('id'))" class="ml-5" style="text-decoration:none">
@@ -175,10 +183,17 @@ function admin_del(obj,id){
 }
 /*管理员-编辑*/
 function admin_edit(title,url,id,w,h){
-	layer_show(title,url,w,h);
+	//layer_show(title,url,w,h);
+	var index = layer.open({
+		type : 2,
+		title : title,
+		content : url
+	});
+	layer.full(index);
 }
 /*管理员-停用*/
 function admin_stop(obj,id){
+	//alert(id);
 	layer.confirm('确认要停用吗？',function(index){
 		$.ajax({
             url:"user-stop.action",
@@ -198,6 +213,7 @@ function admin_stop(obj,id){
 
 /*管理员-启用*/
 function admin_start(obj,id){
+	//alert(id);
 	layer.confirm('确认要启用吗？',function(index){
 		$.ajax({
             url:"user-start.action",

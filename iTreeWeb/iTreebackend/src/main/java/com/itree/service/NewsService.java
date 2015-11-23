@@ -1,6 +1,8 @@
 package com.itree.service;
 
+import java.util.Date;
 import java.util.List;
+
 import com.itree.entity.TNews;
 
 
@@ -15,5 +17,10 @@ public interface NewsService {
 */
 	public List<TNews> getAll();
 	public void saveOrUpdate(TNews news);
-	public TNews get(Integer id) ;
+	public TNews get(Integer id);
+	public void stop(Integer id);//设置用户标识为停用
+	public void start(Integer id);//设置用户表示为可用
+	public void del(Integer id);//删除列表信息
+	public void delmore(String[] delIds);//批量删除
+
 }

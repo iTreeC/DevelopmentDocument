@@ -29,15 +29,15 @@
 <title>新增文章</title> 
 </head>
 <body>
-	<div class="pd-20">
-		<form action="news-save" method="post" class="form form-horizontal"
+	<div class="pd-20">	
+		<form action="news-save" method="post" class="form form-horizontal" "
 			id="form-article-add">
 			<div class="row cl">
 				<label class="form-label col-2"><span class="c-red">*</span>文章标题：</label>
 				<div class="formControls col-10">
 				
-				<input type="text" class="input-text" value="" placeholder="" id="newsTittle"
-						name="news.newsTittle">
+				<input type="text" class="input-text" value="0" placeholder="" id="newsTittle"
+						 name="model.NewsTittle">
 					
 				</div>
 				
@@ -86,9 +86,9 @@
 			<div class="row cl">
 				<label class="form-label col-2">文章摘要：</label>
 				<div class="formControls col-10">
-					<textarea id="newsProfile" name="news.newsProfile" cols="" rows="" class="textarea" 
+					<textarea id="newsProfile" Label="NewsProfile" cols="" rows="" class="textarea" 
 						placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true"
-						nullmsg="备注不能为空！" onKeyUp="textarealength(this,200)"></textarea>
+						nullmsg="备注不能为空！" onKeyUp="textarealength(this,200)" name="model.NewsProfile"></textarea>
 					<p class="textarea-numberbar">
 						<em class="textarea-length">0</em>/200
 					</p>
@@ -98,7 +98,7 @@
 				<label class="form-label col-2">文章作者：</label>
 				<div class="formControls col-2">
 					<input type="text" class="input-text" value="0" placeholder=""
-						id="newsAuthor" name="news.newsAuthor">
+						id="newsAuthor" name="model.NewsAuthor">
 				</div>
 				<!-- <label class="form-label col-2">文章来源：</label>
 				<div class="formControls col-2">
@@ -118,7 +118,7 @@
 				<div class="formControls col-2">
 					<input type="text"
 						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
-						id="datemin" class="input-text Wdate">
+						id="datemin" class="input-text Wdate" name="model.NewsDate">
 				</div>
 				<!-- <label class="form-label col-2">评论结束日期：</label>
 				<div class="formControls col-2">
@@ -153,12 +153,12 @@
 				<label class="form-label col-2">文章内容：</label>
 				<div class="formControls col-10">
 					<script id="editor" type="text/plain"
-						style="width:100%;height:400px;"  name="news.newsContext"></script>
+						style="width:100%;height:400px;"  name="model.NewsContent"></script>
 				</div>
 			</div>
 			<div class="row cl">
 				<div class="col-10 col-offset-2">
-					<button onClick="article_save_submit();"
+					<button 
 						class="btn btn-primary radius" type="submit">
 						<i class="Hui-iconfont">&#xe632;</i> 保存并提交审核
 					</button>
