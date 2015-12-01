@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-12-1 15:15:51 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.position.pojo.ProvincialNumber" table="t_provincialnumber">
+        <id name="proID" type="int">
+            <column name="PROID" />
+            <generator class="assigned" />
+        </id>
+        <property name="provincial" type="java.lang.String">
+            <column name="PROVINCIAL" />
+        </property>
+        <property name="usable" type="int">
+            <column name="USABLE" />
+        </property>
+        <set name="cities" table="CITYNUMBER" inverse="false" lazy="true">
+            <key>
+                <column name="PROID" />
+            </key>
+            <one-to-many class="com.position.pojo.CityNumber" />
+        </set>
+        <set name="comps" table="COMPANY" inverse="false" lazy="true">
+            <key>
+                <column name="PROID" />
+            </key>
+            <one-to-many class="com.position.pojo.Company" />
+        </set>
+    </class>
+</hibernate-mapping>
