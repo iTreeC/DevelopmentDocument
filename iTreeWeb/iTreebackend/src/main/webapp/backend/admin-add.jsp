@@ -171,7 +171,7 @@
 			</div>
 			 <div class="row cl">
 				<div class="col-9 col-offset-3">
-					 <input class="btn btn-primary radius" type="submit" 
+					 <input class="btn btn-primary radius" type="submit" onclick="test()"
 						value="&nbsp;&nbsp;提 交&nbsp;&nbsp;"> 
 				</div>
 			</div>
@@ -194,23 +194,20 @@ $(function(){
 	});
 	
 	$("#form-admin-add").Validform({
-		tiptype:2,
-		// callback:function(form){
-		  //  form[0].submit();   
-		//	var index = parent.layer.getFrameIndex(window.name);/* 获取当前所在iframe层的索引。 只允许在iframe页面内部调用 */
-			//parent.$('.btn-refresh').click();
-		//	parent.layer.close(index); /*用于手动关闭层。参数为layer的索引值。索引即通过弹出方法返回的值  */
-		//}
+		tiptype:2, //表单验证。
+// 		callback:function(form){
+//  		    form[0].submit();
+// 			alert("aaaaaa");
+// 			var index = parent.layer.getFrameIndex(window.name);/* 获取当前所在iframe层的索引。 只允许在iframe页面内部调用 */
+// 			alert("bbbbb");
+// 			parent.$('.btn-refresh').click();
+// 			alert("ccccccc");
+// 			parent.layer.close(index); /*用于手动关闭层。参数为layer的索引值。索引即通过弹出方法返回的值  */
+// 			alert("dddddd");
+// 		}
 	});
 });
-function test(){
-	 try {
-	    //  $("#form-admin-add").submit.windows.close();
-	   } catch (e) {
 
-	   }
- } 
- 
  //关闭当前页面
  /* function logout(){
 	 		  

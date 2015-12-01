@@ -42,6 +42,7 @@
 		<mapping resource="com/itree/entity/TNews.hbm.xml"/>
 		<mapping resource="com/itree/entity/TNewstype.hbm.xml"/>
 		<mapping resource="com/itree/entity/TFiletype.hbm.xml"/>
+		<mapping resource="com/itree/entity/TPermission.hbm.xml"/>
 		
 
 			

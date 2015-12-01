@@ -36,18 +36,15 @@
 	</filter-mapping>
 
  <!-- url访问控制 -->
-  <!-- <filter>
+ <!--<filter>
   		<filter-name>urlFilter</filter-name>
   		<filter-class>com.itree.filter.urlFilter</filter-class>
-		添加特殊情况。因为该模板 互相嵌套 
+ 		添加特殊情况。因为该模板 互相嵌套 
 		<init-param>  
 			<param-name>excludedPages</param-name>  
 			<param-value>/backend/welcome.jsp</param-value>  
 		</init-param>    
   </filter>
-  
-
-  
   <filter-mapping>
   		<filter-name>urlFilter</filter-name>
   		<url-pattern>*.jsp</url-pattern>
@@ -56,8 +53,6 @@
   		<filter-name>urlFilter</filter-name>
   		<url-pattern>*.action</url-pattern>
   </filter-mapping>
-  
-	
  -->
 	<!-- <filter> <filter-name>hibernateFilter</filter-name> <filter-class> 
 		org.springframework.orm.hibernate4.support.OpenSessionInViewFilter </filter-class> 
