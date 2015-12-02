@@ -18,11 +18,11 @@
 		</interceptors>
    <!-- 使用新的拦截器栈 -->
 		<default-interceptor-ref name="itreeStack"></default-interceptor-ref>
+		
 		<action name="news-*" class="newsAction"
         	method="{1}">
         	<result name="list">news-list.jsp</result>
         	<result name="success" type="redirect">/news-list</result>
-    		
 		</action>
 		
 	<!-- About User -->
@@ -33,6 +33,13 @@
 		<result name="update" type="redirect">/backend/user-list.action</result>
 		<result name="success">/backend/index.jsp</result>
 		<result name="404">/backend/404.jsp</result>
+		</action>
+	
+	<!-- About Role -->
+		<action name="role-*" class="roleAction"
+		method="{1}">
+		<result name="list">admin-role.jsp</result>
+		
 		</action>
 		
 		
