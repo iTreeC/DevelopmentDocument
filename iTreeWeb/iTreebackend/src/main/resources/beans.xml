@@ -33,7 +33,6 @@
 	
 	<!-- About users -->   
 	<bean id="userdao" class="com.itree.dao.impl.UserDaoimpl"></bean>
-	
 	<bean id="userService" class="com.itree.service.impl.UserServiceimpl">
 		<property name="userdao" ref="userdao"></property>
 	</bean>
@@ -41,5 +40,13 @@
 		<property name="userService" ref="userService"></property>	
 	</bean>
 	
+	<!-- About role -->   
+	<bean id="roledao" class="com.itree.dao.impl.RoleDaoimpl"></bean>
+	<bean id="roleService" class="com.itree.service.impl.RoleServiceimpl">
+		<property name="roledao" ref="roledao"></property>
+	</bean>
+	<bean id="roleAction" class="com.itree.action.RoleAction" scope="prototype">
+ 		<property name="roleService" ref="roleService"></property>	
+	</bean>
 	
 </beans>

@@ -13,7 +13,9 @@ public class TDuty implements java.io.Serializable {
 	private String dutyName;
 	private int dutyStatus;
 	private Set<TUser> TUsers = new HashSet<TUser>(0);
-
+	private String profile;
+	
+	
 	public TDuty() {
 	}
 
@@ -59,5 +61,19 @@ public class TDuty implements java.io.Serializable {
 	public void setTUsers(Set<TUser> TUsers) {
 		this.TUsers = TUsers;
 	}
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	@Override
+	public String toString() {
+		return "TDuty [id=" + id + ", dutyName=" + dutyName + ", dutyStatus=" + dutyStatus + ", TUsers=" + TUsers
+				+ ", profile=" + profile + "]";
+	}
+
 
 }
