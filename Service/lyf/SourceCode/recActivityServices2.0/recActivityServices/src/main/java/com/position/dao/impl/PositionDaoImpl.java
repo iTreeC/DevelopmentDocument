@@ -13,7 +13,6 @@ import org.hibernate.Transaction;
 import com.position.dao.PositionDao;
 import com.position.pojo.CompanyPosition;
 import com.position.pojo.CityNumber;
-import com.position.pojo.Company;
 import com.position.utils.SessionUtils;
 
 /**
