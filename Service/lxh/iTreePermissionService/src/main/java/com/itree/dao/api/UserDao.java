@@ -5,6 +5,8 @@
  */
 package com.itree.dao.api;
 
+import java.util.List;
+
 import com.itree.entity.User;
 
 public interface UserDao {
@@ -46,10 +48,28 @@ public interface UserDao {
 	 * 功能:通过客户端ID查看某一条用户信息
 	 * 
 	 * @param id
-	 *            客户端ID
+	 *            ClientUserID
 	 * @return
 	 */
 	public User getOneByClientUserID(int id);
+	
+	/**
+	 * 功能：通过ID查看客户端权限ID
+	 * 
+	 * @param id
+	 *            ClientUserID
+	 * @return
+	 */
+	public int getIDByClientID(int id);
+
+	/**
+	 * 功能：通过ID查看客户端权限ID
+	 * 
+	 * @param id
+	 *            ClientUserID
+	 * @return
+	 */
+	public List<Integer> getIDByClientID(List<Integer> id);
 
 	/**
 	 * 功能：查看所有

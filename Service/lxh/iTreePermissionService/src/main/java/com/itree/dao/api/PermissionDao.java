@@ -5,6 +5,8 @@
  */
 package com.itree.dao.api;
 
+import java.util.List;
+
 import com.itree.entity.Perm;
 
 public interface PermissionDao {
@@ -48,6 +50,22 @@ public interface PermissionDao {
 	 * @return
 	 */
 	public int getClientIDByID(int id);
+
+	/**
+	 * 功能：通过ID查看客户端权限ID
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public List<Integer> getIDByClientID(List<Integer> id);
+	
+	/**
+	 * 功能：通过ID查看客户端权限ID
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public int getIDByClientID(int id);
 
 	/**
 	 * 功能：通过客户端ID查看一条权限

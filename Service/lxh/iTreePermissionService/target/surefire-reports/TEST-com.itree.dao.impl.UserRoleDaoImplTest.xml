@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.106" errors="0" skipped="0" tests="11" name="com.itree.dao.impl.UserRoleDaoImplTest">
+<testsuite failures="0" time="0.076" errors="0" skipped="0" tests="10" name="com.itree.dao.impl.UserRoleDaoImplTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="D:\mytools\Java\jdk1.7.0_01\jre\bin"/>
@@ -26,7 +26,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows NT (unknown)"/>
-    <property name="classworlds.conf" value="E:\myWork\spring\restful\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf2132468968529555446.tmp"/>
+    <property name="classworlds.conf" value="E:\myWork\spring\restful\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf8795279005440244534.tmp"/>
     <property name="sun.jnu.encoding" value="GBK"/>
     <property name="java.library.path" value="D:\mytools\Java\jdk1.7.0_01\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:/mytools/Java/jdk1.7.0_01//bin/../jre/bin/server;D:/mytools/Java/jdk1.7.0_01//bin/../jre/bin;D:/mytools/Java/jdk1.7.0_01//bin/../jre/lib/amd64;D:\xiaohuan\product\11.2.0\dbhome_1\bin;D:\mytools\Java\jdk1.7.0_01\/bin;D:\mytools\eclipse\apache-tomcat-6.0.32\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;D:\mytools\mysql\bin;D:\mytools\svn\bin;D:\mytools\sts-bundle\sts-3.6.4.RELEASE;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -62,14 +62,13 @@
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
   <testcase time="0" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testFindUserRIds2"/>
-  <testcase time="0.011" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testDeleteByUId"/>
+  <testcase time="0.003" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testDeleteByUId"/>
   <testcase time="0.001" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testAdd"/>
-  <testcase time="0.009" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testFindAll"/>
-  <testcase time="0.025" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testAdd2"/>
-  <testcase time="0.009" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testFindByUId2"/>
-  <testcase time="0.024" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testUpdate2"/>
-  <testcase time="0.021" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testDeleteByUId2"/>
-  <testcase time="0.002" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testFindUserRIds"/>
+  <testcase time="0.028" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testAdd2"/>
+  <testcase time="0.006" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testFindByUId2"/>
+  <testcase time="0.027" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testUpdate2"/>
+  <testcase time="0.003" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testDeleteByUId2"/>
+  <testcase time="0.003" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testFindUserRIds"/>
   <testcase time="0.003" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testFindByUId"/>
-  <testcase time="0.001" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testUpdate"/>
+  <testcase time="0.002" classname="com.itree.dao.impl.UserRoleDaoImplTest" name="testUpdate"/>
 </testsuite>

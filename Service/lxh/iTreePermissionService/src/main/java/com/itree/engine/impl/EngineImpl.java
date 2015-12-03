@@ -36,8 +36,47 @@ public class EngineImpl implements Engine {
 	private List<Role> roles = new ArrayList<Role>();
 	private int tempt;
 	private Role role;
+	
+/*	public List<Integer> getIDByClientPermissionID(List<Integer> id){
+		tids = this.dereplication(id);
+		pids.clear();
+		for (int i = 0; i < tids.size(); i++)
+			pids.add(pdao.getOneByClientID(tids.get(i)).getId());
+		return pids;
+	}*/
+	
+	public Boolean addRoleAndPermission(String name, List<Integer> pid) {
 
-	public List<Integer> getRolePermissionID(final int rid) {
+		if (name == null & pid == null)
+			return false;
+		role = rdao.getOneByName(name);
+
+		if (role == null) {
+			Role role = new Role();
+			role.setName(name);
+			rdao.add(role);
+			role = rdao.getOneByName(name);
+		}
+		
+		tempt = role.getId();
+
+		// 去除重复数据
+		pid = this.dereplication(pid);
+		pids=pdao.getIDByClientID(pid);
+		// 和数据库中的权限值比对
+		tids = rpdao.findPermissionIDByRoleID(tempt);
+		if (tids != null)
+			pids.removeAll(tids);
+
+		// 添加权限
+		if (pids.size() == 0) {
+			return false;
+		}
+		return rpdao.add(tempt, pids);
+
+	}
+
+	public List<Integer> getRolePermissionID(int rid) {
 		if (rid == 0)
 			return null;
 
@@ -130,7 +169,7 @@ public class EngineImpl implements Engine {
 			return null;
 
 		HashSet<Integer> id = new HashSet<Integer>(ids);
-		//清空缓存
+		// 清空缓存
 		ids.clear();
 		ids.addAll(id);
 

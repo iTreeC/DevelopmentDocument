@@ -15,11 +15,11 @@ import com.itree.entity.UserRole;
 
 public class UserRoleEngine extends EngineImpl implements UserRoleEngineAPI {
 
-	private static Logger logger = Logger
-			.getLogger(UserPermissionEngine.class);
+	private static Logger logger = Logger.getLogger(UserPermissionEngine.class);
 
 	private List<Integer> rids = new ArrayList<Integer>();
 	private List<Integer> rid2 = new ArrayList<Integer>();
+	private int temptu;
 
 	public Boolean add(int uid, List<Integer> rid) {
 
@@ -28,11 +28,12 @@ public class UserRoleEngine extends EngineImpl implements UserRoleEngineAPI {
 			return false;
 		}
 
+		temptu = udao.getIDByClientID(uid);
 		// 去除重复数据
 		rids = this.dereplication(rid);
 
 		// 和数据库中的数据比对
-		rid2 = super.urdao.findRoleIDByUserID(uid);
+		rid2 = super.urdao.findRoleIDByUserID(temptu);
 		if (rid2 != null)
 			rids.removeAll(rid2);
 
@@ -40,7 +41,7 @@ public class UserRoleEngine extends EngineImpl implements UserRoleEngineAPI {
 			logger.info("该权限已经存在，不能重复添加");
 			return false;
 		}
-		return super.urdao.add(uid, rids);
+		return super.urdao.add(temptu, rids);
 	}
 
 	public Boolean delete(int uid) {
@@ -48,7 +49,9 @@ public class UserRoleEngine extends EngineImpl implements UserRoleEngineAPI {
 			logger.error("用户名为空！！！");
 			return null;
 		}
-		return super.urdao.deleteByUserID(uid);
+		temptu = udao.getIDByClientID(uid);
+
+		return super.urdao.deleteByUserID(temptu);
 	}
 
 	public Boolean update(int uid, List<Integer> rid) {
@@ -56,10 +59,11 @@ public class UserRoleEngine extends EngineImpl implements UserRoleEngineAPI {
 			logger.error("角色或权限ID不能为空值！！！");
 			return false;
 		}
+		temptu = udao.getIDByClientID(uid);
 		// 去除重复数据
 		rids = this.dereplication(rid);
 
-		return super.urdao.update(uid, rids);
+		return super.urdao.update(temptu, rids);
 	}
 
 	public List<Integer> getRIds(int uid) {
@@ -67,7 +71,9 @@ public class UserRoleEngine extends EngineImpl implements UserRoleEngineAPI {
 			logger.error("用户名为空！！！");
 			return null;
 		}
-		rids = super.urdao.findRoleIDByUserID(uid);
+		temptu = udao.getIDByClientID(uid);
+
+		rids = urdao.findRoleIDByUserID(temptu);
 
 		if (rids != null) {
 			logger.info("查找用户权限成功");
@@ -83,8 +89,9 @@ public class UserRoleEngine extends EngineImpl implements UserRoleEngineAPI {
 			logger.error("参数不能为空值！！！");
 			return false;
 		}
+		temptu = udao.getIDByClientID(uid);
 
-		List<UserRole> userrole = super.urdao.findListByUserID(uid);
+		List<UserRole> userrole = super.urdao.findListByUserID(temptu);
 		if (userrole != null) {
 			for (int i = 0; i < userrole.size(); i++) {
 				if (userrole.get(i).getRole().getId() == rid) {

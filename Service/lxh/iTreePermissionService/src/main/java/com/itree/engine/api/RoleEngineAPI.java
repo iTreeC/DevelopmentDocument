@@ -56,6 +56,15 @@ public interface RoleEngineAPI extends Engine {
 	 */
 	public Role getOneByID(int rid);
 
+	/**
+	 * 功能：通过角色ID查看一条角色信息
+	 * 
+	 * @param name
+	 *            Role name
+	 * @return
+	 */
+	public Role getOneByName(String name);
+
 	/* public List<String> getAllName(); */
 	/* public String getNameByID(int id); */
 }

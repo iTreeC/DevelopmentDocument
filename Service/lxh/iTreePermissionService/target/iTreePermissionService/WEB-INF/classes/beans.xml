@@ -13,9 +13,9 @@
 	<context:component-scan base-package="com.itree.dao.impl,com.itree.engine" />
 	<!-- <aop:aspectj-autoproxy /> -->
 
-	<bean id="rpengine" class="com.itree.engine.impl.RolesPermissionEngine">
+	<bean id="rpengine" class="com.itree.engine.impl.RolePermissionEngine">
 	</bean>
-	<bean id="upengine" class="com.itree.engine.impl.UsersPermissionEngine">
+	<bean id="upengine" class="com.itree.engine.impl.UserPermissionEngine">
 	</bean>
 	<bean id="pengine" class="com.itree.engine.impl.PermissionEngine">
 	</bean>

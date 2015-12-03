@@ -64,8 +64,6 @@
 		<mapping class="com.itree.entity.Perm" />
 		<mapping class="com.itree.entity.Role" />
 		<mapping class="com.itree.entity.UserPermission" />
-		
-		<mapping class="com.itree.entity.UserPermission2" />
 		<mapping class="com.itree.entity.RolePermission" />
 		<mapping class="com.itree.entity.UserRole" />
 		

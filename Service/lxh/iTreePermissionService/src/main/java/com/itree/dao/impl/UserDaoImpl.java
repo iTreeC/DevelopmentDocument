@@ -5,6 +5,7 @@
  */
 package com.itree.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -133,6 +134,43 @@ public class UserDaoImpl implements UserDao {
 			transaction.rollback();
 			logger.error(e.getMessage());
 			return null;
+		}
+	}
+
+	public List<Integer> getIDByClientID(List<Integer> id) {
+		List<Integer> ids = new ArrayList<Integer>();
+		session = SessionUtils.getInstance().getSession();
+		transaction = session.beginTransaction();
+		try {
+			for (int i = 0; i < id.size(); i++) {
+				user = (User) session
+						.createQuery("from User where ClientUserID=? ")
+						.setParameter(0, id).uniqueResult();
+				ids.add(user.getId());
+			}
+			transaction.commit();
+			logger.info("成功查看ClientUserID为： " + id + " 的权限。");
+			return ids;
+		} catch (Exception e) {
+			transaction.rollback();
+			logger.error(e.getMessage());
+			return null;
+		}
+	}
+	public int getIDByClientID(int id){
+		session = SessionUtils.getInstance().getSession();
+		transaction = session.beginTransaction();
+		try {
+			user = (User) session
+					.createQuery("from User where ClientUserID=? ")
+					.setParameter(0, id).uniqueResult();
+			transaction.commit();
+			logger.info("成功查看ClientUserID为： " + id + " 的权限。");
+			return user.getId();
+		} catch (Exception e) {
+			transaction.rollback();
+			logger.error(e.getMessage());
+			return 0;
 		}
 	}
 }

@@ -5,6 +5,7 @@
  */
 package com.itree.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -131,6 +132,45 @@ public class PermissionDaoImpl implements PermissionDao {
 			transaction.commit();
 			logger.info("成功查看ID为： " + id + " 的权限。");
 			return perm.getClientPermissionID();
+		} catch (Exception e) {
+			transaction.rollback();
+			logger.error(e.getMessage());
+			return 0;
+		}
+	}
+
+	public List<Integer> getIDByClientID(List<Integer> id) {
+		List<Integer> ids = new ArrayList<Integer>();
+
+		session = SessionUtils.getInstance().getSession();
+		transaction = session.beginTransaction();
+		try {
+			for (int i = 0; i < id.size(); i++) {
+				// ids.add(this.getClientIDByID(id.get(i)));
+				perm = (Perm) session.createQuery("from Perm where id=? ")
+						.setParameter(0, id.get(i)).uniqueResult();
+				ids.add(perm.getId());
+			}
+			transaction.commit();
+			logger.info("成功查看ID为： " + id + " 的权限。");
+			return ids;
+		} catch (Exception e) {
+			transaction.rollback();
+			logger.error(e.getMessage());
+			return null;
+		}
+	}
+	
+	public int getIDByClientID(int id){
+		session = SessionUtils.getInstance().getSession();
+		transaction = session.beginTransaction();
+		try {
+			perm = (Perm) session
+					.createQuery("from Perm where ClientPermissionID=? ")
+					.setParameter(0, id).uniqueResult();
+			transaction.commit();
+			logger.info("成功查看ClientPermissionID为： " + id + " 的权限。");
+			return perm.getId();
 		} catch (Exception e) {
 			transaction.rollback();
 			logger.error(e.getMessage());

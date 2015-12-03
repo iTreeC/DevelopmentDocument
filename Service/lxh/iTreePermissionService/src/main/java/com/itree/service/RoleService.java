@@ -5,6 +5,7 @@
  */
 package com.itree.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +29,8 @@ public class RoleService extends Service {
 
 /*	MapUtils maputils = new MapUtils();
 	ValidateUtils validate = new ValidateUtils();*/
-
+	/*private int tempt;
+	private List<Integer> t = new ArrayList<Integer>();*/
 	/**
 	 * 功能：增加一条角色信息
 	 * 
@@ -43,6 +45,21 @@ public class RoleService extends Service {
 		if (validate.length(name))
 			return maputils.map(rengine.add(name));
 		return maputils.map(false);
+
+	}
+	
+	@POST
+	@Path("/post/name/pid")
+	public Map<String, Boolean> add2(@QueryParam("name") String name, @QueryParam("pid") List<Integer> pid ) {
+	
+		if (validate.length(name))
+			//rengine.add(name);
+		
+		//tempt = rengine.getOneByName(name).getId();
+		pengine.addRoleAndPermission(name, pid);
+		//rpengine.add(tempt, pid);
+		return maputils.map(false);
+		
 
 	}
 

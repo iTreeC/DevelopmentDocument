@@ -32,6 +32,8 @@ public class RoleEngine extends EngineImpl implements RoleEngineAPI {
 		return super.rdao.add(role);
 	}
 
+	
+	
 	public Boolean delete(int id) {
 		if (id == 0) {
 			logger.error("角色ID不能为空！！！");
@@ -63,6 +65,13 @@ public class RoleEngine extends EngineImpl implements RoleEngineAPI {
 			return null;
 		}
 		return super.rdao.getOneByID(id);
+	}
+	public Role getOneByName(String name) {
+		if (name.equals(null)) {
+			logger.error("--");
+			return null;
+		}
+		return super.rdao.getOneByName(name);
 	}
 	/**
 	 * 功能：查所有name

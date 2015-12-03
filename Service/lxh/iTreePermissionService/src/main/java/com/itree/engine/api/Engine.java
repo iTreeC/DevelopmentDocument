@@ -10,6 +10,17 @@ import java.util.List;
 import com.itree.entity.Role;
 
 public interface Engine {
+	
+	/**
+	 * 功能：增加角色并赋权
+	 * 
+	 * @param name
+	 *            Role name
+	 * @param pid
+	 *            Permission ID
+	 * @return true/false
+	 */
+	public Boolean addRoleAndPermission(String name, List<Integer> pid);
 	/**
 	 * 功能：查看某角色的权限ID
 	 * 
