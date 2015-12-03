@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.position.dao.CityNumberDao;
+import com.position.dao.ProNumberDao;
 import com.position.pojo.CityNumber;
 import com.position.pojo.ProvincialNumber;
 import com.position.utils.SessionUtils;
@@ -29,10 +30,11 @@ public class CityNumberDaoImpl implements CityNumberDao {
 	private Transaction transaction;
 	private CityNumber city;
 	private List<CityNumber> list;
+	private ProNumberDao proDao = new ProNumberDaoImpl();
 
 	// 根据id
 	public CityNumber getById(int cityid) {
-		// TODO Auto-generated method stub
+		 
 		try {
 			if (cityid < 0 || cityid > 65535) {
 				logger.error("传入参数超出范围");
@@ -53,7 +55,7 @@ public class CityNumberDaoImpl implements CityNumberDao {
 
 	// 根据城市名
 	public CityNumber getByName(String name) {
-		// TODO Auto-generated method stub
+		 
 		try {
 			if(name == null || name.trim().length() == 0){
 				logger.error("传入参数不能为空");
@@ -73,17 +75,25 @@ public class CityNumberDaoImpl implements CityNumberDao {
 			return null;
 		}
 	}
-
 	// 根据父类名字
+		public List<CityNumber> getByParentName(String parentCity){
+			 
+			// 可从ProNumberDaoImpl类里的getByName得到父类后，关联得到
+			list = (List<CityNumber>) proDao.getByName(parentCity).getCities();
+			return list;
+		}
+
+	// 根据父类id
 	public List<CityNumber> getByParentId(int parentCity) {
-		// TODO Auto-generated method stub
-		// 可从ProNumberDaoImpl类里的getByName得到父类后，关联得到
-		return null;
+		 
+		// 可从ProNumberDaoImpl类里的getById得到父类后，关联得到
+		list = (List<CityNumber>)proDao.getById(parentCity).getCities();
+		return list;
 	}
 
 	// 查找所有
 	public List<CityNumber> getAll() {
-		// TODO Auto-generated method stub
+		 
 		try {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
@@ -100,7 +110,7 @@ public class CityNumberDaoImpl implements CityNumberDao {
 
 	// 增加(一个参数)
 	public void add(CityNumber city) {
-		// TODO Auto-generated method stub
+		 
 		try {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
@@ -115,8 +125,8 @@ public class CityNumberDaoImpl implements CityNumberDao {
 	}
 
 	// 增加(两个参数)
-	public void add2(CityNumber city, ProvincialNumber pro) {
-		// TODO Auto-generated method stub
+	public void addtwo(CityNumber city, ProvincialNumber pro) {
+		 
 		try {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
@@ -133,7 +143,7 @@ public class CityNumberDaoImpl implements CityNumberDao {
 
 	// 删除(隐藏式)
 	public void deleteByIdHid(int cityID) {
-		// TODO Auto-generated method stub
+		 
 		try {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
@@ -150,7 +160,7 @@ public class CityNumberDaoImpl implements CityNumberDao {
 
 	// 删除（直接删除）
 	public void deleteById(int cityID) {
-		// TODO Auto-generated method stub
+		 
 		try {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
@@ -165,7 +175,7 @@ public class CityNumberDaoImpl implements CityNumberDao {
 
 	// 修改
 	public void update(CityNumber city) {
-		// TODO Auto-generated method stub
+
 		try {
 			session = SessionUtils.getInstance().getSession();
 			transaction = session.beginTransaction();
