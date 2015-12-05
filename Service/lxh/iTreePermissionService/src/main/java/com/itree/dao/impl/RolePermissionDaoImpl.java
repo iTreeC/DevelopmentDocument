@@ -24,24 +24,24 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 
 	Session session = SessionUtils.getInstance().getSession();
 	Transaction transaction;
-	RolePermission role;
 
 	public boolean add(int rid, List<Integer> pid) {
+		if (rid == 0 || pid.size() == 0) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
+			System.out.print(pid.size());
 			for (int i = 0; i < pid.size(); i++) {
-				/*
-				 * role = new RolePermission(); role.setRid(rid);
-				 * role.setPid(pid.get(i)); session.save(role);
-				 */
 				String sql = "insert into tb_Role_Permission(rid,pid)values(?,?)";
 				session.createSQLQuery(sql).setParameter(0, rid)
 						.setParameter(1, pid.get(i)).executeUpdate();
 
 			}
 			transaction.commit();
-			logger.info("添加" + role + "的权限成功");
+			logger.info("添加" + rid + "的权限成功");
 			return true;
 		} catch (Exception e) {
 			transaction.rollback();
@@ -52,6 +52,10 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 	}
 
 	public boolean deleteByRoleID(int rid) {
+		if (rid == 0) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -68,6 +72,10 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 	}
 
 	public boolean update(int rid, List<Integer> pid) {
+		if (rid == 0 || pid.size() == 0) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -78,18 +86,13 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 
 			// 插入新数据
 			for (int i = 0; i < pid.size(); i++) {
-				/*
-				 * role = new RolePermission(); role.setRid(rid);
-				 * role.setPid(pid.get(i)); session.save(role);
-				 */
 				String sql = "insert into tb_Role_Permission(rid,pid)values(?,?)";
 				session.createSQLQuery(sql).setParameter(0, rid)
 						.setParameter(1, pid.get(i)).executeUpdate();
 
 			}
-
 			transaction.commit();
-			logger.info("更新" + role + "的权限成功");
+			logger.info("更新" + rid + "的权限成功");
 			return true;
 		} catch (Exception e) {
 			transaction.rollback();
@@ -99,6 +102,10 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 	}
 
 	public List<Integer> findPermissionIDByRoleID(int rid) {
+		if (rid == 0) {
+			logger.error("参数错误");
+			return null;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 
@@ -117,6 +124,10 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 	}
 
 	public List<RolePermission> findListByRoleID(int rid) {
+		if (rid == 0) {
+			logger.error("参数错误");
+			return null;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {

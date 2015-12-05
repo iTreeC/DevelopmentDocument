@@ -27,7 +27,13 @@ public class PermissionDaoImpl implements PermissionDao {
 
 	Perm perm;
 
+	List<Integer> ids = new ArrayList<Integer>();
+
 	public boolean add(Perm perm) {
+		if (perm == null) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -42,6 +48,10 @@ public class PermissionDaoImpl implements PermissionDao {
 	}
 
 	public boolean deleteByID(int id) {
+		if (id == 0) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -74,7 +84,10 @@ public class PermissionDaoImpl implements PermissionDao {
 	}
 
 	public boolean update(Perm perm) {
-
+		if (perm == null) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -109,6 +122,10 @@ public class PermissionDaoImpl implements PermissionDao {
 	}
 
 	public Perm getOneByID(int id) {
+		if (id == 0) {
+			logger.error("参数错误");
+			return null;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -124,6 +141,10 @@ public class PermissionDaoImpl implements PermissionDao {
 	}
 
 	public int getClientIDByID(int id) {
+		if (id == 0) {
+			logger.error("参数错误");
+			return 0;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -139,9 +160,34 @@ public class PermissionDaoImpl implements PermissionDao {
 		}
 	}
 
-	public List<Integer> getIDByClientID(List<Integer> id) {
-		List<Integer> ids = new ArrayList<Integer>();
+	public List<Integer> getClientIDByID(List<Integer> id) {
+		session = SessionUtils.getInstance().getSession();
+		transaction = session.beginTransaction();
+		try {
 
+			for (int i = 0; i < id.size(); i++) {
+				perm = (Perm) session.createQuery("from Perm where id=? ")
+						.setParameter(0, id).uniqueResult();
+				if (perm != null)
+					ids.add(perm.getClientPermissionID());
+			}
+
+			transaction.commit();
+			logger.info("成功查看ID为： " + id + " 的权限。");
+			return ids;
+		} catch (Exception e) {
+			transaction.rollback();
+			logger.error(e.getMessage());
+			return null;
+		}
+	}
+
+	public List<Integer> getIDByClientID(List<Integer> id) {
+
+		if (id.size() == 0) {
+			logger.error("参数错误");
+			return null;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -149,7 +195,8 @@ public class PermissionDaoImpl implements PermissionDao {
 				// ids.add(this.getClientIDByID(id.get(i)));
 				perm = (Perm) session.createQuery("from Perm where id=? ")
 						.setParameter(0, id.get(i)).uniqueResult();
-				ids.add(perm.getId());
+				if (perm != null)
+					ids.add(perm.getId());
 			}
 			transaction.commit();
 			logger.info("成功查看ID为： " + id + " 的权限。");
@@ -160,8 +207,12 @@ public class PermissionDaoImpl implements PermissionDao {
 			return null;
 		}
 	}
-	
-	public int getIDByClientID(int id){
+
+	public int getIDByClientID(int id) {
+		if (id == 0) {
+			logger.error("参数错误");
+			return 0;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {

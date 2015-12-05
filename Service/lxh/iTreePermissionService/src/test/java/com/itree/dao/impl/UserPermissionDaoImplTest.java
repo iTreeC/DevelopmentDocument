@@ -62,17 +62,6 @@ public class UserPermissionDaoImplTest {
 	}
 
 	@Test
-	public void testFindByUId() {
-		udao.findListByUserID(uid);
-	}
-
-	@Test
-	public void testFindByUId2() {
-		uid = 1;
-		udao.findListByUserID(uid);
-	}
-
-	@Test
 	public void testFindUserPIds() {
 		udao.findUserPermissionID(uid);
 	}

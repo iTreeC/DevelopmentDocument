@@ -7,8 +7,6 @@ package com.itree.dao.api;
 
 import java.util.List;
 
-import com.itree.entity.UserPermission;
-
 public interface UserPermissionDao {
 
 	/**
@@ -42,14 +40,7 @@ public interface UserPermissionDao {
 	 */
 	public boolean update(int uid, List<Integer> pid);
 
-	/**
-	 * 功能：通过ID查看用户权限
-	 * 
-	 * @param uid
-	 *            用户ID
-	 * @return List<UserPermission>
-	 */
-	public List<UserPermission> findListByUserID(int uid);
+	
 
 	/**
 	 * 功能：通过ID查看用户权限
@@ -58,4 +49,13 @@ public interface UserPermissionDao {
 	 * @return List<Integer>
 	 */
 	public List<Integer> findUserPermissionID(int uid);
+	
+	/**
+	 * 功能：通过ID查看用户权限
+	 * 
+	 * @param uid
+	 *            用户ID
+	 * @return List<UserPermission>
+	 */
+	/*public List<UserPermission> findListByUserID(int uid);*/
 }

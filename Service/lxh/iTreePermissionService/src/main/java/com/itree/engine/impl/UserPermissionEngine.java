@@ -11,118 +11,126 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.itree.engine.api.UserPermissionEngineAPI;
-import com.itree.entity.UserPermission;
 
 public class UserPermissionEngine extends EngineImpl implements
 		UserPermissionEngineAPI {
 
 	private static Logger logger = Logger.getLogger(UserPermissionEngine.class);
 
-	private List<Integer> pids = new ArrayList<Integer>();
-	private List<Integer> pid2 = new ArrayList<Integer>();
-	private int temptp;
-	private int temptu;
+	private List<Integer> tid = new ArrayList<Integer>();
 
 	public Boolean add(int uid, List<Integer> pid) {
 
-		if (uid == 0 || pid.equals(null)) {
-			logger.error("角色或权限ID不能为空值！！！");
+		// 如果参数合法，得到用户和权限的存储ID
+		if (uid == 0 || pid.size() == 0) {
+			logger.info("角色或权限ID不能为空值！！！");
 			return false;
 		}
-		// 去除重复数据
-		pid = super.dereplication(pid);
-
-		temptu = udao.getIDByClientID(uid);
-		pids = pdao.getIDByClientID(pid);
-
-		// 和数据库中的权限值比对
-		pid2 = super.updao.findUserPermissionID(temptu);
-		if (pid2 != null)
-			pids.removeAll(pid2);
-
-		// 添加权限
-		if (pids.size() == 0) {
-			logger.error("该权限已经存在，不能重复添加");
+		uid = udao.getIDByClientID(uid);
+		pid = pdao.getIDByClientID(dereplication(pid));
+		// 如果参数合法，和数据库中的权限值比对，并去掉重复数据
+		if (uid == 0 || pid.size() == 0)
+			return false;
+		tid = super.updao.findUserPermissionID(uid);
+		if (tid != null)
+			pid.removeAll(tid);
+		// 如果参数合法，添加权限
+		if (pid.size() == 0) {
+			logger.info("该权限已经存在，不能重复添加");
 			return false;
 		}
-		return super.updao.add(temptu, pids);
+		return super.updao.add(uid, pid);
 	}
 
 	public Boolean delete(int uid) {
+
+		// 如果参数合法，得到用户的存储ID
 		if (uid == 0) {
-			logger.error("用户名为空！！！");
+			logger.info("用户名为空！！！");
 			return null;
 		}
-		temptu = udao.getIDByClientID(uid);
-
-		return super.updao.deleteByUserID(temptu);
+		uid = udao.getIDByClientID(uid);
+		// 如果参数合法，删除权限
+		if (uid == 0)
+			return false;
+		return super.updao.deleteByUserID(uid);
 	}
 
 	public Boolean update(int uid, List<Integer> pid) {
+
+		// 如果参数合法，得到用户和权限的存储ID
 		if (uid == 0 || pid.equals(null)) {
-			logger.error("角色或权限ID不能为空值！！！");
+			logger.info("参数不能为空值！！！");
 			return false;
 		}
-		// 去除重复数据
-		pid = super.dereplication(pid);
-
-		temptu = udao.getIDByClientID(uid);
-		pids = pdao.getIDByClientID(pid);
-
-		return super.updao.update(temptu, pids);
+		uid = udao.getIDByClientID(uid);
+		pid = pdao.getIDByClientID(dereplication(pid));
+		// 如果参数合法，更新用户-权限所有关系
+		if (uid == 0 || pid.size() == 0)
+			return false;
+		return super.updao.update(uid, pid);
 	}
 
 	public List<Integer> getPermissionIDByUserID(int uid) {
+		// 如果参数合法，得到用户的存储ID
 		if (uid == 0) {
-			logger.error("用户名为空！！！");
+			logger.info("用户名为空！！！");
 			return null;
 		}
-		temptu = udao.getIDByClientID(uid);
-
-		pids = super.updao.findUserPermissionID(temptu);
-
-		if (pids != null) {
-			logger.info("查找用户权限成功");
-			return pids;
+		uid = udao.getIDByClientID(uid);
+		// 如果参数合法，得到用户权限的存储ID
+		if (uid == 0)
+			return null;
+		tid = super.updao.findUserPermissionID(uid);
+		// 如果参数合法，得到用户权限的真实ID
+		if (tid == null) {
+			logger.info("--");
+			return null;
 		}
-		logger.error("查无此用户权限，请确认用户ID是否正确");
-		return null;
+		tid = pdao.getClientIDByID(tid);
+
+		// 结果不管是null或者有效值，都返回给客户端。
+		logger.info("查找用户权限成功");
+		return tid;
+	}
+	
+	public List<Integer> getUserPermissionID(int uid) {
+		// 如果参数合法，得到权限存储ID
+		if (uid == 0)
+			return null;
+		tid = updao.findUserPermissionID(uid);
+		// 如果参数合法，返回真实权限ID
+		if (tid.size() == 0)
+			return null;
+		return pdao.getClientIDByID(tid);
+
 	}
 
 	public Boolean cando(int uid, int pid) {
-		if (uid == 0) {
-			logger.error("用户名为空！！！");
+
+		// 如果参数合法，得到要匹配的用户和权限的存储ID
+		if (uid == 0 || pid == 0) {
+			logger.info("用户名为空！！！");
 			return false;
 		}
-		temptu = udao.getIDByClientID(uid);
-		temptp = pdao.getIDByClientID(pid);
-		List<UserPermission> userpermission = super.updao
-				.findListByUserID(temptu);
-		if (userpermission != null) {
-			for (int i = 0; i < userpermission.size(); i++) {
-				if (userpermission.get(i).getPerm().getClientPermissionID() == temptp) {
-					logger.info("权限匹配成功");
-					return true;
-				}
+		uid = udao.getIDByClientID(uid);
+		pid = pdao.getIDByClientID(pid);
+
+		// 如果参数合法，得到具体的用户权限的存储ID
+		if (uid == 0 || pid == 0)
+			return false;
+		List<Integer> tids = super.updao.findUserPermissionID(uid);
+		// 如果参数合法，遍历具体的用户权限的存储ID，进行权限匹配
+		if (tids.size() == 0)
+			return false;
+		for (int i = 0; i < tids.size(); i++) {
+			if (tids.get(i) == pid) {
+				logger.info("权限匹配成功");
+				return true;
 			}
-		} else
-			logger.info("查无此权限");
-		logger.error("权限匹配失败");
+		}
+		logger.info("权限匹配失败");
 		return false;
 	}
-	/**
-	 * 功能：查看
-	 * 
-	 * @param uid
-	 *            用户ID
-	 * @return 用户-权限关系的列表
-	 */
-	/*
-	 * public List<UserPermission> getPermission(int uid) { if (uid == 0) {
-	 * logger.error("用户名为空！！！"); return null; } super.updao.findUserPIds(uid);
-	 * List<UserPermission> user = super.updao.findByUId(uid);
-	 * 
-	 * if (user != null) { logger.info("查找用户权限成功"); return user; } else {
-	 * logger.error("查无此用户权限，请确认用户ID是否正确"); return null; } }
-	 */
+
 }

@@ -21,6 +21,17 @@ public interface RoleEngineAPI extends Engine {
 	public Boolean add(String name);
 
 	/**
+	 * 功能：增加角色并赋权
+	 * 
+	 * @param name
+	 *            Role name
+	 * @param pid
+	 *            Permission ID
+	 * @return true/false
+	 */
+	public Boolean addRoleAndPermission(String name, List<Integer> pid);
+
+	/**
 	 * 功能：删除角色
 	 * 
 	 * @param rid

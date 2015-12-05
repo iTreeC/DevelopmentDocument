@@ -50,6 +50,15 @@ public interface UserPermissionEngineAPI extends Engine {
 	public List<Integer> getPermissionIDByUserID(int uid);
 
 	/**
+	 * 功能：查看用户的权限ID（不经过role）
+	 * 
+	 * @param uid
+	 *            User ID
+	 * @return List<Integer>
+	 */
+	public List<Integer> getUserPermissionID(int uid);
+
+	/**
 	 * 功能：用户-权限匹配
 	 * 
 	 * @param uid

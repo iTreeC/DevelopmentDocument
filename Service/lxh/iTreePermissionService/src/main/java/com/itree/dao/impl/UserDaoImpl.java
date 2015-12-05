@@ -28,6 +28,10 @@ public class UserDaoImpl implements UserDao {
 	User user;
 
 	public boolean add(User user) {
+		if (user == null) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -42,6 +46,10 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public boolean deleteByClientUserId(int id) {
+		if (id == 0) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -73,7 +81,10 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public boolean update(User user) {
-
+		if (user == null) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -106,6 +117,10 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public User getOneByID(int id) {
+		if (id == 0) {
+			logger.error("参数错误");
+			return null;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -121,6 +136,10 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public User getOneByClientUserID(int id) {
+		if (id == 0) {
+			logger.error("参数错误");
+			return null;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -138,6 +157,10 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public List<Integer> getIDByClientID(List<Integer> id) {
+		if (id.size() == 0) {
+			logger.error("参数错误");
+			return null;
+		}
 		List<Integer> ids = new ArrayList<Integer>();
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -157,7 +180,12 @@ public class UserDaoImpl implements UserDao {
 			return null;
 		}
 	}
-	public int getIDByClientID(int id){
+
+	public int getIDByClientID(int id) {
+		if (id == 0) {
+			logger.error("参数错误");
+			return 0;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {

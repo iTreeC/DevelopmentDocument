@@ -5,6 +5,7 @@
  */
 package com.itree.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -24,10 +25,20 @@ public class RoleDaoImpl implements RoleDao {
 	Session session = SessionUtils.getInstance().getSession();
 	Transaction transaction = null;
 
-	public boolean add(Role role) {
+	List<Role> roles = new ArrayList<Role>();
+	Role role;
+	String hql;
+
+	public boolean add(String name) {
+		if (name == null) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
+			role = new Role();
+			role.setName(name);
 			session.save(role);
 			transaction.commit();
 			return true;
@@ -40,11 +51,15 @@ public class RoleDaoImpl implements RoleDao {
 
 	public boolean deleteByID(int id) {
 
+		if (id == 0) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
 
-			String hql = "delete from RolePermission where rid=?";
+			hql = "delete from RolePermission where rid=?";
 			session.createQuery(hql).setParameter(0, id).executeUpdate();
 
 			hql = "delete from UserRole where rid=?";
@@ -66,6 +81,10 @@ public class RoleDaoImpl implements RoleDao {
 
 	public boolean update(Role role) {
 
+		if (role == null) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -86,7 +105,7 @@ public class RoleDaoImpl implements RoleDao {
 		transaction = session.beginTransaction();
 		try {
 
-			List<Role> roles = session.createQuery("from Role ").list();
+			roles = session.createQuery("from Role ").list();
 
 			transaction.commit();
 			logger.info("成功查看所有权限列表。");
@@ -98,11 +117,39 @@ public class RoleDaoImpl implements RoleDao {
 		}
 	}
 
-	public Role getOneByID(int id) {
+	public List<Role> getRoleByID(List<Integer> id) {
+		if (id.size() == 0) {
+			logger.error("参数错误");
+			return null;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
-			Role role = (Role) session.get(Role.class, id);
+
+			for (int i = 0; i < id.size(); i++) {
+				role = (Role) session.get(Role.class, id.get(i));
+				if (role != null)
+					roles.add(role);
+			}
+			transaction.commit();
+			logger.info("成功查看ID为： " + id + " 的权限。");
+			return roles;
+		} catch (Exception e) {
+			transaction.rollback();
+			logger.error(e.getMessage());
+			return null;
+		}
+	}
+
+	public Role getOneByID(int id) {
+		if (id == 0) {
+			logger.error("参数错误");
+			return null;
+		}
+		session = SessionUtils.getInstance().getSession();
+		transaction = session.beginTransaction();
+		try {
+			role = (Role) session.get(Role.class, id);
 			transaction.commit();
 			logger.info("成功查看ID为： " + id + " 的权限。");
 			return role;
@@ -117,7 +164,7 @@ public class RoleDaoImpl implements RoleDao {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
-			Role role = (Role) session.createQuery("from Role where name=? ")
+			role = (Role) session.createQuery("from Role where name=? ")
 					.setParameter(0, name).uniqueResult();
 			transaction.commit();
 			logger.info("成功查看所有权限。");

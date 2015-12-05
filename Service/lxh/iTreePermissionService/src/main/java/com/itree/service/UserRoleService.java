@@ -132,7 +132,7 @@ public class UserRoleService extends Service {
 			@QueryParam("rid") int rid) {
 
 		if (validate.limit(rid) & validate.limit(uid))
-			return maputils.map(urengine.cando(uid, rid));
+			return maputils.map(urengine.candoRole(uid, rid));
 		return null;
 	}
 
@@ -151,7 +151,7 @@ public class UserRoleService extends Service {
 			@QueryParam("pid") int pid) {
 
 		if (validate.limit(pid) & validate.limit(uid))
-			return maputils.map(urengine.cando(uid, pid));
+			return maputils.map(urengine.candoPermission(uid, pid));
 		return null;
 	}
 

@@ -50,7 +50,23 @@ public interface PermissionDao {
 	 * @return
 	 */
 	public int getClientIDByID(int id);
+	
+	/**
+	 * 功能：通过ID查看一条客户端权限ID
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public List<Integer> getClientIDByID(List<Integer> id);
 
+	/**
+	 * 功能：通过ID查看客户端权限ID
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public int getIDByClientID(int id);
+	
 	/**
 	 * 功能：通过ID查看客户端权限ID
 	 * 
@@ -59,13 +75,7 @@ public interface PermissionDao {
 	 */
 	public List<Integer> getIDByClientID(List<Integer> id);
 	
-	/**
-	 * 功能：通过ID查看客户端权限ID
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public int getIDByClientID(int id);
+	
 
 	/**
 	 * 功能：通过客户端ID查看一条权限

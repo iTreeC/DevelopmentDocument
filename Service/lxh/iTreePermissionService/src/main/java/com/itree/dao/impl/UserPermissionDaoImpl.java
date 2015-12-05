@@ -28,18 +28,18 @@ public class UserPermissionDaoImpl implements UserPermissionDao {
 	UserPermission user;
 
 	public boolean add(int uid, List<Integer> pid) {
+		if (uid == 0 || pid.size() == 0) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
 			for (int i = 0; i < pid.size(); i++) {
-				/*user = new UserPermission();
-				user.setUser(uid);
-				user.setPerm(pid.get(i));
-				session.save(user);*/
-				
 				String sql = "insert into tb_User_Permission(uid,pid)values(?,?)";
-				session.createSQLQuery(sql).setParameter(0, uid).setParameter(1, pid.get(i)).executeUpdate();
-				
+				session.createSQLQuery(sql).setParameter(0, uid)
+						.setParameter(1, pid.get(i)).executeUpdate();
+
 			}
 			transaction.commit();
 			logger.info("保存" + user + "的权限成功");
@@ -51,8 +51,11 @@ public class UserPermissionDaoImpl implements UserPermissionDao {
 		}
 	}
 
-
 	public boolean deleteByUserID(int uid) {
+		if (uid == 0) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -68,7 +71,6 @@ public class UserPermissionDaoImpl implements UserPermissionDao {
 		}
 	}
 
-	
 	public boolean update(int uid, List<Integer> pid) {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
@@ -79,13 +81,14 @@ public class UserPermissionDaoImpl implements UserPermissionDao {
 			session.createQuery(hql).setParameter(0, uid).executeUpdate();
 			// 加入新增数据
 			for (int i = 0; i < pid.size(); i++) {
-				/*user = new UserPermission();
-				user.setUid(uid);
-				user.setPerm(pid.get(i));
-				session.save(user);*/
+				/*
+				 * user = new UserPermission(); user.setUid(uid);
+				 * user.setPerm(pid.get(i)); session.save(user);
+				 */
 				String sql = "insert into tb_User_Permission(uid,pid)values(?,?)";
-				session.createSQLQuery(sql).setParameter(0, uid).setParameter(1, pid.get(i)).executeUpdate();
-				
+				session.createSQLQuery(sql).setParameter(0, uid)
+						.setParameter(1, pid.get(i)).executeUpdate();
+
 			}
 			transaction.commit();
 			logger.info("更新" + user + "的权限成功");
@@ -97,41 +100,11 @@ public class UserPermissionDaoImpl implements UserPermissionDao {
 		}
 	}
 
-	
-	/*public List<UserPermission> findAll() {
-		session = SessionUtils.getInstance().getSession();
-		transaction = session.beginTransaction();
-		try {
-			users = session.createQuery("from UserPermission").list();
-			logger.info("查看所有权限成功");
-			transaction.commit();
-			return users;
-		} catch (Exception e) {
-			transaction.rollback();
-			logger.error(e.getMessage());
-			return null;
-		}
-	}*/
-
-
-	public List<UserPermission> findListByUserID(int uid) {
-		session = SessionUtils.getInstance().getSession();
-		transaction = session.beginTransaction();
-		try {
-			String hql = "from UserPermission where uid =? ";
-			users = session.createQuery(hql).setParameter(0, uid).list();
-			logger.info("findByUId 查看" + uid + "的权限成功");
-			transaction.commit();
-			return users;
-		} catch (Exception e) {
-			transaction.rollback();
-			logger.error(e.getMessage());
-			return null;
-		}
-	}
-
-
 	public List<Integer> findUserPermissionID(int uid) {
+		if (uid == 0) {
+			logger.error("参数错误");
+			return null;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {

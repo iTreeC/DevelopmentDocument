@@ -27,14 +27,14 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	UserRole userrole;
 
 	public boolean add(int uid, List<Integer> rid) {
+		if (uid == 0 || rid.size() == 0) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
 			for (int i = 0; i < rid.size(); i++) {
-				/*
-				 * userrole = new UserRole(); userrole.setUid(uid);
-				 * userrole.setRid(rid.get(i)); session.save(userrole);
-				 */
 				String sql = "insert into tb_User_Role(uid,rid)values(?,?)";
 				session.createSQLQuery(sql).setParameter(0, uid)
 						.setParameter(1, rid.get(i)).executeUpdate();
@@ -52,6 +52,10 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	}
 
 	public boolean deleteByUserID(int uid) {
+		if (uid == 0) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -68,6 +72,10 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	}
 
 	public boolean update(int uid, List<Integer> rid) {
+		if (uid == 0 || rid.size() == 0) {
+			logger.error("参数错误");
+			return false;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -76,11 +84,6 @@ public class UserRoleDaoImpl implements UserRoleDao {
 			session.createQuery(hql).setParameter(0, uid).executeUpdate();
 			// 加入新增数据
 			for (int i = 0; i < rid.size(); i++) {
-				/*
-				 * userrole = new UserRole(); userrole.setUid(uid);
-				 * userrole.setRid(rid.get(i)); session.save(userrole);
-				 */
-
 				String sql = "insert into tb_User_Role(uid,rid)values(?,?)";
 				session.createSQLQuery(sql).setParameter(0, uid)
 						.setParameter(1, rid.get(i)).executeUpdate();
@@ -112,6 +115,10 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	}
 
 	public List<UserRole> findListByUserID(int uid) {
+		if (uid == 0) {
+			logger.error("参数错误");
+			return null;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
@@ -129,6 +136,10 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	}
 
 	public List<Integer> findRoleIDByUserID(int uid) {
+		if (uid == 0) {
+			logger.error("参数错误");
+			return null;
+		}
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {

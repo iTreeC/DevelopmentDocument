@@ -22,15 +22,19 @@ import com.itree.entity.Role;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class RoleService extends Service {
-/*
-	ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+	/*
+	 * ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+	 * 
+	 * RoleEngineAPI rengine = (RoleEngineAPI) ctx.getBean("rengine");
+	 */
 
-	RoleEngineAPI rengine = (RoleEngineAPI) ctx.getBean("rengine");*/
-
-/*	MapUtils maputils = new MapUtils();
-	ValidateUtils validate = new ValidateUtils();*/
-	/*private int tempt;
-	private List<Integer> t = new ArrayList<Integer>();*/
+	/*
+	 * MapUtils maputils = new MapUtils(); ValidateUtils validate = new
+	 * ValidateUtils();
+	 */
+	/*
+	 * private int tempt; private List<Integer> t = new ArrayList<Integer>();
+	 */
 	/**
 	 * 功能：增加一条角色信息
 	 * 
@@ -47,19 +51,15 @@ public class RoleService extends Service {
 		return maputils.map(false);
 
 	}
-	
+
 	@POST
 	@Path("/post/name/pid")
-	public Map<String, Boolean> add2(@QueryParam("name") String name, @QueryParam("pid") List<Integer> pid ) {
-	
-		if (validate.length(name))
-			//rengine.add(name);
-		
-		//tempt = rengine.getOneByName(name).getId();
-		pengine.addRoleAndPermission(name, pid);
-		//rpengine.add(tempt, pid);
-		return maputils.map(false);
-		
+	public Map<String, Boolean> add2(@QueryParam("name") String name,
+			@QueryParam("pid") List<Integer> pid) {
+
+		if (!validate.length(name))
+			return maputils.map(false);
+		return maputils.map(rengine.addRoleAndPermission(name, pid));
 
 	}
 

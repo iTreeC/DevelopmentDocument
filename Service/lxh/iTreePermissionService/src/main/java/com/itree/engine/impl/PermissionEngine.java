@@ -11,80 +11,34 @@ import com.itree.entity.Perm;
 
 public class PermissionEngine extends EngineImpl implements PermissionEngineAPI {
 
-	private static Logger logger = Logger
-			.getLogger(UserPermissionEngine.class);
+	private static Logger logger = Logger.getLogger(UserPermissionEngine.class);
 
 	public Boolean add(int id) {
-
+		// 判断参数是否合法
 		if (id == 0) {
-			logger.error("ID不能为空！！！");
+			logger.info("ID不能为空！！！");
 			return false;
 		}
+		// 查看数据库中是否存在此权限
 		if (super.pdao.getOneByClientID(id) != null) {
-			logger.error("该权限已存在.");
+			logger.info("该权限已存在.");
 			return false;
 		}
+		// 在数据库中添加权限
 		Perm perm = new Perm();
 		perm.setClientPermissionID(id);
 		return super.pdao.add(perm);
 	}
 
 	public Boolean delete(int id) {
+		// 判断参数是否合法
 		if (id == 0) {
-			logger.error("权限ID不能为空！！！");
+			logger.info("权限ID不能为空！！！");
 			return false;
 		}
+		// 在数据库中删除权限
 		return super.pdao.deleteByID(id);
 
 	}
-
-	/**
-	 * 功能：更新权限
-	 * 
-	 * @param permission
-	 *            权限
-	 * @return true/false
-	 */
-	/*
-	 * public Boolean update(Perm permission) { if (permission.equals(null)) {
-	 * logger.error("权限ID不能为空！！！"); return false; } return
-	 * super.pdao.update(permission);
-	 * 
-	 * }
-	 */
-
-	/**
-	 * 功能：通过id查一条权限
-	 * 
-	 * @param id
-	 * @return permission
-	 */
-	/*
-	 * public Perm getOneByID(int id) { if (id == 0) {
-	 * logger.error("权限ID不能为空！！！"); return null; } return
-	 * super.pdao.getOneByID(id); }
-	 */
-
-	/**
-	 * 功能：通过id查name
-	 * 
-	 * @param id
-	 * @return
-	 */
-	/*
-	 * public int getClientIDByID(int id) { if (id == 0) {
-	 * logger.error("权限ID不能为空！！！"); return 0; } return
-	 * super.pdao.getNameByID(id); Perm p = super.pdao.getOneByID(id); if (p !=
-	 * null) { return p.getClientPermissionID(); } else { return 0; } }
-	 */
-
-	/**
-	 * 功能：查看所有权限列表
-	 * 
-	 * @return 权限列表
-	 */
-	/*
-	 * public List<Perm> getAll() { return super.pdao.getAll(); }
-	 */
 
 }

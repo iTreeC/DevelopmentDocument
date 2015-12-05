@@ -17,7 +17,7 @@ public interface RoleDao {
 	 * @param role
 	 * @return
 	 */
-	public boolean add(Role role);
+	public boolean add(String name);
 
 	/**
 	 * 功能：通过ID删除
@@ -41,6 +41,13 @@ public interface RoleDao {
 	 * @return
 	 */
 	public List<Role> getAll();
+	
+	/**
+	 * 功能 ：通过多个ID查看多条角色
+	 * 
+	 * @return
+	 */
+	public List<Role> getRoleByID(List<Integer> id);
 
 	/**
 	 * 功能：通过ID查看一条角色
