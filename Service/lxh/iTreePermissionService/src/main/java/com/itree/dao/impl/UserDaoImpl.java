@@ -193,8 +193,12 @@ public class UserDaoImpl implements UserDao {
 					.createQuery("from User where ClientUserID=? ")
 					.setParameter(0, id).uniqueResult();
 			transaction.commit();
-			logger.info("成功查看ClientUserID为： " + id + " 的权限。");
-			return user.getId();
+			if (user != null) {
+				logger.info("成功查看ClientUserID为： " + id + " 的权限。");
+				return user.getId();
+			}
+			logger.error("查无此权限");
+			return 0;
 		} catch (Exception e) {
 			transaction.rollback();
 			logger.error(e.getMessage());
