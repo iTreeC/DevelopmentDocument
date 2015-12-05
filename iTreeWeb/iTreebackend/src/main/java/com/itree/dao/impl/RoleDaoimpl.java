@@ -34,14 +34,8 @@ public class RoleDaoimpl extends BaseDaoimpl implements RoleDao {
 			int rid = (Integer) session.save(d);//返回该角色在数据库中的ID
 			System.out.println(rid);
 			
-			//与权限对接
-			 String targetURL = "http://localhost:8080/iTreePermissionService/rolepermission/post";
-			 URL url = new URL(targetURL);
-			 String method = "POST";
-			 String input = "{\"rid\":1,\"pid\":2}";
-			 ConnService c = new ConnService();
-			 c.Conntce(url, method, input);
-			
+			 //与权限对接
+			 
 			
 			transaction.commit();
 			System.out.println("SUCCESS");
