@@ -9,6 +9,7 @@ import java.util.Set;
  */
 public class TDuty implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String dutyName;
 	private int dutyStatus;

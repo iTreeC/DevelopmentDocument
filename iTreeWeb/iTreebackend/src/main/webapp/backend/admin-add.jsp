@@ -71,8 +71,8 @@
 				<div class="formControls col-5">
 					<span class="select-box" style="width: 150px;">
 					 <select class="select" id="dutyID"  size="1" name="aui.duty">
-							<option value="1">教师</option>
-							<option value="2">学生</option>
+							<option value="1">超级管理员</option>
+							<option value="2">普通管理员</option>
 					</select>
 					</span>
 				</div>

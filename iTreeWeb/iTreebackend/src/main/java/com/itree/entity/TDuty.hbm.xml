@@ -23,7 +23,7 @@
             <column name="profile">
             </column>
         </property>
-        <set name="TUsers" table="t_user" inverse="true" lazy="true" fetch="select">
+        <set name="TUsers" table="t_user" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="duty_id" not-null="true">
                     <comment>&#214;&#176;&#206;&#187;&#161;&#163;1&#206;&#170;&#209;&#167;&#201;&#250;&#163;&#172;0&#206;&#170;&#189;&#204;&#202;&#166;&#181;&#200;</comment>

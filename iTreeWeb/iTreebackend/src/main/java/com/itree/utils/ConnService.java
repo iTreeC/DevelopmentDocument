@@ -63,8 +63,23 @@ public class ConnService {
 		System.out.println(result);
 	}
 
+	// 增加一条用户信息
+	public void UserPost(int cid) throws URISyntaxException {
+		Client client = Client.create();
+		URI u;
+		WebResource resource;
+		String result;
+		u = new URI("http://localhost:8080/iTreePermissionService//user/post");
+		System.out.println(u);
+		resource = client.resource(u);
+		MultivaluedMapImpl params = new MultivaluedMapImpl();
+		params.add("cid", cid);
+		result = resource.queryParams(params).post(String.class);
+		System.out.println(result);
+	}
+	
 	// 增加一个角色并赋值
-	public void PostNamePid(String name, int pid) throws URISyntaxException {
+	public void PostNamePid(String name, int[] permission) throws URISyntaxException {
 		Client client = Client.create();
 		URI u;
 		WebResource resource;
@@ -74,7 +89,10 @@ public class ConnService {
 		resource = client.resource(u);
 		MultivaluedMapImpl params = new MultivaluedMapImpl();
 		params.add("name", name);
-		params.add("pid", pid);
+		for(int i=0;i<permission.length;i++){
+			params.add("pid", permission[i]);
+	
+		}
 		result = resource.queryParams(params).post(String.class);
 		System.out.println(result);
 	}

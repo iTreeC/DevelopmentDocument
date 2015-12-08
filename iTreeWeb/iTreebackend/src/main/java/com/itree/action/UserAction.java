@@ -94,7 +94,6 @@ public class UserAction extends ActionSupport implements ModelDriven<TLogin>,Req
     //调用service的getAll()方法。用于获取用户列表集合。
 	public String list(){
 		request.put("user",userService.getAll());
-		System.out.println(request.get("news"));
 		return "list";
 	}
 	//删除操作。根据选中行的ID,删除该行。
