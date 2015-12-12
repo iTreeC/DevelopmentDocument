@@ -12,7 +12,8 @@ import org.hibernate.Transaction;
 
 import com.itree.dao.RoleDao;
 import com.itree.entity.TDuty;
-import com.itree.utils.ConnService;
+import com.itree.permissionService.AddRoleAndPermission;
+import com.itree.permissionService.impl.AddRoleAndPermissionimpl;
 import com.itree.utils.SessionUtils;
 
 public class RoleDaoimpl extends BaseDaoimpl implements RoleDao {
@@ -38,10 +39,9 @@ public class RoleDaoimpl extends BaseDaoimpl implements RoleDao {
 			String name = d.getDutyName();
 			//将数字转换成String类型，不同的权限用“，”隔开，方便url传值。
 			//int pid = 1;
-			ConnService c = new ConnService();
+			
+			AddRoleAndPermission c = new AddRoleAndPermissionimpl();
 			c.PostNamePid(name, permission); 
-			
-			
 			
 			transaction.commit();
 			System.out.println("SUCCESS");
@@ -51,7 +51,7 @@ public class RoleDaoimpl extends BaseDaoimpl implements RoleDao {
 			return;
 		}
 	}
-	//获取用户列表
+	//获取角色列表
 		@SuppressWarnings("unchecked")
 		public List<TDuty> getAll(){
 			System.out.println("RoleDaoimpl的getAll（）方法"); 
@@ -61,7 +61,6 @@ public class RoleDaoimpl extends BaseDaoimpl implements RoleDao {
 					List<TDuty> duty = session.createQuery("from TDuty").list();
 					transaction.commit();
 					//System.out.println(duty);
-					System.out.println("6666666666666666");
 					return duty;
 					
 			 }catch (Exception e){
