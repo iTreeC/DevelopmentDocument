@@ -39,6 +39,15 @@ public interface RolePermissionEngineAPI extends Engine {
 	 * @return true/false
 	 */
 	public Boolean update(int rid, List<Integer> pid);
+	
+	/**
+	 * 功能：查看某角色的权限ID
+	 * 
+	 * @param rid
+	 *            Role ID
+	 * @return List<Integer>
+	 */
+	public List<Integer> getRolePermissionID(int rid);
 
 	/**
 	 * 功能：角色-权限匹配

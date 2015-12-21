@@ -42,7 +42,7 @@ public class UserPermissionDaoImpl implements UserPermissionDao {
 
 			}
 			transaction.commit();
-			logger.info("保存" + user + "的权限成功");
+			logger.info("保存" + uid + "的权限成功");
 			return true;
 		} catch (Exception e) {
 			transaction.rollback();
@@ -91,7 +91,7 @@ public class UserPermissionDaoImpl implements UserPermissionDao {
 
 			}
 			transaction.commit();
-			logger.info("更新" + user + "的权限成功");
+			logger.info("更新" + uid + "的权限成功");
 			return true;
 		} catch (Exception e) {
 			transaction.rollback();

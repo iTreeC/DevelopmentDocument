@@ -59,7 +59,7 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
-			String hql = "delete from RolePermission where rid=?";
+			String hql = "delete from RolePermission where rid=?";//WARN待解决。
 			session.createQuery(hql).setParameter(0, rid).executeUpdate();
 			transaction.commit();
 			logger.info("删除" + rid + "的权限成功");
@@ -118,6 +118,7 @@ public class RolePermissionDaoImpl implements RolePermissionDao {
 			return pids;
 		} catch (Exception e) {
 			transaction.rollback();
+			System.out.println("22222222222222");
 			logger.error(e.getMessage());
 			return null;
 		}

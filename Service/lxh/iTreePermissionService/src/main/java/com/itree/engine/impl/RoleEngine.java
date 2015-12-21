@@ -81,10 +81,12 @@ public class RoleEngine extends EngineImpl implements RoleEngineAPI {
 		}
 		// 在数据库中更新此角色
 		Role role = new Role();
-		role.setId(rid);
-		role.setName(name);
-		return super.rdao.update(role);
-
+		role = rdao.getOneByID(rid);
+		if (role != null) {
+			role.setName(name);
+			return super.rdao.update(role);
+		} else
+			return false;
 	}
 
 	public List<Role> getAll() {

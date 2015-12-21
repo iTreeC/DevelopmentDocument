@@ -9,14 +9,7 @@ import java.util.List;
 
 public interface Engine {
 
-	/**
-	 * 功能：查看某角色的权限ID
-	 * 
-	 * @param rid
-	 *            Role ID
-	 * @return List<Integer>
-	 */
-	public List<Integer> getRolePermissionID(int rid);
+
 
 	/**
 	 * 功能：去除重复数据

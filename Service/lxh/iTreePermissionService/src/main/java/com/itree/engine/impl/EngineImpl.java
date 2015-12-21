@@ -33,18 +33,7 @@ public class EngineImpl implements Engine {
 	private List<Integer> tid = new ArrayList<Integer>();// 临时变量
 	private List<Integer> rt = new ArrayList<Integer>();// 临时变量
 
-	public List<Integer> getRolePermissionID(int rid) {
-		//判断参数是否合法
-		if (rid == 0)
-			return null;
-		// 得到要查找的权限在本数据库中的ID
-		tid = rpdao.findPermissionIDByRoleID(rid);
-		// 如果参数不为0，返回真实权限ID
-		if (tid.size() == 0)
-			return null;
-		return pdao.getClientIDByID(tid);
-
-	}
+	
 
 	public List<Integer> dereplication(List<Integer> ids) {
 		// 判断参数是否合法

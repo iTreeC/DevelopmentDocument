@@ -64,6 +64,19 @@ public class RolePermissionEngine extends EngineImpl implements
 		return rpdao.update(rid, pid);
 	}
 
+	public List<Integer> getRolePermissionID(int rid) {
+		//判断参数是否合法
+		if (rid == 0)
+			return null;
+		// 得到要查找的权限在本数据库中的ID
+		tid = rpdao.findPermissionIDByRoleID(rid);
+		// 如果参数不为0，返回真实权限ID
+		if (tid.size() == 0)
+			return null;
+		return pdao.getClientIDByID(tid);
+
+	}	
+	
 	public Boolean cando(int rid, int pid) {
 		// 判断参数是否合法
 		if (rid == 0 || pid == 0) {

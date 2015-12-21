@@ -93,14 +93,20 @@ public class UserRoleEngine extends EngineImpl implements UserRoleEngineAPI {
 		// 如果参数合法，得到要查找的角色ID
 		if (uid == 0)
 			return null;
-		tid = urdao.findRoleIDByUserID(uid);
+		uid=udao.getIDByClientID(uid);
+		rid.clear();
+		rid = urdao.findRoleIDByUserID(uid);
 		// 如果参数合法，返回角色列表
 		if (tid.size() == 0)
 			return null;
-		return rdao.getRoleByID(tid);
+		return rdao.getRoleByID(rid);
 	}
 
 	public List<Integer> getUserRolePermissionID(int uid) {
+		// 如果参数合法，得到用户存储ID
+		if (uid == 0)
+			return null;
+		uid=udao.getIDByClientID(uid);
 		// 如果参数合法，得到角色ID
 		if (uid == 0)
 			return null;
@@ -109,8 +115,9 @@ public class UserRoleEngine extends EngineImpl implements UserRoleEngineAPI {
 		if (rid.size() == 0)
 			return null;
 		tid.clear();
-		for (int i = 0; i < rid.size(); i++)
-			tid.addAll(rpdao.findPermissionIDByRoleID(rid.get(i)));
+		for (int i = 0; i < rid.size(); i++){
+			System.out.println("11111111111");
+			tid.addAll(rpdao.findPermissionIDByRoleID(rid.get(i)));}
 		// 如果参数合法，得到权限真实ID
 		if (tid.size() == 0)
 			return null;
@@ -129,7 +136,7 @@ public class UserRoleEngine extends EngineImpl implements UserRoleEngineAPI {
 		uid = udao.getIDByClientID(uid);
 		// 得到角色ID，并判断是否合法
 		tid = super.urdao.findRoleIDByUserID(uid);
-		if (tid.size() == 0)
+		if (tid==null)
 			return false;
 		// 遍历角色ID，进行角色匹配
 		for (int i = 0; i < tid.size(); i++) {

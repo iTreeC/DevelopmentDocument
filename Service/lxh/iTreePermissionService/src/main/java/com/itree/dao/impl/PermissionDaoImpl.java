@@ -27,7 +27,7 @@ public class PermissionDaoImpl implements PermissionDao {
 
 	Perm perm;
 
-	List<Integer> ids = new ArrayList<Integer>();
+	List<Integer> ids = new ArrayList<Integer>() ;
 
 	public boolean add(Perm perm) {
 		if (perm == null) {
@@ -55,7 +55,7 @@ public class PermissionDaoImpl implements PermissionDao {
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
-			String hql = "from Permission where ClientPermissionID=? ";
+			String hql = "from Perm where ClientPermissionID=? ";
 			Perm p = (Perm) session.createQuery(hql).setParameter(0, id)
 					.uniqueResult();
 			if (p != null) {
@@ -152,6 +152,9 @@ public class PermissionDaoImpl implements PermissionDao {
 					.setParameter(0, id).uniqueResult();
 			transaction.commit();
 			logger.info("成功查看ID为： " + id + " 的权限。");
+			if(perm==null)
+				return 0;
+				
 			return perm.getClientPermissionID();
 		} catch (Exception e) {
 			transaction.rollback();
@@ -161,13 +164,14 @@ public class PermissionDaoImpl implements PermissionDao {
 	}
 
 	public List<Integer> getClientIDByID(List<Integer> id) {
+				
 		session = SessionUtils.getInstance().getSession();
 		transaction = session.beginTransaction();
 		try {
 
 			for (int i = 0; i < id.size(); i++) {
 				perm = (Perm) session.createQuery("from Perm where id=? ")
-						.setParameter(0, id).uniqueResult();
+						.setParameter(0, id.get(i)).uniqueResult();
 				if (perm != null)
 					ids.add(perm.getClientPermissionID());
 			}
@@ -184,6 +188,7 @@ public class PermissionDaoImpl implements PermissionDao {
 
 	public List<Integer> getIDByClientID(List<Integer> id) {
 
+		
 		if (id.size() == 0) {
 			logger.error("参数错误");
 			return null;
