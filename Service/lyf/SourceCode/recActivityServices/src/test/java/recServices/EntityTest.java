@@ -1,13 +1,11 @@
 package recServices;
 
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 /**
- * 测试hibernate的连通性，以及同步数据库结构
+ * 娴嬭瘯hibernate鐨勮繛閫氭�э紝浠ュ強鍚屾鏁版嵁搴撶粨鏋�
  * @author Fei
  *
  */

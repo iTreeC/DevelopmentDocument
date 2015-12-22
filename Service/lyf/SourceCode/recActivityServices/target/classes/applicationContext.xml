@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
+	<context:annotation-config />
+
+	<!-- <aop:aspectj-autoproxy proxy-target-class="true" /> -->
 	<!-- 配置自动扫描的包 -->
-	<context:component-scan base-package="com.position"></context:component-scan>
+	<context:component-scan base-package="com.position" />
 
 	<!-- 配置数据源 -->
 	<!-- 导入资源文件 -->
@@ -34,14 +43,14 @@
 	<!-- 配置 Hibernate 的 SessionFactory 实例: 通过 Spring 提供的 LocalSessionFactoryBean 
 		进行配置 -->
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<!-- 配置数据源属性 -->
 		<property name="dataSource" ref="dataSource"></property>
 
 		<!-- 配置 hibernate 配置文件的位置及名称 -->
 		<!-- <property name="configLocation" value="classpath:hibernate.cfg.xml"></property> -->
 		<!-- 配置自动扫描包下的实体，也可使用annotatedClasses属性进行单个实体配置 -->
-		<property name="packagesToScan" value="com.position.pojo。*"></property>
+		<!-- <property name="packagesToScan" value="com.position.pojo。*"></property> -->
 		<!-- 指定命名策略，例如相同的类名和表名自动建立上对应关系 -->
 		<property name="namingStrategy">
 			<bean class="org.hibernate.cfg.ImprovedNamingStrategy" />
