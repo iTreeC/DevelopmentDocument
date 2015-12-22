@@ -3,6 +3,7 @@ package com.position.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -11,14 +12,13 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.position.dao.CompanyDao;
 import com.position.dao.PositionDao;
-import com.position.dao.impl.CompanyDaoImpl;
-import com.position.pojo.Business_Position;
 import com.position.pojo.Company;
+import com.position.pojo.CompanyPosition;
 import com.position.service.FindCompany;
 
 /**
@@ -30,20 +30,21 @@ import com.position.service.FindCompany;
 @Path("/findcompany")
 @Consumes({ MediaType.APPLICATION_JSON })
 @Produces({ MediaType.APPLICATION_JSON })
-@Service("findcompanyservices")
+@Service
+@Transactional
 public class FindCompanyServices implements FindCompany {
 
 	private static Logger logger = Logger.getLogger(FindCompanyServices.class);
 
-	private List<Business_Position> list;
+	private List<CompanyPosition> list;
 	private List<Company> listcom;
 	private Company com;
 	private List<List<Company>> listcoms;
-	
-	@Autowired(required=true)
-	private PositionDao positiondao;
-	@Autowired(required=true)
-	private CompanyDao companydao;
+
+	@Resource
+	private PositionDao positionDaoImpl;
+	@Resource
+	private CompanyDao companyDaoImpl;
 
 	/**
 	 * 通过城市id查找对应公司
@@ -62,19 +63,19 @@ public class FindCompanyServices implements FindCompany {
 			logger.error("传入参数超出范围");
 			return null;
 		}
-		try{
-			System.out.println("111"+positiondao);
-			list = positiondao.getByCity(cityid);
-		}catch(Exception e){
+		try {
+			System.out.println("111" + positionDaoImpl);
+			list = positionDaoImpl.getByCity(cityid);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		listcom = new ArrayList<Company>();
 
 		if (list != null) {
 			for (int i = 0; i < list.size(); i++) {
-				int a = list.get(i).getCompanyID();
-				com = companydao.getById(a);
+				int a = list.get(i).getCompany().getId();
+				com = companyDaoImpl.getById(a);
 				listcom.add(i, com);
 			}
 			logger.info("查找成功");
@@ -103,8 +104,8 @@ public class FindCompanyServices implements FindCompany {
 		}
 		// 解析字符串1(英文逗号)
 		String[] result = citiesid.split(",");
-		if(result.equals(citiesid)){
-			//解析字符串2(中文逗号)
+		if (result.equals(citiesid)) {
+			// 解析字符串2(中文逗号)
 			result = citiesid.split("，");
 		}
 		for (int i = 0; i < result.length; i++) {
@@ -117,7 +118,7 @@ public class FindCompanyServices implements FindCompany {
 	}
 
 	/**
-	 *	通过部分地址，查找地址中包含其名字的公司集合
+	 * 通过部分地址，查找地址中包含其名字的公司集合
 	 * 
 	 * @param address
 	 *            部分地址信息
@@ -133,13 +134,13 @@ public class FindCompanyServices implements FindCompany {
 			logger.error("传入参数不能为空");
 			return null;
 		}
-		list = positiondao.getByAddress(address);
+		list = positionDaoImpl.getByAddress(address);
 		listcom = new ArrayList<Company>();
 
 		if (list != null) {
 			for (int i = 0; i < list.size(); i++) {
-				int a = list.get(i).getCompanyID();
-				com = companydao.getById(a);
+				int a = list.get(i).getCompany().getId();
+				com = companyDaoImpl.getById(a);
 				listcom.add(i, com);
 			}
 			logger.info("查找成功");
@@ -147,5 +148,22 @@ public class FindCompanyServices implements FindCompany {
 			logger.error("查找失败,不存在相应的数据");
 		}
 		return listcom;
+	}
+	
+	/***********************get/set方法******************************/
+	public PositionDao getPositionDaoImpl() {
+		return positionDaoImpl;
+	}
+
+	public void setPositionDaoImpl(PositionDao positionDaoImpl) {
+		this.positionDaoImpl = positionDaoImpl;
+	}
+
+	public CompanyDao getCompanyDaoImpl() {
+		return companyDaoImpl;
+	}
+
+	public void setCompanyDaoImpl(CompanyDao companyDaoImpl) {
+		this.companyDaoImpl = companyDaoImpl;
 	}
 }

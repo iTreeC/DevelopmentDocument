@@ -1,8 +1,10 @@
 package com.position.pojo;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -12,21 +14,35 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  *
  */
 @Entity
-public class Company implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
+public class Company {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;//id
 	private String companyName;//名称
 	private int usable;//可用标识
-	private Business_Position pos;//一对一地址
+	
+	@OneToOne
+	private CompanyPosition pos;//一对一地址，双向
+	
+	@OneToOne
+	private CompanyCoordinate coo;//一对一坐标，双向
 	
 	@JsonIgnore
-	public Business_Position getPos() {
+	public CompanyPosition getPos() {
 		return pos;
 	}
-	public void setPos(Business_Position pos) {
+	public void setPos(CompanyPosition pos) {
 		this.pos = pos;
 	}
+	@JsonIgnore
+	public CompanyCoordinate getCoo() {
+		return coo;
+	}
+	public void setCoo(CompanyCoordinate coo) {
+		this.coo = coo;
+	}
+	
+	
 	public int getId() {
 		return id;
 	}

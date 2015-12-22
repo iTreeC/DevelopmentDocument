@@ -2,14 +2,17 @@ package com.position.dao.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.position.dao.ProNumberDao;
-import com.position.pojo.Provincial_Number;
-import com.position.utils.SessionUtils;
+import com.position.pojo.ProvincialNumber;
 
 /**
  * Classname:ProNumberDaoImpl
@@ -20,105 +23,101 @@ import com.position.utils.SessionUtils;
  *
  * Copyright notice：liangyanfei
  */
-@Repository("pronumberdao")
-public class ProNumberDaoImpl extends SessionUtils implements ProNumberDao {
+@Repository
+@Transactional
+public class ProNumberDaoImpl implements ProNumberDao {
 
 	private static Logger logger = Logger.getLogger(CompanyDaoImpl.class);
-	private Provincial_Number pro;
-	private List<Provincial_Number> list;
+	@Resource
+	private SessionFactory sessionFactory;
+	
+	private ProvincialNumber pro;
+	private List<ProvincialNumber> list;
 
 	// 根据id
-	public Provincial_Number getById(int id) {
-		// TODO Auto-generated method stub
+	public ProvincialNumber getById(int id) {
 		try {
 			if (id < 0 || id > 65535) {
 				logger.error("传入参数超出范围");
 				return null;
 			}
-			pro = (Provincial_Number) getSession().get(Provincial_Number.class, id);
+			pro = (ProvincialNumber) this.getSession().get(ProvincialNumber.class, id);
 			return pro;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			logger.log(Level.ALL, "省信息获取失败", e);
 			return null;
 		}
 	}
 
 	// 根据名
-	public Provincial_Number getByName(String name) {
-		// TODO Auto-generated method stub
+	public ProvincialNumber getByName(String name) {
 		try {
 			if (name == null || name.trim().length() == 0) {
 				logger.error("传入参数不能为空");
 				return null;
 			}
-			String hql = "from Provincial_Number p where p.provincial =? ";
-			list =  getSession().createQuery(hql).setString(0, name).list();
+			String hql = "from ProvincialNumber p where p.provincial =? ";
+			list =  this.getSession().createQuery(hql).setString(0, name).list();
 			pro = list.get(0);
 			return pro;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			logger.log(Level.ALL, "省信息获取失败", e);
 			return null;
 		}
 	}
 
 	// 查找所有
-	public List<Provincial_Number> getAll() {
-		// TODO Auto-generated method stub
+	public List<ProvincialNumber> getAll() {
 		try {
-			list = getSession().createQuery("from Provincial_Number").list();
+			list = this.getSession().createQuery("from ProvincialNumber").list();
 			return list;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			logger.log(Level.ALL, "省信息获取失败", e);
 			return null;
 		}
 	}
 
 	// 增加
-	public void add(Provincial_Number Pro) {
-		// TODO Auto-generated method stub
+	public void add(ProvincialNumber Pro) {
 		try {
-			getSession().save(Pro);
+			this.getSession().save(Pro);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			logger.log(Level.ALL, "省信息存储失败", e);
 		}
 	}
 
 	// 删除(隐藏式)
 	public void deleteByIdHid(int ID) {
-		// TODO Auto-generated method stub
 		try {
-			String hql = "update Provincial_Number p set p.usable = 0 where proID = ?";
-			Query query = getSession().createQuery(hql).setParameter(0, ID);
-			query.executeUpdate();
+			String hql = "update ProvincialNumber p set p.usable = 0 where proID = ?";
+			this.getSession().createQuery(hql).setParameter(0, ID).executeUpdate();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			logger.log(Level.ALL, "省信息删除（隐藏）失败", e);
 		}
 	}
 
 	// 删除（直接删除）
 	public void deleteById(int ID) {
-		// TODO Auto-generated method stub
 		try {
-			String hql = "delete from Provincial_Number where proid=?";
-			getSession().createQuery(hql).setParameter(0, ID).executeUpdate();
+			String hql = "delete from ProvincialNumber where proid=?";
+			this.getSession().createQuery(hql).setParameter(0, ID).executeUpdate();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			logger.log(Level.ALL, "省信息删除（直接）失败", e);
 		}
 	}
 
 	// 修改
-	public void update(Provincial_Number Pro) {
-		// TODO Auto-generated method stub
+	public void update(ProvincialNumber Pro) {
 		try {
-			getSession().update(Pro);
+			this.getSession().update(Pro);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			logger.log(Level.ALL, "省信息更新失败", e);
 		}
 	}
@@ -126,12 +125,17 @@ public class ProNumberDaoImpl extends SessionUtils implements ProNumberDao {
 	// 恢复（隐藏式删除的反向）
 	public void regainByDelete(int id) {
 		try {
-			String hql = "update Provincial_Number p set p.usable = 1 where proID = ?";
-			Query query = getSession().createQuery(hql).setParameter(0, id);
-			query.executeUpdate();
+			String hql = "update ProvincialNumber p set p.usable = 1 where proID = ?";
+			this.getSession().createQuery(hql).setParameter(0, id).executeUpdate();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			logger.log(Level.ALL, "省信息隐藏后恢复失败", e);
 		}
+	}
+	
+	/***********************get/set方法******************************/
+
+	private Session getSession() {
+		return this.sessionFactory.getCurrentSession();
 	}
 }

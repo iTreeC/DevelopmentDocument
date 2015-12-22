@@ -2,7 +2,7 @@ package com.position.dao;
 
 import java.util.List;
 
-import com.position.pojo.Provincial_Number;
+import com.position.pojo.ProvincialNumber;
 
 /**
  * 省表增删改查
@@ -12,16 +12,16 @@ import com.position.pojo.Provincial_Number;
  */
 public interface ProNumberDao {
 	// 根据id
-	Provincial_Number getById(int id);
+	ProvincialNumber getById(int id);
 
 	// 根据名
-	Provincial_Number getByName(String name);
+	ProvincialNumber getByName(String name);
 
 	// 查找所有
-	List<Provincial_Number> getAll();
+	List<ProvincialNumber> getAll();
 
 	// 增加
-	void add(Provincial_Number Pro);
+	void add(ProvincialNumber Pro);
 
 	// 删除(隐藏式)
 	void deleteByIdHid(int ID);
@@ -30,7 +30,7 @@ public interface ProNumberDao {
 	void deleteById(int ID);
 
 	// 修改
-	void update(Provincial_Number Pro);
+	void update(ProvincialNumber Pro);
 	//恢复（隐藏式删除的反向）
 	void regainByDelete(int id);
 }

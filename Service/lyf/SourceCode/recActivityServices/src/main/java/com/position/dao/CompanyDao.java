@@ -8,7 +8,7 @@ import com.position.pojo.Company;
  * @author Fei
  *
  */
-public interface CompanyDao  {
+public interface CompanyDao {
 	//根据id
 	Company getById(int id);
 	//根据公司名
