@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.position.dao.CompanyDao;
 import com.position.dao.PositionDao;
@@ -31,7 +30,6 @@ import com.position.service.FindCompany;
 @Consumes({ MediaType.APPLICATION_JSON })
 @Produces({ MediaType.APPLICATION_JSON })
 @Service
-@Transactional
 public class FindCompanyServices implements FindCompany {
 
 	private static Logger logger = Logger.getLogger(FindCompanyServices.class);
@@ -64,7 +62,7 @@ public class FindCompanyServices implements FindCompany {
 			return null;
 		}
 		try {
-			System.out.println("111" + positionDaoImpl);
+			System.out.println("服务*********************************" + positionDaoImpl);
 			list = positionDaoImpl.getByCity(cityid);
 		} catch (Exception e) {
 			e.printStackTrace();

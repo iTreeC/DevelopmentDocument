@@ -23,9 +23,9 @@ import com.position.service.CityManage;
  * @author Fei
  *
  */
-@Path("/citymanage")
-@Consumes({ MediaType.APPLICATION_JSON })
-@Produces({ MediaType.APPLICATION_JSON })
+//@Path("/citymanage")
+//@Consumes({ MediaType.APPLICATION_JSON })
+//@Produces({ MediaType.APPLICATION_JSON })
 @Service
 @Transactional
 public class CityManageServices implements CityManage {

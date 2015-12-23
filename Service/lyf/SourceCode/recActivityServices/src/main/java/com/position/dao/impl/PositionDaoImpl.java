@@ -112,8 +112,13 @@ public class PositionDaoImpl implements PositionDao {
 				logger.error("传入参数超出范围");
 				return null;
 			}
+			System.out.println("实现**************************"+id);
+			System.out.println("实现2******************"+sessionFactory);
+			this.getSession().beginTransaction();
 			CityNumber city = (CityNumber) this.getSession().get(CityNumber.class, id);
+			System.out.println("**************************"+city);
 			Set<CompanyPosition> list = city.getPos();
+			System.out.println("**************************"+list);
 			List<CompanyPosition> list1 = new ArrayList<CompanyPosition>(list);
 			return list1;
 		} catch (Exception e) {
