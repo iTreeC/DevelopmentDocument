@@ -12,6 +12,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.position.dao.CompanyDao;
@@ -39,10 +41,14 @@ public class FindCompanyServices implements FindCompany {
 	private Company com;
 	private List<List<Company>> listcoms;
 
-	@Resource
+	/*@Resource
 	private PositionDao positionDaoImpl;
 	@Resource
-	private CompanyDao companyDaoImpl;
+	private CompanyDao companyDaoImpl;*/
+	ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+	PositionDao positionDaoImpl = (PositionDao) ctx.getBean("positionDaoImpl");
+	CompanyDao companyDaoImpl = (CompanyDao) ctx.getBean("companyDaoImpl");
 
 	/**
 	 * 通过城市id查找对应公司

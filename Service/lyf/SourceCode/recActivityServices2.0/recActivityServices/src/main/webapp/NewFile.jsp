@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-hello
+    <form action="/iTreePermissionService/role/get" method="post">
+      <input type="text" id="rid" name="rid"/><br/>
+      <input type="text" id="pid" name="pid"/><br/>
+      <input type= "submit"/>
+    </form>
 </body>
 </html>
