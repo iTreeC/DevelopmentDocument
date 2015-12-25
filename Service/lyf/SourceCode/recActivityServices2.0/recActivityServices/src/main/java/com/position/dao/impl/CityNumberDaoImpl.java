@@ -2,17 +2,20 @@ package com.position.dao.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.position.dao.CityNumberDao;
 import com.position.dao.ProNumberDao;
 import com.position.pojo.CityNumber;
 import com.position.pojo.ProvincialNumber;
-import com.position.utils.SessionUtils;
 
 /**
  * Classname:CityNumberDaoImpl
@@ -23,14 +26,18 @@ import com.position.utils.SessionUtils;
  *
  * Copyright notice：liangyanfei
  */
+@Repository
+@Transactional
 public class CityNumberDaoImpl implements CityNumberDao {
-
 	private static Logger logger = Logger.getLogger(CityNumberDaoImpl.class);
-	private Session session;
-	private Transaction transaction;
+	
+	@Resource
+	private SessionFactory sessionFactory;
+	
 	private CityNumber city;
 	private List<CityNumber> list;
-	private ProNumberDao proDao = new ProNumberDaoImpl();
+	@Resource
+	private ProNumberDao proNumberDaoImpl;
 
 	// 根据id
 	public CityNumber getById(int cityid) {
@@ -40,13 +47,9 @@ public class CityNumberDaoImpl implements CityNumberDao {
 				logger.error("传入参数超出范围");
 				return null;
 			}
-			session = SessionUtils.getInstance().getSession();
-			transaction = session.beginTransaction();
-			city = (CityNumber) session.get(CityNumber.class, cityid);
-			transaction.commit();
+			city = (CityNumber) this.getSession().get(CityNumber.class, cityid);
 			return city;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.log(Level.ALL, "城市信息获取失败", e);
 			return null;
@@ -61,15 +64,11 @@ public class CityNumberDaoImpl implements CityNumberDao {
 				logger.error("传入参数不能为空");
 				return null;
 			}
-			session = SessionUtils.getInstance().getSession();
-			transaction = session.beginTransaction();
 			String hql = "from CityNumber c where c.city =? ";
-			list = session.createQuery(hql).setString(0, name).list();
+			list = this.getSession().createQuery(hql).setString(0, name).list();
 			city = list.get(0);
-			transaction.commit();
 			return city;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.log(Level.ALL, "城市信息获取失败", e);
 			return null;
@@ -79,7 +78,7 @@ public class CityNumberDaoImpl implements CityNumberDao {
 		public List<CityNumber> getByParentName(String parentCity){
 			 
 			// 可从ProNumberDaoImpl类里的getByName得到父类后，关联得到
-			list = (List<CityNumber>) proDao.getByName(parentCity).getCities();
+			list = (List<CityNumber>) proNumberDaoImpl.getByName(parentCity).getCities();
 			return list;
 		}
 
@@ -87,7 +86,7 @@ public class CityNumberDaoImpl implements CityNumberDao {
 	public List<CityNumber> getByParentId(int parentCity) {
 		 
 		// 可从ProNumberDaoImpl类里的getById得到父类后，关联得到
-		list = (List<CityNumber>)proDao.getById(parentCity).getCities();
+		list = (List<CityNumber>)proNumberDaoImpl.getById(parentCity).getCities();
 		return list;
 	}
 
@@ -95,13 +94,9 @@ public class CityNumberDaoImpl implements CityNumberDao {
 	public List<CityNumber> getAll() {
 		 
 		try {
-			session = SessionUtils.getInstance().getSession();
-			transaction = session.beginTransaction();
-			list = session.createQuery("from CityNumber").list();
-			transaction.commit();
+			list = this.getSession().createQuery("from CityNumber").list();
 			return list;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.log(Level.ALL, "城市信息获取失败", e);
 			return null;
@@ -112,15 +107,10 @@ public class CityNumberDaoImpl implements CityNumberDao {
 	public void add(CityNumber city) {
 		 
 		try {
-			session = SessionUtils.getInstance().getSession();
-			transaction = session.beginTransaction();
-			session.save(city);
-			transaction.commit();
+			this.getSession().save(city);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.log(Level.ALL, "城市信息存储失败", e);
-			session.getTransaction().rollback();
 		}
 	}
 
@@ -128,16 +118,11 @@ public class CityNumberDaoImpl implements CityNumberDao {
 	public void addtwo(CityNumber city, ProvincialNumber pro) {
 		 
 		try {
-			session = SessionUtils.getInstance().getSession();
-			transaction = session.beginTransaction();
 			city.setPro(pro);
-			session.save(city);
-			transaction.commit();
+			this.getSession().save(city);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.log(Level.ALL, "城市信息存储失败", e);
-			session.getTransaction().rollback();
 		}
 	}
 
@@ -145,16 +130,12 @@ public class CityNumberDaoImpl implements CityNumberDao {
 	public void deleteByIdHid(int cityID) {
 		 
 		try {
-			session = SessionUtils.getInstance().getSession();
-			transaction = session.beginTransaction();
 			String hql = "update CityNumber c set c.usable = 0 where cityID = ?";
-			Query query = session.createQuery(hql).setParameter(0, cityID);
+			Query query = this.getSession().createQuery(hql).setParameter(0, cityID);
 			query.executeUpdate();
-			transaction.commit();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			logger.log(Level.ALL, "城市信息删除（隐藏）失败", e);
-			session.getTransaction().rollback();
 		}
 	}
 
@@ -162,14 +143,11 @@ public class CityNumberDaoImpl implements CityNumberDao {
 	public void deleteById(int cityID) {
 		 
 		try {
-			session = SessionUtils.getInstance().getSession();
-			transaction = session.beginTransaction();
 			String hql = "delete from CityNumber where cityid=?";
-			session.createQuery(hql).setParameter(0, cityID).executeUpdate();
-			transaction.commit();
+			this.getSession().createQuery(hql).setParameter(0, cityID).executeUpdate();
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.log(Level.ALL, "城市信息删除失败", e);
-			session.getTransaction().rollback();
 		}
 	}
 
@@ -177,31 +155,35 @@ public class CityNumberDaoImpl implements CityNumberDao {
 	public void update(CityNumber city) {
 
 		try {
-			session = SessionUtils.getInstance().getSession();
-			transaction = session.beginTransaction();
-			session.update(city);
-			transaction.commit();
+			this.getSession().update(city);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			logger.log(Level.ALL, "城市信息更新失败", e);
-			session.getTransaction().rollback();
 		}
 	}
 
 	// 恢复（隐藏式删除的反向）
 	public void regainByDelete(int cityid) {
 		try {
-			session = SessionUtils.getInstance().getSession();
-			transaction = session.beginTransaction();
 			String hql = "update CityNumber c set c.usable = 1 where cityID = ?";
-			Query query = session.createQuery(hql).setParameter(0, cityid);
-			query.executeUpdate();
-			transaction.commit();
+			this.getSession().createQuery(hql).setParameter(0, cityid).executeUpdate();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			logger.log(Level.ALL, "省信息隐藏后恢复失败", e);
-			session.getTransaction().rollback();
 		}
 	}
+	
+	/***********************get/set方法******************************/
 
+	private Session getSession() {
+		return this.sessionFactory.getCurrentSession();
+	}
+
+	public ProNumberDao getProDao() {
+		return proNumberDaoImpl;
+	}
+
+	public void setProDao(ProNumberDao proNumberDaoImpl) {
+		this.proNumberDaoImpl = proNumberDaoImpl;
+	}
 }

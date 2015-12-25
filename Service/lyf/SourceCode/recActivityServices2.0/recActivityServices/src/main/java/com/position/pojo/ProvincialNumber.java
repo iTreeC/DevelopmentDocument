@@ -3,6 +3,12 @@ package com.position.pojo;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
@@ -10,12 +16,21 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author Fei
  *
  */
+@Entity
 public class ProvincialNumber {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int proID;//编号
 	private String provincial;//名称
 	private int usable;//可用标识
+	
+	@OneToMany(mappedBy="pro")
 	private Set<CityNumber> cities = new HashSet<CityNumber>();//一对多个市
-	private Set<Company> comps = new HashSet<Company>();//一对多个公司
+	
+	@OneToMany(mappedBy="province")
+	private Set<CompanyPosition> comps = new HashSet<CompanyPosition>();//一对多个公司地址
+	
+	
 	public int getProID() {
 		return proID;
 	}
@@ -42,10 +57,10 @@ public class ProvincialNumber {
 		this.cities = cities;
 	}
 	@JsonIgnore
-	public Set<Company> getComps() {
+	public Set<CompanyPosition> getComps() {
 		return comps;
 	}
-	public void setComps(Set<Company> comps) {
+	public void setComps(Set<CompanyPosition> comps) {
 		this.comps = comps;
 	}
 	

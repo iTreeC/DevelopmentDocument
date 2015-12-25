@@ -1,12 +1,27 @@
 package com.position.pojo;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 /**
  * 经纬度坐标表
  * @author Fei
  *
  */
+@Entity
 public class CompanyCoordinate {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;//主键标识
+	
+	@OneToOne
+	@JoinColumn(name="companyid",insertable=false,updatable=false)
 	private Company company;//商家,双向一对一
+	
 	private double Lng;//商家精度
 	private double Lat;//商家纬度 
 	private String Location;//经纬度算法标识

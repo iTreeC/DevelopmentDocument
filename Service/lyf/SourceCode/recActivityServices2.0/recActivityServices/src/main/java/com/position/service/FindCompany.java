@@ -2,7 +2,6 @@ package com.position.service;
 
 import java.util.List;
 
-import javax.ws.rs.Path;
 import com.position.pojo.Company;
 
 /**
@@ -11,7 +10,7 @@ import com.position.pojo.Company;
  * @author Fei
  * 
  */
-@Path("/findcompany")
+
 public interface FindCompany {
 	/**
 	 * 通过城市id查找对应公司

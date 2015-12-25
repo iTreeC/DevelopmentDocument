@@ -1,5 +1,11 @@
 package com.position.pojo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
@@ -7,11 +13,18 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author Fei
  *
  */
+@Entity
 public class Company {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;//id
 	private String companyName;//名称
 	private int usable;//可用标识
+	
+	@OneToOne
 	private CompanyPosition pos;//一对一地址，双向
+	
+	@OneToOne
 	private CompanyCoordinate coo;//一对一坐标，双向
 	
 	@JsonIgnore
