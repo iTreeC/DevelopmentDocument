@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.itree.permissionService.GetUserPermission;
 import com.itree.permissionService.impl.GetUserPermissionimpl;
+import com.itree.utils.JSONUtil;
 
 public class GetUserPermissionTest {
 
@@ -17,7 +18,10 @@ public class GetUserPermissionTest {
 	@Test
 	public void test() {
 		GetUserPermission u = new GetUserPermissionimpl();
-		u.GetUid(1);
+		String result= u.GetUid(1);
+		
+		JSONUtil l = new JSONUtil();
+		System.out.println(l.jsonListToObjectList(result));
 	}
 
 }
