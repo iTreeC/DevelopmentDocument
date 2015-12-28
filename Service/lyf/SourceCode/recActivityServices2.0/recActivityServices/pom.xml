@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.iTree.xh</groupId>
-	<artifactId>iTreePermissionService</artifactId>
+	<groupId>com.iTree.lyf</groupId>
+	<artifactId>recActivityServices</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>iTreePermissionService Maven Webapp</name>
+	<name>recActivityServices Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<!-- junit 4 -->
@@ -175,10 +175,8 @@
 			<artifactId>jsr311-api</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-
-
 	</dependencies>
 	<build>
-		<finalName>iTreePermissionService</finalName>
+		<finalName>recActivityServices</finalName>
 	</build>
 </project>

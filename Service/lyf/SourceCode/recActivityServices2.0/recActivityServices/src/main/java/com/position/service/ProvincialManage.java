@@ -1,6 +1,7 @@
 package com.position.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.position.pojo.ProvincialNumber;
 /**
@@ -20,17 +21,17 @@ public interface ProvincialManage {
 	List<ProvincialNumber> getAll();
 
 	// 增加
-	void add(ProvincialNumber Pro);
+	//Map<String, Boolean> add(ProvincialNumber Pro);
 
 	// 删除(隐藏式)
-	void deleteByIdHid(int ID);
+	Map<String, Boolean> deleteByIdHid(int ID);
 
 	// 删除（直接删除）
-	void deleteById(int ID);
+	Map<String, Boolean> deleteById(int ID);
 
 	// 修改
-	void update(ProvincialNumber Pro);
+	//Map<String, Boolean> update(ProvincialNumber Pro);
 
 	// 恢复（隐藏式删除的反向）
-	void regainByDelete(int id);
+	Map<String, Boolean> regainByDelete(int id);
 }

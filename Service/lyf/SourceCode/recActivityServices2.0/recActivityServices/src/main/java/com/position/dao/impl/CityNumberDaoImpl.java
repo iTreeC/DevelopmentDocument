@@ -33,11 +33,11 @@ public class CityNumberDaoImpl implements CityNumberDao {
 	
 	@Resource
 	private SessionFactory sessionFactory;
+	@Resource
+	private ProNumberDao proNumberDaoImpl;
 	
 	private CityNumber city;
 	private List<CityNumber> list;
-	@Resource
-	private ProNumberDao proNumberDaoImpl;
 
 	// 根据id
 	public CityNumber getById(int cityid) {

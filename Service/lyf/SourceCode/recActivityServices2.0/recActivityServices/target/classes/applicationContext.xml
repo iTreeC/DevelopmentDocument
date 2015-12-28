@@ -14,7 +14,7 @@
 
 	<context:annotation-config />
 	<!-- 配置自动扫描的包 -->
-	<context:component-scan base-package="com.position.dao.impl,com.posistion.service.impl" />
+	<context:component-scan base-package="com.position" />
 
 	<!-- 导入资源文件 -->
 	<bean id="propertyConfigurer"

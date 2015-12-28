@@ -3,9 +3,6 @@ package recServices;
 import java.util.List;
 
 import javax.annotation.Resource;
-
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -26,25 +23,18 @@ import com.position.pojo.ProvincialNumber;
 @RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration(locations = {"classpath*:applicationContext.xml"})  
 @Transactional  
-@TransactionConfiguration(transactionManager = "txManager", defaultRollback = true)
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class TestCityNumberDaoImpl {
 
 	CityNumber city = new CityNumber();
 	List<CityNumber> list ;
 	@Resource
 	private CityNumberDao cityNumberDaoImpl;
-	
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	// 通过id查询
 	@Test
 	public void testGetbyid() {
+		System.out.println("************************"+cityNumberDaoImpl);
 		city = cityNumberDaoImpl.getById(2);
 		if (city != null) {
 			System.out.println(city.getCity());

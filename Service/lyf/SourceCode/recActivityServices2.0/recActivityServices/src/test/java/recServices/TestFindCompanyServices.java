@@ -6,17 +6,14 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.position.dao.CompanyDao;
-import com.position.dao.PositionDao;
 import com.position.pojo.Company;
 import com.position.service.FindCompany;
+import com.position.service.impl.FindCompanyServices;
 
 /**
  * 查找公司restful接口本地测试
@@ -27,14 +24,10 @@ import com.position.service.FindCompany;
 /*@RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration(locations = {"classpath*:applicationContext.xml"})  
 @Transactional  
-@TransactionConfiguration(transactionManager = "txManager", defaultRollback = true)*/
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)*/
 public class TestFindCompanyServices {
 
-	@Resource
-	//private FindCompany findCompanyServices;
-	ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-
-	FindCompany findCompanyServices = (FindCompany) ctx.getBean("findCompanyServices");
+	private FindCompany findCompanyServices =  new FindCompanyServices();
 	
 	// 通过城市id查询
 	@Test
@@ -46,7 +39,6 @@ public class TestFindCompanyServices {
 				System.out.println(list.get(i).getCompanyName());
 				System.out.println(list.get(i).getUsable());
 				System.out.println(list.get(i).getPos());
-
 			}
 		} else {
 			System.out.println("查找失败");

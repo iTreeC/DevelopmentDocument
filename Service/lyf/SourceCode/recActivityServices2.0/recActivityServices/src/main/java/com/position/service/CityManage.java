@@ -1,6 +1,7 @@
 package com.position.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.position.pojo.CityNumber;
 import com.position.pojo.ProvincialNumber;
@@ -28,20 +29,20 @@ public interface CityManage {
 	List<CityNumber> getAll();
 
 	// 增加(单一参数)
-	void add(CityNumber city);
+	//Map<String, Boolean> add(CityNumber city);
 
 	// 增加(两个参数)
-	void addtwo(CityNumber city, ProvincialNumber pro);
+	//Map<String, Boolean> addTwo(CityNumber city, ProvincialNumber pro);
 
 	// 删除(隐藏式)
-	void deleteByIdHid(int cityID);
+	Map<String, Boolean> deleteByIdHid(int cityID);
 
 	// 删除（直接删除）
-	void deleteById(int cityID);
+	Map<String, Boolean> deleteById(int cityID);
 
 	// 修改
-	void update(CityNumber city);
+	//Map<String, Boolean> postUpdate(CityNumber city);
 
 	// 恢复（隐藏式删除的反向）
-	void regainByDelete(int cityid);
+	Map<String, Boolean> regainByDelete(int cityid);
 }

@@ -3,7 +3,6 @@ package com.position.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,6 +20,7 @@ import com.position.dao.PositionDao;
 import com.position.pojo.Company;
 import com.position.pojo.CompanyPosition;
 import com.position.service.FindCompany;
+import com.position.utils.ValidateUtils;
 
 /**
  * 查找招聘公司的服务端口
@@ -31,7 +31,7 @@ import com.position.service.FindCompany;
 @Path("/findcompany")
 @Consumes({ MediaType.APPLICATION_JSON })
 @Produces({ MediaType.APPLICATION_JSON })
-@Service
+//@Service
 public class FindCompanyServices implements FindCompany {
 
 	private static Logger logger = Logger.getLogger(FindCompanyServices.class);
@@ -41,14 +41,17 @@ public class FindCompanyServices implements FindCompany {
 	private Company com;
 	private List<List<Company>> listcoms;
 
-	/*@Resource
-	private PositionDao positionDaoImpl;
-	@Resource
-	private CompanyDao companyDaoImpl;*/
+	/*
+	 * @Resource private PositionDao positionDaoImpl;
+	 * 
+	 * @Resource private CompanyDao companyDaoImpl;
+	 */
+	// 由于该类是对外暴露的rest接口，因此需要以下面的方式触发spring容器，否则会无法注入（暂时仅有此方式测试成功）
 	ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-
 	PositionDao positionDaoImpl = (PositionDao) ctx.getBean("positionDaoImpl");
 	CompanyDao companyDaoImpl = (CompanyDao) ctx.getBean("companyDaoImpl");
+
+	ValidateUtils validate = new ValidateUtils();// 判断传入参数是否有效
 
 	/**
 	 * 通过城市id查找对应公司
@@ -63,30 +66,30 @@ public class FindCompanyServices implements FindCompany {
 	public List<Company> FindCompanyByCityId(@QueryParam("cityid") int cityid) {
 
 		// 边界值验证
-		if (cityid < 0 || cityid > 65535) {
+		if (!validate.limit(cityid)) {
 			logger.error("传入参数超出范围");
 			return null;
 		}
 		try {
-			System.out.println("服务*********************************" + positionDaoImpl);
 			list = positionDaoImpl.getByCity(cityid);
+
+			listcom = new ArrayList<Company>();
+
+			if (list != null) {
+				for (int i = 0; i < list.size(); i++) {
+					int a = list.get(i).getCompany().getId();
+					com = companyDaoImpl.getById(a);
+					listcom.add(i, com);
+				}
+				logger.info("查找成功");
+			} else {
+				logger.error("查找失败,不存在相应的数据");
+			}
+			return listcom;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-
-		listcom = new ArrayList<Company>();
-
-		if (list != null) {
-			for (int i = 0; i < list.size(); i++) {
-				int a = list.get(i).getCompany().getId();
-				com = companyDaoImpl.getById(a);
-				listcom.add(i, com);
-			}
-			logger.info("查找成功");
-		} else {
-			logger.error("查找失败,不存在相应的数据");
-		}
-		return listcom;
 	}
 
 	/**
@@ -100,9 +103,9 @@ public class FindCompanyServices implements FindCompany {
 	@GET
 	@Path("/bycityidforString")
 	public List<List<Company>> FindCompanyForString(@QueryParam("citiesid") String citiesid) {
-		int trans;
+		int trans;//局部变量，用来动态存储城市id
 		// 边界值验证
-		if (citiesid == null || citiesid.trim().length() == 0) {
+		if (!validate.length(citiesid)) {
 			logger.error("传入参数不能为空");
 			return null;
 		}
@@ -134,7 +137,7 @@ public class FindCompanyServices implements FindCompany {
 	public List<Company> FindCompanyByaddress(@QueryParam("address") String address) {
 
 		// 边界值验证
-		if (address == null || address.trim().length() == 0) {
+		if (!validate.length(address)) {
 			logger.error("传入参数不能为空");
 			return null;
 		}
@@ -153,8 +156,8 @@ public class FindCompanyServices implements FindCompany {
 		}
 		return listcom;
 	}
-	
-	/***********************get/set方法******************************/
+
+	/*********************** get/set方法 ******************************/
 	public PositionDao getPositionDaoImpl() {
 		return positionDaoImpl;
 	}

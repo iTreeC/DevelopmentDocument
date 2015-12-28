@@ -1,6 +1,7 @@
 package com.position.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.position.pojo.CompanyPosition;
 /**
@@ -31,17 +32,17 @@ public interface PositionManage {
 	List<CompanyPosition> getByCount(int id);
 
 	// 增加
-	void add(CompanyPosition Bus);
+	//Map<String, Boolean> add(CompanyPosition Bus);
 
 	// 删除(隐藏式)
-	void deleteByIdHid(int ID);
+	Map<String, Boolean> deleteByIdHid(int ID);
 
 	// 删除（直接删除）
-	void deleteById(int ID);
+	Map<String, Boolean> deleteById(int ID);
 
 	// 修改
-	void update(CompanyPosition Bus);
+	//Map<String, Boolean> update(CompanyPosition Bus);
 
 	// 恢复（隐藏式删除的反向）
-	void regainByDelete(int id);
+	Map<String, Boolean> regainByDelete(int id);
 }

@@ -5,7 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 /**
- * 娴嬭瘯hibernate鐨勮繛閫氭�э紝浠ュ強鍚屾鏁版嵁搴撶粨鏋�
+ * 测试hibernate的连通性，以及同步数据库结构
  * @author Fei
  *
  */

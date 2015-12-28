@@ -179,6 +179,6 @@
 
 	</dependencies>
 	<build>
-		<finalName>iTreePermissionService</finalName>
+		<finalName>recActivityServices</finalName>
 	</build>
 </project>
