@@ -1,3 +1,2 @@
-本文件夹为ActivityWeb端开发资源库
-前期由刘洋和马大洲分别负责web 和code 文件夹。
-后期在一起合。
+activityjsp 拥有简单的登录注册功能，前后台全部都有。
+注 在activityWeb目录下才是完成的页面 

@@ -1,0 +1,45 @@
+*{margin: 0;padding: 0;}
+ul li{list-style-type: none;}
+.hideText{display: none;}
+.section{text-align: center;color: #ffffff;}
+.left{float: left;}
+.overFloat{overflow: hidden;}
+.right20{margin-right: 20px}
+#logo{margin-right: 28px}
+.pageOne{background-image: url("../images/text1%20(8).png");}
+/*-----公共导航------*/
+.menu{position: fixed;top: 0px;z-index: 99999;background-color: #ffffff;width: 100%;border-bottom: 1px solid #919191;}
+.menuBodys{max-width: 1080px;height: 70px;margin: 0 auto;}
+.menuList{float: right;margin-top: 29px;}
+.menuBodys img{margin-top: 7px;}
+.colorBack{color: #4d4d4d;margin-right: 28px;}
+.colorSlategrey{color: #999999;}
+.menuBodys ul li{float: left;font-size: 14px;padding-bottom: 10px;padding-left: 5px;padding-right: 5px;cursor: pointer;}
+.boderBottomGreen{border-bottom: 4px solid #28c085;}
+#hidText{color: #999999;position: absolute;padding: 5px 5px;font-size: 12px;}
+/*-----page1-----*/
+.page1-down{width:550px;margin: 0 auto;}
+.page1-Description{margin-top: 7px;margin-left: -40px;margin-bottom: 25px;}
+.downErweima{width: 141px;height: 141px;left: 470px;z-index: 99999;}
+.lookErweima{width: 141px;height: 141px;left: 470px;z-index: 99999;}
+/*-----page2-----*/
+.imgLeft{margin-right: 126px;}
+.page2-Text{color: #000000;width: 1080px;margin: 0 auto;margin-top: 40px;}
+.textLeft{width:350px;float: left;margin-left: 130px;}
+.textRight{width: 200px;float: right;}
+.textRights{width: 350px;float: right;}
+.textRights p{text-align: left;margin-top: 20px;line-height: 40px;font-size: 14px;color: #999999;}
+.textRight p{text-align: left;margin-top: 20px;line-height: 20px;font-size: 18px;color: #999999;}
+.textLeft p{text-align: left;margin-top: 20px;line-height: 40px;font-size: 14px;color: #999999;}
+/*-----page3-----*/
+.page3-Text{color: #000000;width: 1080px;margin: 0 auto;margin-top: 40px;}
+/*-----page4-----*/
+.page4-Erweima .left ul li img{cursor: pointer;}
+.page4-down{width: 340px;margin: 0 auto;}
+/*----学生页面-----*/
+#page2-backGround{background-image: url("../html/stuPage2(1).png");}
+#page3-backGround{background-image: url("../html/stuPage2(2).png")}
+.stu-textRight{width: 350px;float: left;}
+.cb{clear: both;}
+a{text-decoration:none;}
+.color-4d4d4d {color: #4d4d4d;}

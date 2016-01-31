@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.action.extension" value="webwork,action,do"></constant>
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	
+	<package name="activity" namespace="/" extends="struts-default">
+		<!-- 注册 -->
+		<action name="addUser" class="com.activity.actions.UserAction" method="addUser">
+			<result name="addsuccess">/ActivityWeb/body/account/login2.jsp</result>
+			<result name="adderror_telusered">/ActivityWeb/body/account/register2.jsp</result>
+			<result name="adderror_passwddif">/ActivityWeb/body/account/register2.jsp</result>
+			<result name="adderror_validateCode">/ActivityWeb/body/account/register2.jsp</result>
+		</action>
+		<!-- 登录 -->
+		<action name="userLogin" class="com.activity.actions.UserAction" method="userLogin">
+			<result name="loginsuccess">/loginSuccess.jsp</result>
+			<result name="loginerror">/ActivityWeb/body/account/login2.jsp</result>
+		</action>
+		<action name="updatePwd"  class="com.activity.actions.UserAction" method="updatepwd">
+			<result name="updatesuccess">/ActivityWeb/body/account/updatepwd.jsp</result>
+			<result name="error">/ActivityWeb/body/account/updatepwd.jsp</result>
+		</action>
+		
+		<!-- 验证码 -->
+		<action name="checkCode" class="com.activity.actions.UserAction" method="checkCode">
+		<!-- 为验证码相关数据设值 -->
+			<param name="width">55</param>
+			<param name="height">25</param>
+			<param name="number">4</param>
+			<param name="codes">ABCDEFGHIJKLMNOPQRSTUVWXYZ</param>
+			<!-- 现在这里面报错，在param中写入输出流的名字，现在不知道怎么写 ,现在说是输出流的问题-->
+			 <result name="success" type="stream">
+			 	<param name="inputName">out</param>  
+			 </result>
+		</action>
+	</package>
+</struts>

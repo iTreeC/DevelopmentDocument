@@ -1,0 +1,3 @@
+1、目前用的是完整版bootstrapCSS样式，在后期的投放网站中优化CSS要换成min压缩版的。
+logo 135*51
+2.现在的登录页面在body下面的login2.jsp，注册页面是register2.jsp页面
